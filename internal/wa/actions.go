@@ -232,8 +232,6 @@ func (b *Backend) Send(chatID string, d model.Draft) *model.Message {
 	return b.storeAndSend(jid, sm, msg, nil)
 }
 
-
-
 // quote makes a message sent to chatID a reply to r: it fills in ci and
 // returns the quote the message shows.
 func (b *Backend) quote(chatID string, r *model.Message, ci *waE2E.ContextInfo) *model.Quote {

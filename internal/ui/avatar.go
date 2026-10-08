@@ -122,7 +122,7 @@ func avatarInitial(name string) string {
 		if unicode.IsLetter(r) {
 			return string(unicode.ToUpper(r))
 		}
-		
+
 	}
 	return ""
 }

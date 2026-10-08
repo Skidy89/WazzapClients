@@ -64,7 +64,7 @@ func (b *Backend) Communities() []*model.Community {
 	if err := rows.Err(); err != nil {
 		b.log.Errorf("load communities: %v", err)
 		return nil
-	}	
+	}
 	defer rows.Close()
 	byID := map[string]*model.Community{}
 	latest := map[string]int64{}
@@ -168,7 +168,7 @@ func (s *msgStore) members(ctx context.Context, chat string) []types.GroupPartic
 	}
 	if err := rows.Err(); err != nil {
 		return nil
-	}	
+	}
 	defer rows.Close()
 	var out []types.GroupParticipant
 	for rows.Next() {

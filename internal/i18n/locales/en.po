@@ -1,0 +1,227 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Spanish"
+msgstr "Spanish"
+
+msgid "English"
+msgstr "English"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "ShareStatuses"
+msgstr "Share statuses"
+
+msgid "ShareStatusesDescription"
+msgstr "Share photos, videos and text that disappear after 24 hours."
+
+msgid "DiscoverChannels"
+msgstr "Discover channels"
+
+msgid "DiscoverChannelsDescription"
+msgstr "Entertainment, sports, news, lifestyle, people and more. Follow the channels that interest you"
+
+msgid "CreateCommunities"
+msgstr "Create communities"
+
+msgid "CreateCommunitiesDescription"
+msgstr "Bring members together in topic-based groups and easily send them admin announcements."
+
+msgid "PageSettings"
+msgstr "Manage your account, privacy, chats and notifications."
+
+msgid "Calls"
+msgstr "Calls"
+
+msgid "PageCalls"
+msgstr "Calling from this app isn't supported yet. Use your phone to make and answer calls."
+
+msgid "PersonalCommunityE2Eenc"
+msgstr "Your personal messages in communities are end-to-end encrypted"
+
+msgid "PolicyE2E"
+msgstr "Your personal messages end-to-end encrypted"
+
+msgid "StartupAndClose"
+msgstr "Startup and close"
+
+msgid "StartAppAtLogin"
+msgstr "Start %s at login"
+
+msgid "StartAppAtLoginDescription"
+msgstr "Open in the background when you sign in, so messages notify you"
+
+msgid "KeepRunningInBackground"
+msgstr "Keep running in the background"
+
+msgid "KeepRunningInBackgroundDescription"
+msgstr "Closing the window keeps %s in the notification area, so messages still notify you"
+
+msgid "CloseWindowQuitsApp"
+msgstr "Closing the window quits %s on this system."
+
+msgid "StartupSettingError"
+msgstr "Couldn't change the startup setting."
+
+msgid "FontSize"
+msgstr "Font size"
+
+msgid "FontSizeNote"
+msgstr "Use %s + / - to increase or decrease text size"
+msgid "Messages"
+msgstr "Messages"
+
+msgid "EditHistory"
+msgstr "Edit history"
+
+msgid "EditHistoryDescription"
+msgstr "See what an edited message said before: right-click it and pick Edit history"
+
+msgid "KeepDeletedMessages"
+msgstr "Keep deleted messages"
+
+msgid "KeepDeletedMessagesDescription"
+msgstr "When someone deletes a message for everyone or a status, keep showing it, marked Deleted"
+
+msgid "ReplayViewOnce"
+msgstr "Replay view once"
+
+msgid "ReplayViewOnceDescription"
+msgstr "Open view once photos, videos and voice messages as often as you like, and take screenshots of them"
+
+msgid "GrayFeaturesWarning"
+msgstr "These let you see or do what the people you talk to wouldn't expect, so use them with care. Messages deleted while Keep deleted messages is off can't be brought back."
+
+msgid "Commands"
+msgstr "Commands"
+
+msgid "SlashCommandsRequired"
+msgstr "These also need Slash commands, on the Extra features page."
+
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Spanish"
+msgstr "Spanish"
+
+msgid "English"
+msgstr "English"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "ShareStatuses"
+msgstr "Share statuses"
+
+msgid "ShareStatusesDescription"
+msgstr "Share photos, videos and text that disappear after 24 hours."
+
+msgid "DiscoverChannels"
+msgstr "Discover channels"
+
+msgid "DiscoverChannelsDescription"
+msgstr "Entertainment, sports, news, lifestyle, people and more. Follow the channels that interest you"
+
+msgid "CreateCommunities"
+msgstr "Create communities"
+
+msgid "CreateCommunitiesDescription"
+msgstr "Bring members together in topic-based groups and easily send them admin announcements."
+
+msgid "PageSettings"
+msgstr "Manage your account, privacy, chats and notifications."
+
+msgid "Calls"
+msgstr "Calls"
+
+msgid "PageCalls"
+msgstr "Calling from this app isn't supported yet. Use your phone to make and answer calls."
+
+msgid "PersonalCommunityE2Eenc"
+msgstr "Your personal messages in communities are end-to-end encrypted"
+
+msgid "PolicyE2E"
+msgstr "Your personal messages end-to-end encrypted"
+
+msgid "StartupAndClose"
+msgstr "Startup and close"
+
+msgid "StartAppAtLogin"
+msgstr "Start %s at login"
+
+msgid "StartAppAtLoginDescription"
+msgstr "Open in the background when you sign in, so messages notify you"
+
+msgid "KeepRunningInBackground"
+msgstr "Keep running in the background"
+
+msgid "KeepRunningInBackgroundDescription"
+msgstr "Closing the window keeps %s in the notification area, so messages still notify you"
+
+msgid "CloseWindowQuitsApp"
+msgstr "Closing the window quits %s on this system."
+
+msgid "StartupSettingError"
+msgstr "Couldn't change the startup setting."
+
+msgid "FontSize"
+msgstr "Font size"
+
+msgid "FontSizeNote"
+msgstr "Use %s + / - to increase or decrease text size"
+msgid "Messages"
+msgstr "Messages"
+
+msgid "EditHistory"
+msgstr "Edit history"
+
+msgid "EditHistoryDescription"
+msgstr "See what an edited message said before: right-click it and pick Edit history"
+
+msgid "KeepDeletedMessages"
+msgstr "Keep deleted messages"
+
+msgid "KeepDeletedMessagesDescription"
+msgstr "When someone deletes a message for everyone or a status, keep showing it, marked Deleted"
+
+msgid "ReplayViewOnce"
+msgstr "Replay view once"
+
+msgid "ReplayViewOnceDescription"
+msgstr "Open view once photos, videos and voice messages as often as you like, and take screenshots of them"
+
+msgid "GrayFeaturesWarning"
+msgstr "These let you see or do what the people you talk to wouldn't expect, so use them with care. Messages deleted while Keep deleted messages is off can't be brought back."
+
+msgid "Commands"
+msgstr "Commands"
+
+msgid "SlashCommandsRequired"
+msgstr "These also need Slash commands, on the Extra features page."
+
+
+msgid "EnableFeature"
+msgstr "Enable feature"
+
+msgid "GrayFeatureWarning"
+msgstr "This is an ethically gray feature. It may go against other people's privacy expectations, and they may feel uncomfortable or offended when you use it. Please respect their choices and decide wisely."
+
+msgid "GrayFeatureAgreement"
+msgstr "I understand this feature is ethically gray and may affect other people's privacy. I agree to use it responsibly."
+
+msgid "BannableFeatureWarning"
+msgstr "This feature may violate WhatsApp's terms of service. Using it could result in your account being banned. Please use it responsibly and at your own risk."
+
+msgid "BannableFeatureAgreement"
+msgstr "I understand this feature may violate WhatsApp's terms of service and could result in my account being banned. I agree to use it responsibly."
+
+

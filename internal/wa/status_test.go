@@ -30,10 +30,10 @@ func TestStatusQuoteAndExpiry(t *testing.T) {
 
 	// A reply quotes a video status as the video, and a text status with
 	// its background.
-	if m := b.quotedMessage(b.ctx, statusChat, "vid"); m.GetVideoMessage().GetSeconds() != 12 {
+	if m := b.quotedMessage(b.ctx, statusChat, "vid", ""); m.GetVideoMessage().GetSeconds() != 12 {
 		t.Errorf("video status quoted as %v", m)
 	}
-	if m := b.quotedMessage(b.ctx, statusChat, "txt"); m.GetExtendedTextMessage().GetText() != "hello" ||
+	if m := b.quotedMessage(b.ctx, statusChat, "txt", ""); m.GetExtendedTextMessage().GetText() != "hello" ||
 		m.GetExtendedTextMessage().GetBackgroundArgb() != 0xff112233 {
 		t.Errorf("text status quoted as %v", m)
 	}

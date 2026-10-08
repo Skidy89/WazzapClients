@@ -58,6 +58,7 @@ func (b *Backend) Send(chatID string, d model.Draft) *model.Message {
 	return &cp
 }
 
+
 // Receive delivers a message from who in chat, as if it just arrived.
 func (b *Backend) Receive(chatID, who, text string) {
 	m := &model.Message{ChatID: chatID, Sender: who, SenderID: who, Text: text, Time: b.now()}

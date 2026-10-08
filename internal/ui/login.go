@@ -173,7 +173,7 @@ func (u *UI) layoutLogin(gtx C) D {
 				return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 					layout.Rigid(func(gtx C) D { return drawIcon(gtx, icLock, 14, p.TextSecondary) }),
 					layout.Rigid(layout.Spacer{Width: 5}.Layout),
-					layout.Rigid(u.label(13, "Your personal messages are end-to-end encrypted", p.TextSecondary).Layout),
+					layout.Rigid(u.label(13, u.locale.Text("PolicyE2E"), p.TextSecondary).Layout),
 				)
 			}),
 		)

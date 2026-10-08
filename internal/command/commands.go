@@ -116,6 +116,33 @@ var All = []*Command{
 		Name: "catch", Description: "Shows the original payload of the message you reply to",
 		Run: runCatch,
 	},
+	{
+		Name: "fakemsg", Description: "quotes a message where you can change the sender and text",
+		Gray: true,
+		Options: []Option{
+			{
+				Name:        "sender",
+				Description: "Sender of the fake message, could be 0 or their phone number with country code",
+				Kind:        Text,
+				Required:    true,
+				Until:       "|",
+			},
+			{
+				Name:        "text",
+				Description: "your text",
+				Kind:        Text,
+				Required:    true,
+				Until:       "|",
+			},
+			{
+				Name:        "quoted",
+				Description: "their fake text",
+				Kind:        Text,
+				Required:    true,
+			},
+		},
+		Run: runFakeMsg,
+	},
 }
 
 // busy shows that the command is working, and returns its note.
@@ -135,11 +162,11 @@ func fail(n *Note, text string) {
 func changeMembers(c *Context, action model.GroupAction, opt string) error {
 	ids := c.IDs(opt)
 	if len(ids) == 0 {
-		return errors.New("Pick someone first.")
+		return errors.New(c.T("Pick someone first."))
 	}
 	verb := map[model.GroupAction]string{model.GroupAdd: "Adding", model.GroupRemove: "Removing",
 		model.GroupPromote: "Promoting", model.GroupDemote: "Dismissing"}[action]
-	n := busy(c, verb+"…")
+	n := busy(c, c.T(verb)+"…")
 	chat := c.Chat.ID
 	c.Group(model.GroupRequest{ChatID: chat, Action: action, Members: ids}, func(ev model.GroupEvent) {
 		n.Busy = false
@@ -165,10 +192,10 @@ func changeMembers(c *Context, action model.GroupAction, opt string) error {
 			var s string
 			switch action {
 			case model.GroupAdd:
-				s = "Added " + names(done) + " to the group."
+				s = c.T("Added ") + names(done) + c.T(" to the group.")
 			case model.GroupRemove:
-				s = "Removed " + names(done) + " from the group."
-				n.Buttons = append(n.Buttons, Button{Label: "Add back", Run: func() {
+				s = c.T("Removed ") + names(done) + c.T(" from the group.")
+				n.Buttons = append(n.Buttons, Button{Label: c.T("Add back"), Run: func() {
 					addBack(c, n, chat, doneIDs)
 				}})
 			case model.GroupPromote:
@@ -181,7 +208,7 @@ func changeMembers(c *Context, action model.GroupAction, opt string) error {
 		n.Failed = len(done) == 0
 		n.Text = strings.Join(lines, "\n")
 		if n.Text == "" {
-			n.Text = "Nothing changed."
+			n.Text = c.T("Nothing changed.")
 		}
 	})
 	return nil
@@ -209,7 +236,7 @@ func addBack(c *Context, n *Note, chat string, ids []string) {
 // inviteButton sends someone whose privacy settings refused /add an
 // invite to join, in your chat with them.
 func inviteButton(c *Context, n *Note, chat string, r model.MemberResult) Button {
-	b := Button{Label: "Invite " + firstName(r.Name)}
+	b := Button{Label: c.T("Invite ") + firstName(r.Name)}
 	b.Run = func() {
 		// The button goes; the note says how it went.
 		for i := range n.Buttons {
@@ -221,17 +248,17 @@ func inviteButton(c *Context, n *Note, chat string, r model.MemberResult) Button
 		c.Group(model.GroupRequest{ChatID: chat, Action: model.GroupSendInvite, Members: []string{r.ID}, Invite: r.Invite},
 			func(ev model.GroupEvent) {
 				if ev.Err != "" {
-					n.Text += "\nCouldn't invite " + r.Name + ": " + ev.Err
+					n.Text += "\n" + c.T("Couldn't invite ") + r.Name + ": " + ev.Err
 					return
 				}
-				n.Text += "\nSent " + r.Name + " an invite to join."
+				n.Text += "\n" + c.T("Sent ") + r.Name + c.T(" an invite to join.")
 			})
 	}
 	return b
 }
 
 func runLink(c *Context) error {
-	n := busy(c, "Getting the invite link…")
+	n := busy(c, c.T("Getting the invite link…"))
 	chat := c.Chat.ID
 	var show func(ev model.GroupEvent)
 	show = func(ev model.GroupEvent) {
@@ -243,10 +270,10 @@ func runLink(c *Context) error {
 		link := ev.Link
 		n.Text = link
 		n.Buttons = []Button{
-			{Label: "Copy link", Run: func() { c.Copy(link) }},
-			{Label: "Reset link", Danger: true, Run: func() {
-				c.Confirm("Reset the invite link?", "The current link stops working. Anyone with it can't join anymore.",
-					"Reset link", true, func() {
+			{Label: c.T("Copy link"), Run: func() { c.Copy(link) }},
+			{Label: c.T("Reset link"), Danger: true, Run: func() {
+				c.Confirm(c.T("Reset the invite link?"), c.T("The current link stops working. Anyone with it can't join anymore."),
+					c.T("Reset link"), true, func() {
 						n.Busy, n.Buttons = true, nil
 						c.Group(model.GroupRequest{ChatID: chat, Action: model.GroupLink, On: true}, show)
 					})
@@ -265,16 +292,16 @@ func runLockdown(c *Context) error {
 	case c.Info != nil:
 		on = !c.Info.Announce // switch it
 	}
-	n := busy(c, map[bool]string{true: "Locking the group…", false: "Unlocking the group…"}[on])
+	n := busy(c, c.T(map[bool]string{true: "Locking the group…", false: "Unlocking the group…"}[on]))
 	c.Group(model.GroupRequest{ChatID: c.Chat.ID, Action: model.GroupAnnounce, On: on}, func(ev model.GroupEvent) {
 		n.Busy = false
 		switch {
 		case ev.Err != "":
 			fail(n, ev.Err)
 		case on:
-			n.Text = "Only admins can send messages now. /lockdown off lets everyone send again."
+			n.Text = c.T("Only admins can send messages now. /lockdown off lets everyone send again.")
 		default:
-			n.Text = "Everyone can send messages again."
+			n.Text = c.T("Everyone can send messages again.")
 		}
 	})
 	return nil
@@ -282,14 +309,14 @@ func runLockdown(c *Context) error {
 
 func runDescription(c *Context) error {
 	text := c.Text("text")
-	n := busy(c, "Changing the description…")
+	n := busy(c, c.T("Changing the description…"))
 	c.Group(model.GroupRequest{ChatID: c.Chat.ID, Action: model.GroupDescription, Text: text}, func(ev model.GroupEvent) {
 		n.Busy = false
 		if ev.Err != "" {
 			fail(n, ev.Err)
 			return
 		}
-		n.Text = "Changed the group description."
+		n.Text = c.T("Changed the group description.")
 	})
 	return nil
 }
@@ -299,7 +326,7 @@ func runSticker(c *Context) error {
 	text := sticker.Text{Top: c.Text("top"), Bottom: c.Text("bottom")}
 	plain := strings.TrimSpace(text.Top+text.Bottom) == ""
 	makeSticker := func(read func() ([]byte, error)) {
-		n := busy(c, "Making a sticker…")
+		n := busy(c, c.T("Making a sticker…"))
 		c.Do(func() func() {
 			data, err := read()
 			var webp []byte
@@ -309,13 +336,13 @@ func runSticker(c *Context) error {
 			return func() {
 				switch {
 				case errors.Is(err, sticker.ErrAnimated):
-					fail(n, "Text can't go on an animated sticker yet.")
+					fail(n, c.T("Text can't go on an animated sticker yet."))
 					return
 				case errors.Is(err, sticker.ErrTooLarge):
-					fail(n, "That picture is too big to make a sticker of.")
+					fail(n, c.T("That picture is too big to make a sticker of."))
 					return
 				case err != nil:
-					fail(n, "Couldn't make a sticker of that picture.")
+					fail(n, c.T("Couldn't make a sticker of that picture."))
 					return
 				}
 				c.Dismiss(n)
@@ -339,11 +366,11 @@ func runSticker(c *Context) error {
 	case src.Kind == model.KindSticker, src.Kind == model.KindImage && src.Media == model.MediaImage:
 		data := c.Backend.MediaData(src.ChatID, src.ID)
 		if data == nil {
-			return errors.New("It hasn't downloaded yet. Try again in a moment.")
+			return errors.New(c.T("It hasn't downloaded yet. Try again in a moment."))
 		}
 		makeSticker(func() ([]byte, error) { return data, nil })
 	default:
-		return errors.New("Reply to a photo or a sticker, or run /sticker without replying to pick a picture.")
+		return errors.New(c.T("Reply to a photo or a sticker, or run /sticker without replying to pick a picture."))
 	}
 	return nil
 }
@@ -364,7 +391,7 @@ func runPurge(c *Context) error {
 	count := c.Int("count", 1)
 	msgs := purgeable(c.Backend, chat, c.Reply, count)
 	if len(msgs) == 0 {
-		return errors.New("There are no messages to delete.")
+		return errors.New(c.T("There are no messages to delete."))
 	}
 	admin := c.Chat.IsGroup && c.Info != nil && isAdmin(c.Info)
 	var del []*model.Message
@@ -397,17 +424,17 @@ func runPurge(c *Context) error {
 	}
 	left := strings.Join(skipped, ", ")
 	if len(del) == 0 {
-		return errors.New("None of them can be deleted: " + left + ".")
+		return errors.New(c.T("None of them can be deleted: ") + left + ".")
 	}
 	body := ""
 	if left != "" {
-		body = "Left as they are: " + left + "."
+		body = c.T("Left as they are: ") + left + "."
 	}
-	c.Confirm("Delete "+plural(len(del), "message")+" for everyone?", body, "Delete for everyone", true, func() {
+	c.Confirm(c.T("Delete ")+plural(len(del), "message")+c.T(" for everyone?"), body, c.T("Delete for everyone"), true, func() {
 		for _, m := range del {
 			c.Backend.Delete(m, true)
 		}
-		text := "Deleted " + plural(len(del), "message") + " for everyone."
+		text := c.T("Deleted ") + plural(len(del), "message") + c.T(" for everyone.")
 		if left != "" {
 			text += "\nLeft as they are: " + left + "."
 		}
@@ -447,7 +474,7 @@ func purgeable(b model.Backend, chat string, reply *model.Message, count int) []
 // sends them as a message that mentions them.
 func runRaffle(c *Context) error {
 	if c.Info == nil {
-		return errors.New("The group's members haven't loaded yet. Try again in a moment.")
+		return errors.New(c.T("The group's members haven't loaded yet. Try again in a moment."))
 	}
 	var pool []model.Member
 	for _, m := range c.Info.Members {
@@ -457,10 +484,10 @@ func runRaffle(c *Context) error {
 	}
 	n := c.Int("winners", 1)
 	if len(pool) == 0 {
-		return errors.New("There's no one else in the group to draw.")
+		return errors.New(c.T("There's no one else in the group to draw."))
 	}
 	if n > len(pool) {
-		return errors.New("The group has only " + plural(len(pool), "other member") + " to draw from.")
+		return errors.New(c.T("The group has only ") + plural(len(pool), "other member") + c.T(" to draw from."))
 	}
 	rand.Shuffle(len(pool), func(i, j int) { pool[i], pool[j] = pool[j], pool[i] })
 	text, ids := raffleText(raffleLines[rand.IntN(len(raffleLines))], pool[:n], len(pool))
@@ -474,14 +501,28 @@ func runRaffle(c *Context) error {
 // pool members, under line (one of raffleLines), and the IDs it mentions.
 func raffleText(line string, winners []model.Member, pool int) (string, []string) {
 	var b strings.Builder
-	b.WriteString("🎲 *Raffle*\n" + line + ":")
+
+	b.WriteString("🎲 *Raffle*\n")
+	b.WriteString(line)
+	b.WriteByte(':')
+
 	ids := make([]string, len(winners))
+
 	for i, w := range winners {
 		ids[i] = w.ID
+
 		user, _, _ := strings.Cut(w.ID, "@")
-		b.WriteString("\n" + strconv.Itoa(i+1) + ". @" + user)
+
+		b.WriteByte('\n')
+		b.WriteString(strconv.Itoa(i + 1))
+		b.WriteString(". @")
+		b.WriteString(user)
 	}
-	b.WriteString("\n_Drawn at random from " + plural(pool, "member") + "._")
+
+	b.WriteString("\n_Drawn at random from ")
+	b.WriteString(plural(pool, "member"))
+	b.WriteString("._")
+
 	return b.String(), ids
 }
 
@@ -494,7 +535,7 @@ func runCalc(c *Context) error {
 	sum := strings.TrimSpace(c.Text("sum"))
 	v, err := Calc(sum, lastAnswer)
 	if err != nil {
-		return errors.New("Couldn't work that out: " + err.Error() + ".")
+		return errors.New(c.T("Couldn't work that out: ") + err.Error() + ".")
 	}
 	if m := c.Backend.Send(c.Chat.ID, model.Draft{Text: sum + " = " + FormatNumber(v), Reply: c.Reply}); m != nil {
 		lastAnswer = v

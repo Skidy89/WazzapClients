@@ -1,3 +1,5 @@
 bin/
 /third_party/
 .idea/
+wazzap.exe
+.vscode/

@@ -30,7 +30,7 @@ import (
 )
 
 // Repo is the GitHub repository releases come from.
-const Repo = "Chomosuke9/WazzapClients"
+const Repo = "skidy89/WazzapClients"
 
 // publicKey verifies SHA256SUMS.sig (base64 of the raw ed25519 key).
 var publicKey = mustKey("kCxlEbDV1FL8EM1zdOwDs5PYpQDNcwX5BBbQvnGgza0=")

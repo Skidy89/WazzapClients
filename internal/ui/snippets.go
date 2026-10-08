@@ -224,7 +224,10 @@ func snippetVarsNote() string {
 	var sb strings.Builder
 	sb.WriteString("Variables, filled in when you send (in a payload, in its text and captions):")
 	for _, v := range model.SnippetVars {
-		sb.WriteString("\n{" + v.Name + "}: " + v.Description)
+		sb.WriteString("\n{")
+		sb.WriteString(v.Name)
+		sb.WriteString("}: ")
+		sb.WriteString(v.Description)
 	}
 	sb.WriteString("\nWrite \\{name} to send {name} as it is.")
 	return sb.String()

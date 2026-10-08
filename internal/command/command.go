@@ -60,6 +60,13 @@ type Option struct {
 	Mentions bool
 }
 
+// Translator supplies localized text to command metadata and replies.
+// The UI implements this through internal/i18n without coupling this package
+// to a particular catalog implementation.
+type Translator interface {
+	Text(string) string
+}
+
 // Command is a slash command.
 type Command struct {
 	Name        string
@@ -77,6 +84,22 @@ type Command struct {
 	// options typed so far, which the composer shows as you type: text,
 	// or why it can't, with ok false ("" for nothing to show).
 	Preview func(in *Input) (text string, ok bool)
+}
+
+// LocalizedDescription returns the command description in the active language.
+func (c *Command) LocalizedDescription(t Translator) string {
+	if t == nil {
+		return c.Description
+	}
+	return t.Text(c.Description)
+}
+
+// LocalizedDescription returns the option description in the active language.
+func (o *Option) LocalizedDescription(t Translator) string {
+	if t == nil {
+		return o.Description
+	}
+	return t.Text(o.Description)
 }
 
 // Usage is the command with its options, as help shows it:

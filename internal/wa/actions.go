@@ -61,13 +61,15 @@ func (b *Backend) connected() *whatsmeow.Client {
 // quotedMessage rebuilds the content of a stored message for a reply's
 // context. Media keep their original (downloadable) message; everything
 // else is quoted as text.
-func (b *Backend) quotedMessage(ctx context.Context, chatID, id string) *waE2E.Message {
+func (b *Backend) quotedMessage(ctx context.Context, chatID, id string, text string) *waE2E.Message {
 	if chatID == statusChat {
 		return b.store.statusMessage(ctx, id)
 	}
 	r, ok := b.store.message(ctx, chatID, id)
 	if !ok {
-		return &waE2E.Message{Conversation: proto.String("")}
+		return &waE2E.Message{
+			Conversation: proto.String(text),
+		}
 	}
 	if media, blob, err := b.store.mediaBlob(ctx, chatID, id); err == nil && len(blob) > 0 {
 		if m := mediaMessage(media, blob); m != nil {
@@ -230,13 +232,15 @@ func (b *Backend) Send(chatID string, d model.Draft) *model.Message {
 	return b.storeAndSend(jid, sm, msg, nil)
 }
 
+
+
 // quote makes a message sent to chatID a reply to r: it fills in ci and
 // returns the quote the message shows.
 func (b *Backend) quote(chatID string, r *model.Message, ci *waE2E.ContextInfo) *model.Quote {
 	sender := b.senderOf(r)
 	ci.StanzaID = proto.String(r.ID)
 	ci.Participant = proto.String(sender.String())
-	ci.QuotedMessage = b.quotedMessage(b.ctx, r.ChatID, r.ID)
+	ci.QuotedMessage = b.quotedMessage(b.ctx, r.ChatID, r.ID, r.Text)
 	if r.ChatID != chatID {
 		// "Reply privately" quotes a group message in a one-to-one chat.
 		ci.RemoteJID = proto.String(r.ChatID)

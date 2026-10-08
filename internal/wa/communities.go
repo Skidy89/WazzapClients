@@ -61,6 +61,10 @@ func (b *Backend) Communities() []*model.Community {
 		b.log.Errorf("load communities: %v", err)
 		return nil
 	}
+	if err := rows.Err(); err != nil {
+		b.log.Errorf("load communities: %v", err)
+		return nil
+	}	
 	defer rows.Close()
 	byID := map[string]*model.Community{}
 	latest := map[string]int64{}
@@ -162,6 +166,9 @@ func (s *msgStore) members(ctx context.Context, chat string) []types.GroupPartic
 	if err != nil {
 		return nil
 	}
+	if err := rows.Err(); err != nil {
+		return nil
+	}	
 	defer rows.Close()
 	var out []types.GroupParticipant
 	for rows.Next() {
@@ -206,6 +213,9 @@ func (s *msgStore) commonGroups(ctx context.Context, ids ...string) []commonGrou
 			SELECT chat FROM wz_members WHERE jid IN (`+placeholders(len(ids))+`) OR pn IN (`+placeholders(len(ids))+`))
 		ORDER BY MAX(g.last_ts, COALESCE((SELECT MAX(ts) FROM wz_messages WHERE chat = g.jid), 0)) DESC`, args...)
 	if err != nil {
+		return nil
+	}
+	if err := rows.Err(); err != nil {
 		return nil
 	}
 	defer rows.Close()

@@ -24,6 +24,7 @@ import (
 
 	"github.com/chomosuke9/wazzapclients/internal/accounts"
 	"github.com/chomosuke9/wazzapclients/internal/auto"
+	"github.com/chomosuke9/wazzapclients/internal/i18n"
 	"github.com/chomosuke9/wazzapclients/internal/linkpreview"
 	"github.com/chomosuke9/wazzapclients/internal/model"
 )
@@ -42,9 +43,11 @@ var filterNames = [...]string{"All", "Unread", "Favourites", "Groups"}
 // It is only touched from the window goroutine; backend updates arrive
 // through Backend.Poll.
 type UI struct {
-	th   *material.Theme
-	pal  *Palette
-	dark bool
+	th       *material.Theme
+	pal      *Palette
+	language string
+	locale   *i18n.Localizer
+	dark     bool
 	// doodles draws the wallpaper's doodles behind conversations.
 	doodles bool
 	// zoom scales the whole window (scale.go).
@@ -307,6 +310,14 @@ var timeNow = time.Now
 func New(b model.Backend) *UI {
 	b, a := withAuto(b)
 	u := &UI{th: newTheme(), now: timeNow, backend: b, auto: a, syncPct: -1, fetchLink: linkpreview.Fetch}
+	u.language = i18n.DefaultLanguage
+	if b != nil {
+		if lang := b.Pref(prefLanguage); lang != "" {
+			u.language = lang
+		}
+	}
+	u.locale = i18n.New(u.language)
+	u.language = u.locale.Language()
 	u.SetDark(true)
 	u.doodles = true
 	u.zoom.pct = 100
@@ -802,21 +813,55 @@ func (u *UI) layoutRightPane(gtx C) D {
 func (u *UI) layoutPlaceholder(gtx C) D {
 	switch u.page {
 	case pageStatus:
-		return u.emptyPane(gtx, func(gtx C, col color.NRGBA) D { return statusIcon(gtx, 56, col, true) },
-			"Share statuses", "Share photos, videos and text that disappear after 24 hours.", "")
+		return u.emptyPane(
+			gtx,
+			func(gtx C, col color.NRGBA) D {
+				return statusIcon(gtx, 56, col, true)
+			},
+			u.locale.Text("ShareStatuses"),
+			u.locale.Text("ShareStatusesDescription"),
+			"",
+		)
+
 	case pageChannels:
-		return u.emptyPane(gtx, func(gtx C, col color.NRGBA) D { return channelsIcon(gtx, 58, col, u.pal.Panel, true) },
-			"Discover channels", "Entertainment, sports, news, lifestyle, people and more. Follow the channels that interest you", "")
+		return u.emptyPane(
+			gtx,
+			func(gtx C, col color.NRGBA) D {
+				return channelsIcon(gtx, 58, col, u.pal.Panel, true)
+			},
+			u.locale.Text("DiscoverChannels"),
+			u.locale.Text("DiscoverChannelsDescription"),
+			"",
+		)
+
 	case pageCommunities:
-		return u.emptyPane(gtx, iconGlyph(icGroupsFill, 72),
-			"Create communities", "Bring members together in topic-based groups and easily send them admin announcements.",
-			"Your personal messages in communities are end-to-end encrypted")
+		return u.emptyPane(
+			gtx,
+			iconGlyph(icGroupsFill, 72),
+			u.locale.Text("CreateCommunities"),
+			u.locale.Text("CreateCommunitiesDescription"),
+			u.locale.Text("PersonalCommunityE2Eenc"),
+		)
+
 	case pageSettings:
-		return u.emptyPane(gtx, iconGlyph(icSettings, 64), "Settings", "Manage your account, privacy, chats and notifications.", "")
+		return u.emptyPane(
+			gtx,
+			iconGlyph(icSettings, 64),
+			u.locale.Text("Settings"),
+			u.locale.Text("PageSettings"),
+			"",
+		)
+
 	case pageCalls:
-		return u.emptyPane(gtx, iconGlyph(icCallLine, 60), "Calls",
-			"Calling from this app isn't supported yet. Use your phone to make and answer calls.", "")
+		return u.emptyPane(
+			gtx,
+			iconGlyph(icCallLine, 60),
+			u.locale.Text("Calls"),
+			u.locale.Text("PageCalls"),
+			"",
+		)
 	}
+
 	return u.layoutEmpty(gtx)
 }
 
@@ -1168,6 +1213,11 @@ func (u *UI) applyEvents() {
 			}
 		case model.GalleryEvent:
 			u.galleryLoaded(e)
+		case model.MediaSummaryEvent:
+			if u.info.media.ChatID == e.ChatID {
+				u.info.media = e
+			}
+
 		case model.InviteEvent:
 			u.inviteLooked(e)
 		case model.JoinedEvent:

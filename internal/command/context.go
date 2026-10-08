@@ -70,6 +70,9 @@ type Host interface {
 // Context is everything a running command may use.
 type Context struct {
 	Cmd *Command
+	// Locale translates user-visible command replies. Command names and option
+	// names remain stable because they are part of the command syntax.
+	Locale Translator
 	// Input is the command as typed, e.g. "/kick @Budi".
 	Input string
 	// Values holds the values of each of Cmd's options.
@@ -86,6 +89,14 @@ type Context struct {
 	// Auto sends scheduled messages and AFK replies; nil without it.
 	Auto *auto.Backend
 	Host
+}
+
+// T translates a command message, falling back to the source text.
+func (c *Context) T(text string) string {
+	if c.Locale == nil {
+		return text
+	}
+	return c.Locale.Text(text)
 }
 
 // Get returns the values of the option called name.
@@ -137,10 +148,10 @@ func (c *Context) Fail(text string) {
 func Execute(c *Context) {
 	switch {
 	case c.Cmd.Group && (c.Chat == nil || !c.Chat.IsGroup):
-		c.Fail("/" + c.Cmd.Name + " works only in groups.")
+		c.Fail(c.T("/" + c.Cmd.Name + " works only in groups."))
 		return
 	case c.Cmd.Admin && c.Info != nil && !isAdmin(c.Info):
-		c.Fail("Only group admins can use /" + c.Cmd.Name + ".")
+		c.Fail(c.T("Only group admins can use /" + c.Cmd.Name + "."))
 		return
 	}
 	if err := c.Cmd.Run(c); err != nil {

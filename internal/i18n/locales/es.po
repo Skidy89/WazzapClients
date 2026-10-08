@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Language: es\n"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "English"
+msgstr "Inglés"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "ShareStatuses"
+msgstr "Comparte estados"
+
+msgid "ShareStatusesDescription"
+msgstr "Comparte fotos, videos y textos que desaparecen después de 24 horas."
+
+msgid "DiscoverChannels"
+msgstr "Descubre canales"
+
+msgid "DiscoverChannelsDescription"
+msgstr "Entretenimiento, deportes, noticias, estilo de vida, personas y más. Sigue los canales que te interesen"
+
+msgid "CreateCommunities"
+msgstr "Crea comunidades"
+
+msgid "CreateCommunitiesDescription"
+msgstr "Reúne a los miembros en grupos basados en temas y envíales fácilmente anuncios como administrador."
+
+msgid "PageSettings"
+msgstr "Administra tu cuenta, privacidad, chats y notificaciones."
+
+msgid "Calls"
+msgstr "Llamadas"
+
+msgid "PageCalls"
+msgstr "Las llamadas desde esta aplicación aún no son compatibles. Usa tu teléfono para realizar y responder llamadas."
+
+msgid "PersonalCommunityE2Eenc"
+msgstr "Tus mensajes personales en las comunidades están cifrados de extremo a extremo"
+
+msgid "PolicyE2E"
+msgstr "Tus mensajes personales están cifrados de extremo a extremo"
+
+msgid "StartupAndClose"
+msgstr "Inicio y cierre"
+
+msgid "StartAppAtLogin"
+msgstr "Iniciar %s al iniciar sesión"
+
+msgid "StartAppAtLoginDescription"
+msgstr "Abrir en segundo plano al iniciar sesión para recibir notificaciones de mensajes"
+
+msgid "KeepRunningInBackground"
+msgstr "Mantener ejecutándose en segundo plano"
+
+msgid "KeepRunningInBackgroundDescription"
+msgstr "Al cerrar la ventana, %s permanece en el área de notificaciones para seguir recibiendo mensajes"
+
+msgid "CloseWindowQuitsApp"
+msgstr "Al cerrar la ventana, %s se cierra en este sistema."
+
+msgid "StartupSettingError"
+msgstr "No se pudo cambiar la configuración de inicio."
+
+msgid "FontSize"
+msgstr "Tamaño de fuente"
+
+msgid "FontSizeNote"
+msgstr "Usa %s + / - para aumentar o disminuir el tamaño del texto"
+
+
+msgid "Messages"
+msgstr "Mensajes"
+
+msgid "EditHistory"
+msgstr "Edit History"
+
+msgid "EditHistoryDescription"
+msgstr "Mira qué decía un mensaje editado antes: haz clic derecho sobre él y selecciona Historial de ediciones"
+
+msgid "KeepDeletedMessages"
+msgstr "Keep Deleted Messages"
+
+msgid "KeepDeletedMessagesDescription"
+msgstr "Cuando alguien elimina un mensaje para todos o un estado, sigue mostrandolo marcado como Eliminado"
+
+msgid "ReplayViewOnce"
+msgstr "Replay ViewOnce"
+
+msgid "ReplayViewOnceDescription"
+msgstr "Abre fotos, videos y mensajes de voz de una sola vez tantas veces como quieras, tambien te permite tomar capturas de pantalla"
+
+msgid "GrayFeaturesWarning"
+msgstr "Estas funciones te permiten ver o hacer cosas que las personas con las que hablas no esperarían, así que úsalas con cuidado. Los mensajes eliminados mientras Conservar mensajes eliminados está desactivado no se pueden recuperar."
+
+msgid "Commands"
+msgstr "Comandos"
+
+msgid "SlashCommandsRequired"
+msgstr "Estos también necesitan los comandos Slash, en la página de extras."
+
+msgid "EnableFeature"
+msgstr "Activar función"
+
+msgid "GrayFeatureWarning"
+msgstr "Esta es una función éticamente cuestionable. Puede ir en contra de las expectativas de privacidad de otras personas, y podrían sentirse incómodas u ofendidas al usarla. Respeta sus decisiones y úsala con responsabilidad."
+
+msgid "GrayFeatureAgreement"
+msgstr "Entiendo que esta función es éticamente cuestionable y puede afectar la privacidad de otras personas. Acepto usarla de manera responsable."
+
+msgid "BannableFeatureWarning"
+msgstr "Esta función puede infringir los términos de servicio de WhatsApp. Su uso podría provocar que tu cuenta sea suspendida. Al usarla, eres consciente de que todo queda bajo tu responsabilidad."
+
+msgid "BannableFeatureAgreement"
+msgstr "Entiendo que esta función puede infringir los términos de servicio de WhatsApp y podría provocar que mi cuenta sea suspendida. Acepto usarla de manera responsable."

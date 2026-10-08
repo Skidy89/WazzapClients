@@ -399,7 +399,7 @@ func (u *UI) submitSlash(sp *slashPick) {
 	c := u.selected
 	host := slashHost{u: u, chat: c.ID, mentions: u.conv.mentions}
 	ctx := &command.Context{Cmd: in.Cmd, Input: trimSpace(txt), Values: in.Values, Chat: c,
-		Reply: u.conv.reply, Backend: u.backend, Now: u.now(), Auto: u.auto, Host: host}
+		Reply: u.conv.reply, Backend: u.backend, Now: u.now(), Auto: u.auto, Locale: u.locale, Host: host}
 	if c.IsGroup {
 		ctx.Info = u.chatMembers(c.ID)
 	}
@@ -648,7 +648,7 @@ func (u *UI) layoutSlashPicker(gtx C, sp *slashPick) D {
 				return layout.Flex{Alignment: layout.Baseline}.Layout(gtx,
 					layout.Rigid(u.label(14, sp.opt.Name, p.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
 					layout.Rigid(layout.Spacer{Width: 8}.Layout),
-					layout.Flexed(1, u.label(13.5, sp.opt.Description, p.PopupSub, labelOpts{maxLines: 1}).Layout),
+					layout.Flexed(1, u.label(13.5, u.locale.Text(sp.opt.Description), p.PopupSub, labelOpts{maxLines: 1}).Layout),
 				)
 			}
 			return u.label(12.5, "PRESS ENTER TO RUN", p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout(gtx)

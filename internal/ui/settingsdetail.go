@@ -15,6 +15,7 @@ import (
 
 	"github.com/chomosuke9/wazzapclients/internal/desktop"
 	"github.com/chomosuke9/wazzapclients/internal/filepick"
+	"github.com/chomosuke9/wazzapclients/internal/i18n"
 	"github.com/chomosuke9/wazzapclients/internal/model"
 	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
 )
@@ -25,6 +26,7 @@ const (
 	prefDoodles     = "doodles"    // wallpaper doodles; on unless "off"
 	prefEnterSend   = "enter_send" // Enter sends; on unless "off"
 	prefSecurityMsg = "security_notifications"
+	prefLanguage    = "language" // the app's UI language; empty is english
 	// Previews of the links you send, which ask the linked site for its
 	// title and picture; on unless "off".
 	prefLinkPreviews = "link_previews"
@@ -99,6 +101,16 @@ var settingsViews = map[string]struct {
 	"snippets":      {settingSnippets, ""},
 	"gray":          {settingExtras, "gray"},
 	"help":          {settingHelp, ""},
+}
+
+type languageOption struct {
+	key   string // the Backend.Pref value; "" is english
+	title string
+}
+
+var languages = []languageOption{
+	{key: "es", title: "Español"},
+	{key: "en", title: "English"},
 }
 
 // openSettings opens a settings category (an index of settingsItems).
@@ -250,32 +262,56 @@ func (u *UI) settingsPage() []settingsSection {
 }
 
 func (u *UI) generalSettings(pref func(key, title, sub string) settingRow) []settingsSection {
-	sec := settingsSection{title: "Startup and close"}
+	sec := settingsSection{title: u.locale.Text("StartupAndClose")}
+
 	h := u.host
 	if h != nil && h.tray && h.o.Relaunch != nil {
 		on := desktop.StartAtLogin()
+
 		sec.rows = append(sec.rows, settingRow{
-			key: "login", kind: setToggle, on: on,
-			title: "Start " + appName + " at login",
-			sub:   "Open in the background when you sign in, so messages notify you",
+			key:   "login",
+			kind:  setToggle,
+			on:    on,
+			title: u.locale.Textf("StartAppAtLogin", appName),
+			sub:   u.locale.Text("StartAppAtLoginDescription"),
 			run: func() {
 				args := append(append([]string(nil), h.o.Relaunch...), "-background")
+
 				if err := desktop.SetStartAtLogin(!on, args); err != nil {
-					u.toast("Couldn't change the startup setting.")
+					u.toast(u.locale.Text("StartupSettingError"))
 				}
 			},
 		})
 	}
+
 	if h != nil && h.tray {
-		sec.rows = append(sec.rows, pref(prefBackground, "Keep running in the background",
-			"Closing the window keeps "+appName+" in the notification area, so messages still notify you"))
+		sec.rows = append(sec.rows, pref(
+			prefBackground,
+			u.locale.Text("KeepRunningInBackground"),
+			u.locale.Textf("KeepRunningInBackgroundDescription", appName),
+		))
 	}
+
 	if len(sec.rows) == 0 {
-		sec.note = "Closing the window quits " + appName + " on this system."
+		sec.note = u.locale.Textf("CloseWindowQuitsApp", appName)
 	}
-	return []settingsSection{sec, {title: "Font size",
-		rows: []settingRow{{key: "zoom", kind: setCustom, w: u.zoomField, run: u.openZoomMenu}},
-		note: "Use " + shortcutMod() + " + / - to increase or decrease text size"}}
+
+	return []settingsSection{
+		sec,
+		u.languageSettings(),
+		{
+			title: u.locale.Text("FontSize"),
+			rows: []settingRow{
+				{
+					key:  "zoom",
+					kind: setCustom,
+					w:    u.zoomField,
+					run:  u.openZoomMenu,
+				},
+			},
+			note: u.locale.Textf("FontSizeNote", shortcutMod()),
+		},
+	}
 }
 
 // profileSettings is the Profile page: your picture, name, about and
@@ -682,6 +718,38 @@ func (u *UI) setTheme(dark bool) {
 	}
 	u.backend.SetPref(prefTheme, v)
 }
+func (u *UI) setLanguage(lang string) {
+	if u.locale == nil {
+		u.locale = i18n.New(lang)
+	} else {
+		lang = u.locale.SetLanguage(lang)
+	}
+	u.language = lang
+	u.backend.SetPref(prefLanguage, lang)
+	u.settings.stale = true
+}
+func (u *UI) languageSettings() settingsSection {
+	rows := make([]settingRow, 0, len(languages))
+
+	for _, lang := range languages {
+		lang := lang
+
+		rows = append(rows, settingRow{
+			key:   lang.key,
+			kind:  setRadio,
+			title: u.locale.Text(lang.title),
+			on:    u.language == lang.key,
+			run: func() {
+				u.setLanguage(lang.key)
+			},
+		})
+	}
+
+	return settingsSection{
+		title: u.locale.Text("Language"),
+		rows:  rows,
+	}
+}
 
 // setEnterSend makes Enter send (and Shift+Enter add a line), or Enter
 // add a line (and Ctrl+Enter send).
@@ -744,8 +812,8 @@ func shortcutSettings(enterSend bool) []settingsSection {
 // Links of the Help and feedback page.
 const (
 	helpCentreURL = "https://faq.whatsapp.com/"
-	issuesURL     = "https://github.com/Chomosuke9/WazzapClients/issues"
-	sourceURL     = "https://github.com/Chomosuke9/WazzapClients"
+	issuesURL     = "https://github.com/skidy89/WazzapClients/issues"
+	sourceURL     = "https://github.com/skidy89/WazzapClients"
 	legalURL      = "https://www.whatsapp.com/legal/"
 )
 
@@ -755,11 +823,11 @@ func (u *UI) helpSettings() []settingsSection {
 	}
 	return []settingsSection{
 		{title: "Help", rows: []settingRow{
-			link("faq", icHelp, "Help centre", "Get help with WhatsApp", helpCentreURL),
+			link("faq", icHelp, "Help center", "Get help with WhatsApp", helpCentreURL),
 			link("issues", icBubble, "Report a problem", "Tell us about a bug in "+appName, issuesURL),
 		}},
 		{title: "About", rows: append(u.updateRows(),
-			link("source", icLink, "Source code", "github.com/Chomosuke9/WazzapClients", sourceURL),
+			link("source", icLink, "Source code", "github.com/skidy89/WazzapClients", sourceURL),
 			link("legal", icDocument, "Terms and Privacy Policy", "WhatsApp's terms apply to your account", legalURL),
 		), note: appName + " is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta."},
 	}

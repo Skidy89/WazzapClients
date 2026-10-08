@@ -1755,7 +1755,7 @@ func (u *UI) layoutEmpty(gtx C) D {
 			return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 				layout.Rigid(iconW(icLock, 14, p.TextSecondary)),
 				layout.Rigid(layout.Spacer{Width: 5}.Layout),
-				layout.Rigid(u.label(13, "Your personal messages are end-to-end encrypted", p.TextSecondary).Layout),
+				layout.Rigid(u.label(13, u.locale.Text("Privacy"), p.TextSecondary).Layout),
 			)
 		})
 	})

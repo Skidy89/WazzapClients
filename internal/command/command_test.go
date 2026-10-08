@@ -130,8 +130,23 @@ func TestUsage(t *testing.T) {
 	if u := Lookup("lockdown").Usage(); u != "/lockdown [mode]" {
 		t.Errorf("usage %q", u)
 	}
+
 	if u := Lookup("kick").Usage(); u != "/kick member" {
 		t.Errorf("usage %q", u)
+	}
+}
+
+type testTranslator struct{}
+
+func (testTranslator) Text(s string) string { return "translated:" + s }
+
+func TestLocalizedCommandText(t *testing.T) {
+	c := Lookup("lockdown")
+	if got := c.LocalizedDescription(testTranslator{}); got != "translated:"+c.Description {
+		t.Fatalf("command description = %q", got)
+	}
+	if got := c.Options[0].LocalizedDescription(testTranslator{}); got != "translated:"+c.Options[0].Description {
+		t.Fatalf("option description = %q", got)
 	}
 }
 

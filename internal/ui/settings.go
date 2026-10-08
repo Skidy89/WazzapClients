@@ -46,7 +46,7 @@ type settingsState struct {
 // settingsItems mirrors WhatsApp Desktop's settings menu, without Video &
 // voice: this app has no calls to configure.
 var settingsItems = [...]listItem{
-	{ic: icLaptop, title: "General", sub: "Startup and close"},
+	{ic: icLaptop, title: "General", sub: "Startup, language and background settings"},
 	{ic: icAccount, title: "Profile", sub: "Name, profile picture, about"},
 	{ic: icKey, title: "Account", sub: "Security notifications, account info"},
 	{ic: icLockOutline, title: "Privacy", sub: "Blocked contacts, disappearing messages"},
@@ -55,7 +55,7 @@ var settingsItems = [...]listItem{
 	{ic: icKeyboard, title: "Keyboard shortcuts", sub: "Quick actions"},
 	{ic: icExtension, title: "Extra features", sub: "Slash commands and more, not in WhatsApp"},
 	{ic: icDocument, title: "Snippets", sub: "Saved messages and payloads"},
-	{ic: icHelp, title: "Help and feedback", sub: "Help centre, contact us, privacy policy"},
+	{ic: icHelp, title: "Help and feedback", sub: "Help center, contact us, privacy policy"},
 	{ic: icLogout, title: "Log out", danger: true},
 }
 

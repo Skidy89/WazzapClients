@@ -258,6 +258,9 @@ func (b *Backend) MemberChanges(chatID string) []model.MemberChange {
 	if err != nil {
 		return nil
 	}
+	if err := rows.Err(); err != nil {
+		return nil
+	}
 	defer rows.Close()
 	var out []model.MemberChange
 	for rows.Next() {

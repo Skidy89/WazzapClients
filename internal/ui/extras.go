@@ -102,25 +102,52 @@ func (u *UI) extraToggle(key, title, sub string, flag *bool, changed func()) set
 	}}
 }
 
-// grayToggle asks for an acknowledgment before enabling a gray feature.
-// Disabling it is immediate, and each new activation asks again.
+// grayToggle is like extraToggle, but shows a confirmation dialog before
+// turning on a gray feature. It doesn't run changed until the user confirms.
 func (u *UI) grayToggle(key, title, sub string, flag *bool, changed func()) settingRow {
 	r := u.extraToggle(key, title, sub, flag, changed)
+
 	toggle, on := r.run, r.on
 	r.run = func() {
 		if on {
 			toggle()
 			return
 		}
-		u.confirm("Enable "+title+"?", sub+"\n\n"+
-			"This is an ethically gray feature. It may go against other people's privacy expectations, "+
-			"and they may feel uncomfortable or offended when you use it. Please respect their choices and decide wisely.",
-			dialogButton{label: "Enable feature", primary: true, run: func() {
-				toggle()
-				u.settings.stale = true // the switch changes after the dialog, not the row's click
-			}})
-		u.dialog.agreement = "I understand this feature is ethically gray and may affect other people's privacy. I agree to use it responsibly."
+		if key == grayCmdPref("replicateMsg") {
+			// banable feature, so show a warning in the dialog.
+			u.confirm(
+				u.locale.Text("EnableFeature"),
+				sub+"\n\n"+u.locale.Text("BannableFeatureWarning"),
+				dialogButton{
+					label:   u.locale.Text("EnableFeature"),
+					primary: true,
+					run: func() {
+						toggle()
+						u.settings.stale = true
+					},
+				},
+			)
+
+			u.dialog.agreement = u.locale.Text("BannableFeatureAgreement")
+			return
+		}
+
+		u.confirm(
+			u.locale.Text("EnableFeature"),
+			sub+"\n\n"+u.locale.Text("GrayFeatureWarning"),
+			dialogButton{
+				label:   u.locale.Text("EnableFeature"),
+				primary: true,
+				run: func() {
+					toggle()
+					u.settings.stale = true
+				},
+			},
+		)
+
+		u.dialog.agreement = u.locale.Text("GrayFeatureAgreement")
 	}
+
 	return r
 }
 
@@ -179,38 +206,67 @@ func (u *UI) extrasSettings() []settingsSection {
 	return secs
 }
 
-// graySettings is the Ethically gray features page: features that let you
-// see or do what the people you talk to wouldn't expect.
 func (u *UI) graySettings() []settingsSection {
-	secs := []settingsSection{{title: "Messages", rows: []settingRow{
-		u.grayToggle(prefEditHistory, "Edit history", "See what an edited message said before: right-click it and pick Edit history",
-			&u.editHistory, nil),
-		u.grayToggle(model.PrefKeepDeleted, "Keep deleted messages",
-			"When someone deletes a message for everyone or a status, keep showing it, marked Deleted",
-			&u.keepDeleted, nil),
-		u.grayToggle(model.PrefViewOnceReplay, "Replay view once",
-			"Open view once photos, videos and voice messages as often as you like, and take screenshots of them",
-			&u.viewOnceReplay, nil),
-	}, note: "These let you see or do what the people you talk to wouldn't expect, so use them with care. " +
-		"Messages deleted while Keep deleted messages is off can't be brought back."}}
-	cmds := settingsSection{title: "Commands"}
+	secs := []settingsSection{{
+		title: u.locale.Text("Messages"),
+		rows: []settingRow{
+			u.grayToggle(
+				prefEditHistory,
+				u.locale.Text("EditHistory"),
+				u.locale.Text("EditHistoryDescription"),
+				&u.editHistory,
+				nil,
+			),
+			u.grayToggle(
+				model.PrefKeepDeleted,
+				u.locale.Text("KeepDeletedMessages"),
+				u.locale.Text("KeepDeletedMessagesDescription"),
+				&u.keepDeleted,
+				nil,
+			),
+			u.grayToggle(
+				model.PrefViewOnceReplay,
+				u.locale.Text("ReplayViewOnce"),
+				u.locale.Text("ReplayViewOnceDescription"),
+				&u.viewOnceReplay,
+				nil,
+			),
+		},
+		note: u.locale.Text("GrayFeaturesWarning"),
+	}}
+
+	cmds := settingsSection{
+		title: u.locale.Text("Commands"),
+	}
+
 	for _, c := range command.All {
 		if !c.Gray {
 			continue
 		}
+
 		flag := u.grayCmds[c.Name]
-		cmds.rows = append(cmds.rows, u.grayToggle(grayCmdPref(c.Name), "/"+c.Name, c.Description, &flag, func() {
-			u.grayCmds[c.Name] = flag
-			u.slash.cacheOK = false // the picker offers it, or stops
-			u.conv.richFor = ""
-			if c.Name == "ghost" && !flag && u.ghostMode() {
-				u.setGhost(false) // no way left to turn it off
-			}
-		}))
+
+		cmds.rows = append(cmds.rows, u.grayToggle(
+			grayCmdPref(c.Name),
+			"/"+c.Name,
+			c.Description,
+			&flag,
+			func() {
+				u.grayCmds[c.Name] = flag
+				u.slash.cacheOK = false
+				u.conv.richFor = ""
+
+				if c.Name == "ghost" && !flag && u.ghostMode() {
+					u.setGhost(false)
+				}
+			},
+		))
 	}
+
 	if !u.slash.on {
-		cmds.note = "These also need Slash commands, on the Extra features page."
+		cmds.note = u.locale.Text("SlashCommandsRequired")
 	}
+
 	return append(secs, cmds)
 }
 
@@ -234,7 +290,7 @@ func (u *UI) layoutCommandRow(gtx C, c *command.Command, cur int, values [][]com
 					return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 						layout.Rigid(func(gtx C) D { return u.commandUsage(gtx, c, cur, values) }),
 						layout.Rigid(layout.Spacer{Height: 2}.Layout),
-						layout.Rigid(u.label(13.5, c.Description, p.PopupSub, labelOpts{maxLines: 1}).Layout),
+						layout.Rigid(u.label(13.5, u.locale.Text(c.Description), p.PopupSub, labelOpts{maxLines: 1}).Layout),
 					)
 				}),
 			)

@@ -121,6 +121,10 @@ func (s *msgStore) channelMetas(ctx context.Context, following bool) map[string]
 	if err != nil {
 		return out
 	}
+	if err := rows.Err(); err != nil {
+
+		return out
+	}	
 	defer rows.Close()
 	for rows.Next() {
 		var (

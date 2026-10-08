@@ -259,7 +259,7 @@ func (b *Backend) PressButton(m *model.Message, i int) *model.Message {
 	ci := &waE2E.ContextInfo{
 		StanzaID:      proto.String(m.ID),
 		Participant:   proto.String(sender.String()),
-		QuotedMessage: b.quotedMessage(ctx, m.ChatID, m.ID),
+		QuotedMessage: b.quotedMessage(ctx, m.ChatID, m.ID, raw.Text),
 	}
 	var msg *waE2E.Message
 	switch bt.Source {

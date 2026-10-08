@@ -20,6 +20,7 @@ const (
 	prefNotifyPreviews = "notify_previews" // message text in notifications
 	prefNotifySound    = "notify_sound"
 	prefBackground     = "background" // keep running when the window closes
+	prefTranslate      = "translate"  // translate the app's UI
 )
 
 func prefOn(b model.Backend, key string) bool { return b.Pref(key) != "off" }

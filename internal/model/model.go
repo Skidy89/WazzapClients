@@ -482,10 +482,6 @@ type ChatInfo struct {
 	// members, and Approval that they approve who joins.
 	Announce, Locked    bool
 	AdminsAdd, Approval bool
-	// MediaCount counts media, links and documents; Media holds the newest
-	// pictures to preview.
-	MediaCount int
-	Media      []*Message
 
 	// The rest describes contacts only.
 
@@ -775,6 +771,14 @@ type GalleryQuery struct {
 	Offset, Limit int
 }
 
+// MediaSummaryEvent answers Backend.MediaSummary: how many media, links
+// and documents a chat has, and its newest pictures with a preview.
+type MediaSummaryEvent struct {
+	ChatID string
+	Count  int
+	Media  []*Message
+}
+
 // GalleryEvent brings a page of Backend.Gallery. More reports that there
 // are more after it.
 type GalleryEvent struct {
@@ -975,6 +979,7 @@ func (StickersEvent) isEvent()     {}
 func (DeletedEvent) isEvent()      {}
 func (SearchEvent) isEvent()       {}
 func (GalleryEvent) isEvent()      {}
+func (MediaSummaryEvent) isEvent() {}
 func (SecurityCodeEvent) isEvent() {}
 func (AccountEvent) isEvent()      {}
 func (GroupEvent) isEvent()        {}
@@ -1053,6 +1058,7 @@ type Backend interface {
 	MarkRead(chatIDs []string)
 	// Send queues a text message and returns it in its pending state.
 	Send(chatID string, d Draft) *Message
+	//
 	// PressButton answers a message's quick-reply button (Buttons[i]) and
 	// returns the answer in its pending state, or nil.
 	PressButton(m *Message, i int) *Message
@@ -1179,6 +1185,10 @@ type Backend interface {
 	// messages in the background; a GalleryEvent answers. A new query
 	// cancels the last one.
 	Gallery(q GalleryQuery)
+	// MediaSummary counts a chat's media, links and documents and finds
+	// its newest pictures, for the info panel, in the background; a
+	// MediaSummaryEvent answers. A new request cancels the last one.
+	MediaSummary(chatID string)
 	// MemberChanges lists who joined, left or changed role in a group
 	// since this computer saw it, newest first.
 	MemberChanges(chatID string) []MemberChange

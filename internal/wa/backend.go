@@ -83,6 +83,9 @@ type Backend struct {
 	accountMu      sync.Mutex  // guards the cached account details
 	accountFetched atomic.Bool // account details refreshed this session
 
+	summaryMu     sync.Mutex
+	summaryCancel context.CancelFunc // the running MediaSummary
+
 	// serverSkew is how many seconds the server's clock is ahead of ours,
 	// learned from send acks (sendAsyncPrep).
 	serverSkew atomic.Int64

@@ -40,6 +40,7 @@ func TestSettingsPrivacyAndProfile(t *testing.T) {
 	if got := b.Account().Privacy[model.PrivacyLastSeen]; got != model.WhoNobody {
 		t.Errorf("last seen is %q after picking Nobody", got)
 	}
+
 	u.settings.stale = true
 	if r := settingRowByKey(t, u, model.PrivacyLastSeen+":"+model.WhoNobody); !r.on {
 		t.Error("Nobody isn't checked after picking it")
@@ -63,6 +64,27 @@ func TestSettingsPrivacyAndProfile(t *testing.T) {
 	u.ShowPage("blocked")
 	if r := settingRowByKey(t, u, "blocked:spam1"); r.kind != setContact {
 		t.Errorf("blocked contact row kind %d", r.kind)
+	}
+}
+
+func TestLanguagePreferenceLoadsAndPersists(t *testing.T) {
+	b := mock.New()
+	b.SetPref(prefLanguage, "es")
+
+	u := New(b)
+	if u.language != "es" {
+		t.Fatalf("loaded language = %q, want %q", u.language, "es")
+	}
+	if got := u.locale.Text("Language"); got != "Idioma" {
+		t.Fatalf("loaded translation = %q, want %q", got, "Idioma")
+	}
+
+	u.setLanguage("en")
+	if got := b.Pref(prefLanguage); got != "en" {
+		t.Fatalf("stored language = %q, want %q", got, "en")
+	}
+	if got := New(b).language; got != "en" {
+		t.Fatalf("reloaded language = %q, want %q", got, "en")
 	}
 }
 

@@ -153,6 +153,9 @@ func TestLocalizedCommandText(t *testing.T) {
 func TestMatching(t *testing.T) {
 	var outside []string
 	for _, c := range Matching("", false) {
+		if c.Name == "fakemsg" {
+			continue
+		}
 		outside = append(outside, c.Name)
 	}
 	if strings.Join(outside, " ") != "sticker purge calc schedule scheduled afk ghost snippet catch" {

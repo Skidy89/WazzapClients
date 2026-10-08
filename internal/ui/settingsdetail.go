@@ -23,6 +23,7 @@ import (
 // Preferences of the Chats and Account settings (Backend.Pref keys).
 const (
 	prefTheme       = "theme"      // "light" or "dark" (the default)
+	prefAccent      = "accent"     // the global accent color
 	prefDoodles     = "doodles"    // wallpaper doodles; on unless "off"
 	prefEnterSend   = "enter_send" // Enter sends; on unless "off"
 	prefSecurityMsg = "security_notifications"
@@ -174,21 +175,21 @@ func (u *UI) settingsTitle() string {
 	s := &u.settings
 	switch s.sub {
 	case "lastseen":
-		return "Last seen and online"
+		return u.locale.Text("settings.lastseen.title")
 	case "photo":
-		return "Profile photo"
+		return u.locale.Text("settings.photo.title")
 	case "about":
-		return "About"
+		return u.locale.Text("settings.about.title")
 	case "groups":
-		return "Groups"
+		return u.locale.Text("settings.groups.title")
 	case "timer":
-		return "Default message timer"
+		return u.locale.Text("settings.timer.title")
 	case "blocked":
-		return "Blocked contacts"
+		return u.locale.Text("settings.blocked.title")
 	case "theme":
-		return "Theme"
+		return u.locale.Text("settings.theme.title")
 	case "gray":
-		return "Ethically gray features"
+		return u.locale.Text("settings.gray.title")
 	}
 	return settingsItems[s.detail-1].title
 }
@@ -206,10 +207,20 @@ func (u *UI) settingsPage() []settingsSection {
 	case "gray":
 		return u.graySettings()
 	case "theme":
-		return []settingsSection{{title: "Choose a theme", rows: []settingRow{
-			{key: "light", kind: setRadio, title: "Light", on: !u.dark, run: func() { u.setTheme(false) }},
-			{key: "dark", kind: setRadio, title: "Dark", on: u.dark, run: func() { u.setTheme(true) }},
+		return []settingsSection{{title: u.locale.Text("settings.theme.title"), rows: []settingRow{
+			{key: "light", kind: setRadio, title: u.locale.Text("settings.theme.light"), on: !u.dark, run: func() { u.setTheme(false) }},
+			{key: "dark", kind: setRadio, title: u.locale.Text("settings.theme.dark"), on: u.dark, run: func() { u.setTheme(true) }},
 		}}}
+	case "accent":
+		rows := make([]settingRow, 0, len(accentColors))
+		for _, c := range accentColors {
+			c := c
+			rows = append(rows, settingRow{
+				key: "accent:" + c.name, kind: setRadio, title: c.name,
+				on: u.accent == c.name, run: func() { u.setAccent(c.name) },
+			})
+		}
+		return []settingsSection{{title: u.locale.Text("settings.chats.accent"), rows: rows}}
 	}
 	b := u.backend
 	pref := func(key, title, sub string) settingRow {
@@ -241,6 +252,8 @@ func (u *UI) settingsPage() []settingsSection {
 			{title: "Display", rows: []settingRow{
 				{key: "theme", ic: icPalette, title: "Theme", sub: map[bool]string{false: "Light", true: "Dark"}[u.dark],
 					trailing: icChevronRight, run: func() { u.openSettingsSub("theme") }},
+				{key: "accent", ic: icPalette, title: "Accent color", sub: u.accent,
+					trailing: icChevronRight, run: func() { u.openSettingsSub("accent") }},
 				{key: prefDoodles, kind: setToggle, title: "Wallpaper doodles", sub: "Draw doodles on the chat background",
 					on: u.doodles, run: func() { u.doodles = !u.doodles; setPref(b, prefDoodles, u.doodles) }},
 			}},

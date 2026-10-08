@@ -45,6 +45,7 @@ var filterNames = [...]string{"All", "Unread", "Favourites", "Groups"}
 type UI struct {
 	th       *material.Theme
 	pal      *Palette
+	accent   string
 	language string
 	locale   *i18n.Localizer
 	dark     bool
@@ -318,12 +319,22 @@ func New(b model.Backend) *UI {
 	}
 	u.locale = i18n.New(u.language)
 	u.language = u.locale.Language()
+	u.accent = accentColors[0].name
 	u.SetDark(true)
 	u.doodles = true
 	u.zoom.pct = 100
 	u.split.anim.snap(true)
 	if b != nil { // nil in some tests
 		u.SetDark(b.Pref(prefTheme) != "light")
+		if accent := b.Pref(prefAccent); accent != "" {
+			for _, c := range accentColors {
+				if c.name == accent {
+					u.accent = accent
+					u.SetDark(u.dark)
+					break
+				}
+			}
+		}
 		u.doodles = prefOn(b, prefDoodles)
 		u.loadZoom()
 		u.loadSplit()
@@ -522,14 +533,26 @@ func (u *UI) SelectName(name string) {
 func (u *UI) SetDark(dark bool) {
 	u.dark = dark
 	if dark {
-		u.pal = &darkPalette
+		u.pal = accentPalette(&darkPalette, true, u.accent)
 	} else {
-		u.pal = &lightPalette
+		u.pal = accentPalette(&lightPalette, false, u.accent)
 	}
 	u.th.Palette.Fg = u.pal.Text
 	u.th.Palette.Bg = u.pal.Panel
 	richBlocks.m = nil // spans carry palette colors (mentions, links)
 	u.th.Palette.ContrastBg = u.pal.Green
+}
+
+func (u *UI) setAccent(name string) {
+	for _, c := range accentColors {
+		if c.name != name {
+			continue
+		}
+		u.accent = name
+		u.SetDark(u.dark)
+		u.backend.SetPref(prefAccent, name)
+		return
+	}
 }
 
 // Escape presses Esc, closing the topmost overlay (used for screenshots).

@@ -23,7 +23,7 @@ func (u *UI) layoutCallsList(gtx C) D {
 		}),
 		layout.Rigid(func(gtx C) D {
 			return layout.Inset{Left: 27, Right: 27}.Layout(gtx, func(gtx C) D {
-				l := u.label(15.2, "No recent calls. Voice and video calls aren't available in this app yet.",
+				l := u.label(15.2, u.locale.Text("wip"),
 					p.TextSecondary, labelOpts{align: text.Start})
 				l.MaxLines = 0
 				return l.Layout(gtx)

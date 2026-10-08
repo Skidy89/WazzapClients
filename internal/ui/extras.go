@@ -1,7 +1,6 @@
 package ui
 
 import (
-	"fmt"
 	"image"
 
 	"gioui.org/font"
@@ -172,9 +171,9 @@ func (u *UI) extrasSettings() []settingsSection {
 					}
 				}),
 		}},
-		{rows: []settingRow{{key: "gray", ic: icExtensionGray, title: "Ethically gray features",
-			sub: "Edit history, deleted messages, view once and more", run: func() { u.openSettingsSub("gray") }}},
-			note: "Extra features aren't made by WhatsApp. They only use what WhatsApp lets every linked device do."},
+		{rows: []settingRow{{key: "gray", ic: icExtensionGray, title: u.locale.Text("settings.gray.title"),
+			sub: u.locale.Text("settings.gray.sub"), run: func() { u.openSettingsSub("gray") }}},
+			note: u.locale.Text("settings.gray.note")},
 	}
 	if u.slash.on {
 		var cmds []*command.Command
@@ -185,11 +184,11 @@ func (u *UI) extrasSettings() []settingsSection {
 		}
 		// A row that shows or hides the list, under the switch that turns
 		// them on.
-		title, ic := fmt.Sprintf("Show the %d commands", len(cmds)), icChevronRight
+		title, ic := u.locale.Textf("settings.commands.view", len(cmds)), icChevronRight
 		if u.cmdsOpen {
-			title, ic = "Hide the commands", icChevron
+			title, ic = u.locale.Text("settings.commands.hide"), icChevron
 		}
-		sec := settingsSection{title: "Commands", rows: []settingRow{{key: "cmds", title: title, trailing: ic,
+		sec := settingsSection{title: u.locale.Text("Commands"), rows: []settingRow{{key: "cmds", title: title, trailing: ic,
 			run: func() { u.cmdsOpen = !u.cmdsOpen }}}}
 		for _, c := range cmds {
 			if !u.cmdsOpen {
@@ -249,7 +248,7 @@ func (u *UI) graySettings() []settingsSection {
 		cmds.rows = append(cmds.rows, u.grayToggle(
 			grayCmdPref(c.Name),
 			"/"+c.Name,
-			c.Description,
+			u.locale.Text(c.Description),
 			&flag,
 			func() {
 				u.grayCmds[c.Name] = flag
@@ -310,7 +309,7 @@ func (u *UI) commandUsage(gtx C, c *command.Command, cur int, values [][]command
 		children = append(children, layout.Rigid(layout.Spacer{Width: 6}.Layout), layout.Rigid(func(gtx C) D {
 			txt, col := o.Name, p.Text
 			if !o.Required {
-				txt, col = o.Name+" (optional)", p.TextSecondary
+				txt, col = o.Name+" "+u.locale.Text("command.optional"), p.TextSecondary
 			}
 			if filled && i != cur {
 				col = p.TextSecondary

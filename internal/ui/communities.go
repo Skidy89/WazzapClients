@@ -131,9 +131,9 @@ func (u *UI) layoutCommunityEntry(gtx C, e communityEntry) D {
 			}
 			u.commun.expanded[e.community.ID] = !u.commun.expanded[e.community.ID]
 		}
-		label := "View all"
+		label := u.locale.Text("communities.view")
 		if u.commun.expanded[e.community.ID] {
-			label = "Show less"
+			label = u.locale.Text("communities.less")
 		}
 		return layout.Inset{Left: 91.5, Top: 17, Bottom: 29}.Layout(gtx, func(gtx C) D {
 			return clickable(gtx, click, u.label(16.7, label, p.Green).Layout)

@@ -119,3 +119,318 @@ msgstr "Esta función puede infringir los términos de servicio de WhatsApp. Su 
 
 msgid "BannableFeatureAgreement"
 msgstr "Entiendo que esta función puede infringir los términos de servicio de WhatsApp y podría provocar que mi cuenta sea suspendida. Acepto usarla de manera responsable."
+
+msgid "General"
+msgstr "General"
+
+msgid "Startup, language and background settings"
+msgstr "Inicio, idioma y configuración del fondo"
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "Name, profile picture, about"
+msgstr "Nombre, foto de perfil e información"
+
+msgid "Account"
+msgstr "Cuenta"
+
+msgid "Security notifications, account info"
+msgstr "Notificaciones de seguridad e información de la cuenta"
+
+msgid "Privacy"
+msgstr "Privacidad"
+
+msgid "Blocked contacts, disappearing messages"
+msgstr "Contactos bloqueados y mensajes temporales"
+
+msgid "Chats"
+msgstr "Chats"
+
+msgid "Theme, wallpaper, chat settings"
+msgstr "Tema, fondo de pantalla y configuración de chats"
+
+msgid "Notifications"
+msgstr "Notificaciones"
+
+msgid "Messages, groups, sounds"
+msgstr "Mensajes, grupos y sonidos"
+
+msgid "Keyboard shortcuts"
+msgstr "Atajos"
+
+msgid "Quick actions"
+msgstr "Acciones rápidas"
+
+msgid "Extra features"
+msgstr "Extras"
+
+msgid "Slash commands and more, not in WhatsApp"
+msgstr "Comandos extras"
+
+msgid "Snippets"
+msgstr "Snippets"
+
+msgid "Saved messages and payloads"
+msgstr "Mensajes y payloads guardados"
+
+msgid "Help and feedback"
+msgstr "Ayuda y comentarios"
+
+msgid "Help center, contact us, privacy policy"
+msgstr "Centro de ayuda, contáctanos y política de privacidad"
+
+msgid "Log out"
+msgstr "Cerrar sesión"
+
+msgid "wip"
+msgstr "Esta funcion aun no esta implementada completamente"
+
+msgid "cancel"
+msgstr "Cancelar"
+
+msgid "group only"
+msgstr "Este comando solo funciona en grupos!"
+
+msgid "command.add"
+msgstr "Añade personas al grupo"
+
+msgid "command.add.contact"
+msgstr "Contactos o números de teléfono con su código de país"
+
+msgid "command.kick"
+msgstr "Elimina miembros del grupo"
+
+msgid "command.kick.member"
+msgstr "A quién eliminar"
+
+msgid "command.promote"
+msgstr "Convierte a miembros en administradores del grupo"
+
+msgid "command.promote.member"
+msgstr "A quién convertir en administrador"
+
+msgid "command.demote"
+msgstr "Quita a miembros del grupo como administradores"
+
+msgid "command.demote.member"
+msgstr "Qué administrador quitar"
+
+msgid "command.link"
+msgstr "Muestra el enlace de invitación del grupo"
+
+msgid "command.lockdown"
+msgstr "Permite que solo los administradores envíen mensajes o que todos puedan hacerlo"
+
+msgid "command.lockdown.mode"
+msgstr "activado: solo los administradores envían; desactivado: todos pueden enviar"
+
+msgid "command.description"
+msgstr "Cambia la descripción del grupo"
+
+msgid "command.description.text"
+msgstr "La nueva descripción"
+
+msgid "command.sticker"
+msgstr "Convierte en sticker la foto a la que respondes o una imagen que elijas"
+
+msgid "command.sticker.top"
+msgstr "Texto en la parte superior; # inicia el texto inferior"
+
+msgid "command.sticker.bottom"
+msgstr "Texto en la parte inferior"
+
+msgid "command.purge"
+msgstr "Elimina los últimos mensajes para todos o los mensajes hasta aquel al que respondes"
+
+msgid "command.purge.count"
+msgstr "Cuántos mensajes eliminar"
+
+msgid "command.raffle"
+msgstr "Elige miembros del grupo al azar y los anuncia"
+
+msgid "command.raffle.winners"
+msgstr "Cuántos elegir (1 si lo dejas vacío)"
+
+msgid "command.calc"
+msgstr "Calcula una operación mientras escribes y envía el resultado"
+
+msgid "command.calc.sum"
+msgstr "Como 12 x 4500, 15k x 3 o 15% x 80000; ans es el último resultado"
+
+msgid "command.schedule"
+msgstr "Envía un mensaje más tarde, incluso con la ventana cerrada"
+
+msgid "command.schedule.when"
+msgstr "Como 21:00, 30m, 2h, mañana 08:00, vie 18:00 o 25/12 09:00"
+
+msgid "command.schedule.message"
+msgstr "Qué enviar; las @menciones funcionan como en cualquier mensaje"
+
+msgid "command.scheduled"
+msgstr "Muestra los mensajes programados en este chat para enviarlos ahora o cancelarlos"
+
+msgid "command.afk"
+msgstr "Responde por ti mientras estás ausente, hasta que envíes un mensaje"
+
+msgid "command.afk.reason"
+msgstr "Por qué estás ausente, mostrado en la respuesta"
+
+msgid "command.ghost"
+msgstr "Se vuelve invisible: sin confirmaciones de lectura, aparece desconectado y no envía mensajes hasta que lo desactives"
+
+msgid "command.snippet"
+msgstr "Envía un mensaje guardado o guarda el mensaje al que respondes"
+
+msgid "command.snippet.action"
+msgstr "envía un mensaje guardado o guarda el mensaje al que respondes"
+
+msgid "command.snippet.snippet"
+msgstr "el fragmento que enviar o el nombre con el que guardarlo (se genera uno si está vacío)"
+
+msgid "command.catch"
+msgstr "Muestra el payload original del mensaje al que respondes"
+
+msgid "command.fakemsg"
+msgstr "Cita un mensaje donde puedes cambiar el remitente y el texto"
+
+msgid "command.fakemsg.sender"
+msgstr "Remitente del mensaje falso; puede ser 0 o su número de teléfono con código de país"
+
+msgid "command.fakemsg.text"
+msgstr "tu texto"
+
+msgid "command.fakemsg.quoted"
+msgstr "su texto falso"
+
+msgid "command.hidetag"
+msgstr "Envía un mensaje que menciona a todos en el grupo sin mostrar las menciones"
+
+msgid "command.hidetag.text"
+msgstr "El mensaje que enviar"
+
+msgid "ghost.mode.on"
+msgstr "el modo fantasma esta activado, los chats que abres, estados, etc no tendran confirmaciones de lectura. apareceras desconectado, durante este modo no podras enviar ninguno tipo de mensajes. tus mensajes programados y las respuestas afk se enviaran sin problema."
+
+msgid "search.sidebar.chats"
+msgstr "Buscar o empezar un nuevo chat"
+
+msgid "communities.view"
+msgstr "Ver todo"
+
+msgid "communities.less"
+msgstr "Mostrar menos"
+
+msgid "lastseen.today"
+msgstr "hoy a las %s"
+
+msgid "lastseen.yesterday"
+msgstr "ayer a las %s"
+
+msgid "lastseen.date"
+msgstr "%s a las %s"
+
+msgid "settings.lastseen.title"
+msgstr "Última vez y en línea"
+
+msgid "settings.photo.title"
+msgstr "Foto de perfil"
+
+msgid "settings.about.title"
+msgstr "Información"
+
+msgid "settings.groups.title"
+msgstr "Grupos"
+
+msgid "settings.timer.title"
+msgstr "Temporizador de mensajes predeterminado"
+
+msgid "settings.blocked.title"
+msgstr "Contactos bloqueados"
+
+msgid "settings.theme.title"
+msgstr "Tema"
+
+msgid "settings.gray.title"
+msgstr "Funciones grises"
+
+msgid "settings.theme.choose"
+msgstr "Elige un tema"
+
+msgid "settings.theme.light"
+msgstr "Claro"
+
+msgid "settings.theme.dark"
+msgstr "Oscuro"
+
+msgid "settings.accent.choose"
+msgstr "Elige un color de acento"
+
+msgid "settings.notifications.messages"
+msgstr "Mensajes"
+
+msgid "settings.notifications.message"
+msgstr "Notificaciones de mensajes"
+
+msgid "settings.notifications.message.description"
+msgstr "Mostrar notificaciones de nuevos mensajes"
+
+msgid "settings.notifications.previews"
+msgstr "Mostrar vistas previas"
+
+msgid "settings.notifications.previews.description"
+msgstr "Mostrar el texto de los mensajes en las notificaciones"
+
+msgid "settings.notifications.sound"
+msgstr "Sonidos"
+
+msgid "settings.notifications.sound.description"
+msgstr "Reproducir un sonido para los nuevos mensajes"
+
+msgid "settings.notifications.groups"
+msgstr "Grupos"
+
+msgid "settings.notifications.group"
+msgstr "Notificaciones de grupos"
+
+msgid "settings.notifications.group.description"
+msgstr "Mostrar notificaciones de mensajes de grupos"
+
+msgid "settings.chats.display"
+msgstr "Apariencia"
+
+msgid "settings.chats.theme"
+msgstr "Tema"
+
+msgid "settings.chats.accent"
+msgstr "Color"
+
+msgid "settings.chats.wallpaper_doodles"
+msgstr "doodles del fondo"
+
+msgid "settings.chats.wallpaper_doodles.description"
+msgstr "Dibujar doodles el fondo del chat :3"
+
+msgid "settings.chats.chat_settings"
+msgstr "Configuración de chats"
+
+msgid "settings.chats.enter_send"
+msgstr "Enter para enviar mensaje"
+
+msgid "settings.chats.enter_send.description"
+msgstr "La tecla Enter enviará tu mensaje"
+
+msgid "settings.commands.view"
+msgstr "Ver los %d comandos"
+
+msgid "settings.commands.hide"
+msgstr "Ocultar comandos"
+
+msgid "command.optional"
+msgstr "(Opcional)"
+
+msgid "settings.gray.note"
+msgstr "Las funciones adicionales no son de WhatsApp. Solo utilizan lo que WhatsApp permite a cada dispositivo vinculado."
+
+msgid "settings.gray.sub"
+msgstr "Editar historial, ver mensajes eliminados y mas"

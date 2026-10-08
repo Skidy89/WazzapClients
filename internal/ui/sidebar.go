@@ -83,7 +83,7 @@ func (u *UI) layoutSearch(gtx C) D {
 						layout.Rigid(iconW(icSearch, 22, p.TextSecondary)),
 						layout.Rigid(layout.Spacer{Width: 12}.Layout),
 						layout.Flexed(1, func(gtx C) D {
-							e := material.Editor(u.th, &u.sidebar.search, "Search or start a new chat")
+							e := material.Editor(u.th, &u.sidebar.search, u.locale.Text("search.sidebar.chats"))
 							e.TextSize = 15.5
 							e.Color = p.Text
 							e.HintColor = p.TextSecondary

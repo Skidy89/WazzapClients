@@ -225,3 +225,318 @@ msgid "BannableFeatureAgreement"
 msgstr "I understand this feature may violate WhatsApp's terms of service and could result in my account being banned. I agree to use it responsibly."
 
 
+msgid "General"
+msgstr "General"
+
+msgid "Startup, language and background settings"
+msgstr "Startup, language and background settings"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Name, profile picture, about"
+msgstr "Name, profile picture, about"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Security notifications, account info"
+msgstr "Security notifications, account info"
+
+msgid "Privacy"
+msgstr "Privacy"
+
+msgid "Blocked contacts, disappearing messages"
+msgstr "Blocked contacts, disappearing messages"
+
+msgid "Chats"
+msgstr "Chats"
+
+msgid "Theme, wallpaper, chat settings"
+msgstr "Theme, wallpaper, chat settings"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Messages, groups, sounds"
+msgstr "Messages, groups, sounds"
+
+msgid "Keyboard shortcuts"
+msgstr "Keyboard shortcuts"
+
+msgid "Quick actions"
+msgstr "Quick actions"
+
+msgid "Extra features"
+msgstr "Extra features"
+
+msgid "Slash commands and more, not in WhatsApp"
+msgstr "Slash commands and more, not in WhatsApp"
+
+msgid "Snippets"
+msgstr "Snippets"
+
+msgid "Saved messages and payloads"
+msgstr "Saved messages and payloads"
+
+msgid "Help and feedback"
+msgstr "Help and feedback"
+
+msgid "Help center, contact us, privacy policy"
+msgstr "Help center, contact us, privacy policy"
+
+msgid "Log out"
+msgstr "Log out"
+
+msgid "wip"
+msgstr "Not implemented yet."
+
+msgid "cancel"
+msgstr "Cancel"
+
+msgid "group only"
+msgstr "This command is only for admins!"
+
+
+msgid "command.add"
+msgstr "Adds people to the group"
+
+msgid "command.add.contact"
+msgstr "Contacts, or phone numbers with their country code"
+
+msgid "command.kick"
+msgstr "Removes members from the group"
+
+msgid "command.kick.member"
+msgstr "Who to remove"
+
+msgid "command.promote"
+msgstr "Makes members group admins"
+
+msgid "command.promote.member"
+msgstr "Who to make an admin"
+
+msgid "command.demote"
+msgstr "Dismisses group admins"
+
+msgid "command.demote.member"
+msgstr "Which admin to dismiss"
+
+msgid "command.link"
+msgstr "Shows the group's invite link"
+
+msgid "command.lockdown"
+msgstr "Lets only admins send messages, or everyone again"
+
+msgid "command.lockdown.mode"
+msgstr "on: only admins send; off: everyone sends"
+
+msgid "command.description"
+msgstr "Changes the group description"
+
+msgid "command.description.text"
+msgstr "The new description"
+
+msgid "command.sticker"
+msgstr "Turns the photo you reply to, or a picture you pick, into a sticker"
+
+msgid "command.sticker.top"
+msgstr "Text along the top; # starts the bottom text"
+
+msgid "command.sticker.bottom"
+msgstr "Text along the bottom"
+
+msgid "command.purge"
+msgstr "Deletes the last messages for everyone, or those up to the one you reply to"
+
+msgid "command.purge.count"
+msgstr "How many messages to delete"
+
+msgid "command.raffle"
+msgstr "Draws members of the group at random and announces them"
+
+msgid "command.raffle.winners"
+msgstr "How many to draw (1 if you leave it out)"
+
+msgid "command.calc"
+msgstr "Works out a sum as you type, and sends it with the answer"
+
+msgid "command.calc.sum"
+msgstr "Like 12 x 4500, 15k x 3 or 15% x 80000; ans is the last answer"
+
+msgid "command.schedule"
+msgstr "Sends a message later, even with the window closed"
+
+msgid "command.schedule.when"
+msgstr "Like 21:00, 30m, 2h, tomorrow 08:00, fri 18:00 or 25/12 09:00"
+
+msgid "command.schedule.message"
+msgstr "What to send; @mentions work as in any message"
+
+msgid "command.scheduled"
+msgstr "Lists the messages scheduled in this chat, to send now or cancel"
+
+msgid "command.afk"
+msgstr "Replies for you while you're away, until you send a message"
+
+msgid "command.afk.reason"
+msgstr "Why you're away, shown in the reply"
+
+msgid "command.ghost"
+msgstr "Goes invisible: no read receipts, shown offline, no sending, until you turn it off"
+
+msgid "command.snippet"
+msgstr "Sends a saved message, or saves the message you reply to"
+
+msgid "command.snippet.action"
+msgstr "send a saved message, or save the message you reply to"
+
+msgid "command.snippet.snippet"
+msgstr "the snippet to send, or the name to save it under (made up when empty)"
+
+msgid "command.catch"
+msgstr "Shows the original payload of the message you reply to"
+
+msgid "command.fakemsg"
+msgstr "quotes a message where you can change the sender and text"
+
+msgid "command.fakemsg.sender"
+msgstr "Sender of the fake message, could be 0 or their phone number with country code"
+
+msgid "command.fakemsg.text"
+msgstr "your text"
+
+msgid "command.fakemsg.quoted"
+msgstr "their fake text"
+
+msgid "command.hidetag"
+msgstr "Sends a message that mentions everyone in the group without showing it"
+
+msgid "command.hidetag.text"
+msgstr "The message to send"
+
+msgid "ghost.mode.on"
+msgstr "Ghost mode is on. Chats you open and status updates you watch send no read receipts, and you show as offline, even while the app is open. Chats you read here stay unread on your phone. You can't send messages, react or vote until you turn it off, and you don't see who's typing. Scheduled messages and AFK replies still go out."
+
+msgid "search.sidebar.chats"
+msgstr "Search or start a new chat"
+
+msgid "communities.view"
+msgstr "View All"
+
+msgid "communities.less"
+msgstr "Show Less"
+
+msgid "lastseen.today"
+msgstr "today at %s"
+
+msgid "lastseen.yesterday"
+msgstr "yesterday at %s"
+
+msgid "lastseen.date"
+msgstr "%s at %s"
+
+msgid "settings.lastseen.title"
+msgstr "Last seen and online"
+
+msgid "settings.photo.title"
+msgstr "Profile photo"
+
+msgid "settings.about.title"
+msgstr "About"
+
+msgid "settings.groups.title"
+msgstr "Groups"
+
+msgid "settings.timer.title"
+msgstr "Default message timer"
+
+msgid "settings.blocked.title"
+msgstr "Blocked contacts"
+
+msgid "settings.theme.title"
+msgstr "Theme"
+
+msgid "settings.gray.title"
+msgstr "Ethically gray features"
+
+msgid "settings.theme.choose"
+msgstr "Choose a theme"
+
+msgid "settings.theme.light"
+msgstr "Light"
+
+msgid "settings.theme.dark"
+msgstr "Dark"
+
+msgid "settings.accent.choose"
+msgstr "Choose an accent color"
+
+msgid "settings.notifications.messages"
+msgstr "Messages"
+
+msgid "settings.notifications.message"
+msgstr "Message notifications"
+
+msgid "settings.notifications.message.description"
+msgstr "Show notifications for new messages"
+
+msgid "settings.notifications.previews"
+msgstr "Show previews"
+
+msgid "settings.notifications.previews.description"
+msgstr "Show message text in notifications"
+
+msgid "settings.notifications.sound"
+msgstr "Sounds"
+
+msgid "settings.notifications.sound.description"
+msgstr "Play a sound for new messages"
+
+msgid "settings.notifications.groups"
+msgstr "Groups"
+
+msgid "settings.notifications.group"
+msgstr "Group notifications"
+
+msgid "settings.notifications.group.description"
+msgstr "Show notifications for group messages"
+
+msgid "settings.chats.display"
+msgstr "Display"
+
+msgid "settings.chats.theme"
+msgstr "Theme"
+
+msgid "settings.chats.accent"
+msgstr "Accent color"
+
+msgid "settings.chats.wallpaper_doodles"
+msgstr "Wallpaper doodles"
+
+msgid "settings.chats.wallpaper_doodles.description"
+msgstr "Draw doodles on the chat background"
+
+msgid "settings.chats.chat_settings"
+msgstr "Chat settings"
+
+msgid "settings.chats.enter_send"
+msgstr "Enter as send"
+
+msgid "settings.chats.enter_send.description"
+msgstr "Enter key will send your message"
+
+msgid "settings.commands.view"
+msgstr "Show the %d commands"
+
+msgid "settings.commands.hide"
+msgstr "Hide commands"
+
+msgid "command.optional"
+msgstr "(optional)"
+
+msgid "settings.gray.note"
+msgstr "Extra features aren't made by WhatsApp. They only use what WhatsApp lets every linked device do."
+
+msgid "settings.gray.sub"
+msgstr "Edit history, deleted messages, view once and more"

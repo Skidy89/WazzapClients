@@ -58,7 +58,7 @@ func TestSlashGhost(t *testing.T) {
 	if !st.u.ghostMode() || st.b.Pref(model.PrefGhost) != "on" {
 		t.Fatal("/ghost didn't turn ghost mode on")
 	}
-	if n := st.lastNote("work"); n.Text != command.GhostOnText {
+	if n := st.lastNote("work"); n.Text != st.u.locale.Text("ghost.mode.on") {
 		t.Fatalf("note %q", n.Text)
 	}
 	// Opening a chat leaves it unread for the backend: no read receipts.

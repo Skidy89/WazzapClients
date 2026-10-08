@@ -226,13 +226,13 @@ func (u *UI) listItemText(gtx C, it listItem, fg, sub color.NRGBA) D {
 		return it.content(gtx)
 	}
 	if it.sub == "" {
-		return u.label(17, it.title, fg).Layout(gtx)
+		return u.label(17, u.locale.Text(it.title), fg).Layout(gtx)
 	}
 	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-		layout.Rigid(u.label(17, it.title, fg).Layout),
+		layout.Rigid(u.label(17, u.locale.Text(it.title), fg).Layout),
 		layout.Rigid(layout.Spacer{Height: 2}.Layout),
 		layout.Rigid(func(gtx C) D {
-			l := u.label(15.2, it.sub, sub, labelOpts{})
+			l := u.label(15.2, u.locale.Text(it.sub), sub, labelOpts{})
 			l.MaxLines = 0
 			l.LineHeight, l.LineHeightScale = 20.5, 1
 			return l.Layout(gtx)

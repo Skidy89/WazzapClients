@@ -69,6 +69,65 @@ type Palette struct {
 	Toast, ToastText               color.NRGBA
 }
 
+type accentColor struct {
+	name string
+	hex  uint32
+}
+
+var accentColors = []accentColor{
+	{name: "Green", hex: 0x1daa61},
+	{name: "Emerald", hex: 0x10a36a},
+	{name: "Mint", hex: 0x45c49a},
+
+	{name: "Blue", hex: 0x3478f6},
+	{name: "Sky", hex: 0x3aa8e8},
+	{name: "Azure", hex: 0x1677c8},
+
+	{name: "Purple", hex: 0x8e5bd8},
+	{name: "Violet", hex: 0x6f42c1},
+	{name: "Lavender", hex: 0xa678d6},
+
+	{name: "Orange", hex: 0xf08c2e},
+	{name: "Amber", hex: 0xe6a21a},
+	{name: "Coral", hex: 0xe87855},
+
+	{name: "Red", hex: 0xe0533d},
+	{name: "Crimson", hex: 0xc93c50},
+	{name: "Rose", hex: 0xd94f70},
+
+	{name: "Pink", hex: 0xe04e9d},
+	{name: "Magenta", hex: 0xc63fa3},
+	{name: "Blush", hex: 0xd875a8},
+
+	{name: "Teal", hex: 0x1f8a7d},
+	{name: "Turquoise", hex: 0x20a99a},
+	{name: "Seafoam", hex: 0x52bfae},
+
+	{name: "Lime", hex: 0x9abf00},
+	{name: "Olive", hex: 0x7f9518},
+	{name: "Chartreuse", hex: 0xb2c92e},
+
+	{name: "Yellow", hex: 0xf5c200},
+	{name: "Gold", hex: 0xd9a514},
+	{name: "Lemon", hex: 0xe8d33f},
+
+	{name: "Cyan", hex: 0x00bcd4},
+	{name: "Aqua", hex: 0x20c4d8},
+	{name: "Cerulean", hex: 0x268fb5},
+
+	{name: "Indigo", hex: 0x3f51b5},
+	{name: "Sapphire", hex: 0x3155a6},
+	{name: "Periwinkle", hex: 0x6574c7},
+
+	{name: "Brown", hex: 0x795548},
+	{name: "Mocha", hex: 0x8a6652},
+	{name: "Copper", hex: 0xa56842},
+
+	{name: "Gray", hex: 0x9e9e9e},
+	{name: "Slate", hex: 0x687782},
+	{name: "Silver", hex: 0xb0b7bd},
+}
+
 // markColors are what the photo editor draws with, the same in both
 // themes since they end up in the photo.
 var markColors = rgbs(0xffffff, 0x000000, 0xff3b30, 0xff9500, 0xffcc00, 0x34c759, 0x007aff, 0xaf52de)
@@ -89,6 +148,45 @@ func rgbs(cs ...uint32) []color.NRGBA {
 		out[i] = rgb(c)
 	}
 	return out
+}
+
+func accentPalette(base *Palette, dark bool, name string) *Palette {
+	if name == "" || name == accentColors[0].name {
+		return base
+	}
+	var accent uint32
+	for _, c := range accentColors {
+		if c.name == name {
+			accent = c.hex
+			break
+		}
+	}
+	if accent == 0 {
+		return base
+	}
+	q := *base
+	h := rgb(accent)
+	q.Green = h
+	q.Link = h
+	q.OnGreen = rgb(0xffffff)
+	if dark {
+		q.BubbleOut = mix(rgb(0x1d1f1f), h, 0.42)
+		q.QuoteOut = mix(q.BubbleOut, rgb(0x000000), 0.2)
+		q.MetaOut = mix(q.BubbleOut, rgb(0xffffff), 0.62)
+		q.SecondaryOut = q.MetaOut
+		q.ChipActive = mix(base.ChipActive, h, 0.28)
+		q.ChipActiveBorder = mix(base.ChipActiveBorder, h, 0.42)
+	} else {
+		q.BubbleOut = mix(rgb(0xffffff), h, 0.24)
+		q.QuoteOut = mix(q.BubbleOut, h, 0.14)
+		q.MetaOut = mix(q.BubbleOut, rgb(0x000000), 0.48)
+		q.SecondaryOut = q.MetaOut
+		q.ChipActive = mix(rgb(0xffffff), h, 0.18)
+		q.ChipActiveBorder = mix(base.ChipActiveBorder, h, 0.42)
+	}
+	q.ChipActiveText = h
+	q.MentionPill = argb(accent, 0x24)
+	return &q
 }
 
 var darkPalette = Palette{

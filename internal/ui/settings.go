@@ -98,7 +98,7 @@ func (u *UI) layoutSettingsList(gtx C) D {
 	q := strings.ToLower(trimSpace(s.search.Text()))
 	var shown []int
 	for i, it := range settingsItems {
-		if q == "" || strings.Contains(strings.ToLower(it.title+" "+it.sub), q) {
+		if q == "" || strings.Contains(strings.ToLower(u.locale.Text(it.title)+" "+u.locale.Text(it.sub)), q) {
 			shown = append(shown, i)
 		}
 	}

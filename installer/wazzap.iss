@@ -1,12 +1,12 @@
 ; Inno Setup script for the Windows installer (see docs/releasing.md).
 ;
-;   iscc /DAppVersion=0.10.0 /DExe=..\bin\dist\WazzapClients-windows-amd64.exe installer\wazzap.iss
+;   iscc /DAppVersion=0.10.0 /DExe=..\bin\dist\OpenWA-windows-amd64.exe installer\wazzap.iss
 
 #ifndef AppVersion
 #define AppVersion "0.0.0"
 #endif
 #ifndef Exe
-#define Exe "..\bin\dist\WazzapClients-windows-amd64.exe"
+#define Exe "..\bin\dist\OpenWA-windows-amd64.exe"
 #endif
 #ifndef OutDir
 #define OutDir "..\bin\dist"

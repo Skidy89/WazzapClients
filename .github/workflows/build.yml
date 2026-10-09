@@ -111,7 +111,7 @@ jobs:
           go build `
             -trimpath `
             -ldflags "-s -w -H=windowsgui -X main.version=$env:VERSION" `
-            -o bin/dist/WazzapClients-windows-amd64.exe `
+            -o bin/dist/OpenWA-windows-amd64.exe `
             ./cmd/wazzap
 
           if ($LASTEXITCODE -ne 0) {
@@ -122,7 +122,7 @@ jobs:
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v7
         with:
-          path: bin/dist/WazzapClients-windows-amd64.exe
+          path: bin/dist/OpenWA-windows-amd64.exe
           archive: false
           if-no-files-found: error
           retention-days: 14
@@ -155,7 +155,7 @@ jobs:
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v7
         with:
-          path: bin/dist/WazzapClients-Setup.exe
+          path: bin/dist/OpenWA-Setup.exe
           archive: false
           if-no-files-found: error
           retention-days: 14
@@ -172,16 +172,16 @@ jobs:
           go build \
             -trimpath \
             -ldflags "-s -w -X main.version=$VERSION" \
-            -o bin/dist/WazzapClients-linux-amd64 \
+            -o bin/dist/OpenWA-linux-amd64 \
             ./cmd/wazzap
 
-          chmod +x bin/dist/WazzapClients-linux-amd64
+          chmod +x bin/dist/OpenWA-linux-amd64
 
       - name: Upload Linux executable
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@v7
         with:
-          path: bin/dist/WazzapClients-linux-amd64
+          path: bin/dist/OpenWA-linux-amd64
           archive: false
           if-no-files-found: error
           retention-days: 14
@@ -213,19 +213,19 @@ jobs:
       - name: Download Windows build
         uses: actions/download-artifact@v8
         with:
-          name: WazzapClients-windows-amd64.exe
+          name: OpenWA-windows-amd64.exe
           path: dist
 
       - name: Download Windows installer
         uses: actions/download-artifact@v8
         with:
-          name: WazzapClients-Setup.exe
+          name: OpenWA-Setup.exe
           path: dist
 
       - name: Download Linux build
         uses: actions/download-artifact@v8
         with:
-          name: WazzapClients-linux-amd64
+          name: OpenWA-linux-amd64
           path: dist
 
       - name: Show downloaded files
@@ -236,9 +236,9 @@ jobs:
         working-directory: dist
         run: |
           sha256sum \
-            WazzapClients-windows-amd64.exe \
-            WazzapClients-Setup.exe \
-            WazzapClients-linux-amd64 \
+            OpenWA-windows-amd64.exe \
+            OpenWA-Setup.exe \
+            OpenWA-linux-amd64 \
             > SHA256SUMS
 
           sha256sum --check SHA256SUMS
@@ -277,9 +277,9 @@ jobs:
             fi
 
             gh release upload "$RELEASE_TAG" \
-              dist/WazzapClients-windows-amd64.exe \
-              dist/WazzapClients-Setup.exe \
-              dist/WazzapClients-linux-amd64 \
+              dist/OpenWA-windows-amd64.exe \
+              dist/OpenWA-Setup.exe \
+              dist/OpenWA-linux-amd64 \
               dist/SHA256SUMS \
               dist/SHA256SUMS.sig \
               --clobber
@@ -287,14 +287,14 @@ jobs:
           else
 
             gh release create "$RELEASE_TAG" \
-              dist/WazzapClients-windows-amd64.exe \
-              dist/WazzapClients-Setup.exe \
-              dist/WazzapClients-linux-amd64 \
+              dist/OpenWA-windows-amd64.exe \
+              dist/OpenWA-Setup.exe \
+              dist/OpenWA-linux-amd64 \
               dist/SHA256SUMS \
               dist/SHA256SUMS.sig \
               --verify-tag \
               --draft \
               --generate-notes \
-              --title "WazzapClients $RELEASE_TAG"
+              --title "OpenWA $RELEASE_TAG"
 
           fi

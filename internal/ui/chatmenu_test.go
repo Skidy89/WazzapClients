@@ -26,8 +26,7 @@ func TestConvMenu(t *testing.T) {
 		return out
 	}
 	group := labels("family")
-	for _, want := range []string{"Add member", "Group info", "Search", "Select messages", "Disappearing messages",
-		"Chat theme", "Add to list", "Export chat", "Close chat", "Clear chat", "Exit group"} {
+	for _, want := range []string{"Add member", "Group info", "Search", "Select messages", "Disappearing messages", "Add to list", "Export chat", "Close chat", "Clear chat", "Exit group"} {
 		if !slices.Contains(group, want) {
 			t.Errorf("group menu %q lacks %q", group, want)
 		}

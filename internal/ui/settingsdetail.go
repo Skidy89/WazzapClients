@@ -191,7 +191,7 @@ func (u *UI) settingsTitle() string {
 	case "gray":
 		return u.locale.Text("settings.gray.title")
 	}
-	return settingsItems[s.detail-1].title
+	return u.locale.Text(settingsItems[s.detail-1].title)
 }
 
 // settingsPage lists the settings of the open page.
@@ -216,7 +216,7 @@ func (u *UI) settingsPage() []settingsSection {
 		for _, c := range accentColors {
 			c := c
 			rows = append(rows, settingRow{
-				key: "accent:" + c.name, kind: setRadio, title: c.name,
+				key: "accent:" + c.name, kind: setRadio, title: u.locale.Text(c.name),
 				on: u.accent == c.name, run: func() { u.setAccent(c.name) },
 			})
 		}
@@ -230,13 +230,13 @@ func (u *UI) settingsPage() []settingsSection {
 	switch s.detail - 1 {
 	case settingNotifications:
 		return []settingsSection{
-			{title: "Messages", rows: []settingRow{
-				pref(prefNotifyMessages, "Message notifications", "Show notifications for new messages"),
-				pref(prefNotifyPreviews, "Show previews", "Show message text in notifications"),
-				pref(prefNotifySound, "Sounds", "Play a sound for new messages"),
+			{title: u.locale.Text("Messages"), rows: []settingRow{
+				pref(prefNotifyMessages, u.locale.Text("Message notifications"), u.locale.Text("Show notifications for new messages")),
+				pref(prefNotifyPreviews, u.locale.Text("Show previews"), u.locale.Text("Show message text in notifications")),
+				pref(prefNotifySound, u.locale.Text("Sounds"), u.locale.Text("Play a sound for new messages")),
 			}},
-			{title: "Groups", rows: []settingRow{
-				pref(prefNotifyGroups, "Group notifications", "Show notifications for group messages"),
+			{title: u.locale.Text("Groups"), rows: []settingRow{
+				pref(prefNotifyGroups, u.locale.Text("Group notifications"), u.locale.Text("Show notifications for group messages")),
 			}},
 		}
 	case settingGeneral:
@@ -249,21 +249,21 @@ func (u *UI) settingsPage() []settingsSection {
 		return u.privacySettings()
 	case settingChats:
 		return []settingsSection{
-			{title: "Display", rows: []settingRow{
-				{key: "theme", ic: icPalette, title: "Theme", sub: map[bool]string{false: "Light", true: "Dark"}[u.dark],
+			{title: u.locale.Text("settings.chats.display"), rows: []settingRow{
+				{key: "theme", ic: icPalette, title: u.locale.Text("settings.chats.theme"), sub: u.locale.Text(map[bool]string{false: "settings.theme.light", true: "settings.theme.dark"}[u.dark]),
 					trailing: icChevronRight, run: func() { u.openSettingsSub("theme") }},
-				{key: "accent", ic: icPalette, title: "Accent color", sub: u.accent,
+				{key: "accent", ic: icPalette, title: u.locale.Text("Accent color"), sub: u.accent,
 					trailing: icChevronRight, run: func() { u.openSettingsSub("accent") }},
-				{key: prefDoodles, kind: setToggle, title: "Wallpaper doodles", sub: "Draw doodles on the chat background",
+				{key: prefDoodles, kind: setToggle, title: u.locale.Text("settings.chats.wallpaper_doodles"), sub: u.locale.Text("settings.chats.wallpaper_doodles.description"),
 					on: u.doodles, run: func() { u.doodles = !u.doodles; setPref(b, prefDoodles, u.doodles) }},
 			}},
-			{title: "Chat settings", rows: []settingRow{
-				{key: prefEnterSend, kind: setToggle, title: "Enter is send", sub: "Enter key will send your message",
+			{title: u.locale.Text("settings.chats.chat_settings"), rows: []settingRow{
+				{key: prefEnterSend, kind: setToggle, title: u.locale.Text("settings.chats.enter_send"), sub: u.locale.Text("settings.chats.enter_send.description"),
 					on: prefOn(b, prefEnterSend), run: func() { u.setEnterSend(!prefOn(b, prefEnterSend)) }},
 			}},
 		}
 	case settingShortcuts:
-		return shortcutSettings(prefOn(b, prefEnterSend))
+		return u.shortcutSettings(prefOn(b, prefEnterSend))
 	case settingExtras:
 		return u.extrasSettings()
 	case settingSnippets:
@@ -343,14 +343,14 @@ func (u *UI) profileSettings() []settingsSection {
 				})
 			})
 		}, run: u.pickProfilePhoto},
-		{key: "setphoto", ic: icAddPhoto, title: "Change profile photo", run: u.pickProfilePhoto},
+		{key: "setphoto", ic: icAddPhoto, title: u.locale.Text("Change profile photo"), run: u.pickProfilePhoto},
 	}}
-	photo.rows = append(photo.rows, settingRow{key: "rmphoto", ic: icDelete, title: "Remove profile photo", danger: true,
+	photo.rows = append(photo.rows, settingRow{key: "rmphoto", ic: icDelete, title: u.locale.Text("Remove profile photo"), danger: true,
 		show: func() bool { return u.avatarImage(u.meID) != nil },
 		run: func() {
-			u.confirm("Remove your profile photo?", "",
-				dialogButton{label: "Cancel"},
-				dialogButton{label: "Remove", danger: true, run: func() { u.backend.SetProfilePhoto("") }})
+			u.confirm(u.locale.Text("Remove your profile photo?"), "",
+				dialogButton{label: u.locale.Text("Cancel")},
+				dialogButton{label: u.locale.Text("Remove"), danger: true, run: func() { u.backend.SetProfilePhoto("") }})
 		}})
 	name := a.Name
 	if name == "" {
@@ -379,15 +379,15 @@ func (u *UI) profileSettings() []settingsSection {
 	}
 	secs := []settingsSection{
 		photo,
-		{title: "Name", rows: []settingRow{field(editName, "name", name, "Add your name")},
-			note: "This is not your username or PIN. This name will be visible to your WhatsApp contacts."},
-		{title: "About", rows: []settingRow{field(editAbout, "about", a.About, "Add a few words about you")}},
+		{title: u.locale.Text("Name"), rows: []settingRow{field(editName, "name", name, u.locale.Text("Add your name"))},
+			note: u.locale.Text("This is not your username or PIN. This name will be visible to your WhatsApp contacts.")},
+		{title: u.locale.Text("About"), rows: []settingRow{field(editAbout, "about", a.About, u.locale.Text("Add a few words about you"))}},
 	}
 	if a.Phone != "" {
-		secs = append(secs, settingsSection{title: "Phone", rows: []settingRow{u.settingInfoRow("phone", a.Phone, "")}})
+		secs = append(secs, settingsSection{title: u.locale.Text("Phone"), rows: []settingRow{u.settingInfoRow("phone", a.Phone, "")}})
 	}
 	if a.Username != "" {
-		secs = append(secs, settingsSection{title: "Username", rows: []settingRow{u.settingInfoRow("username", "@"+a.Username, "")}})
+		secs = append(secs, settingsSection{title: u.locale.Text("Username"), rows: []settingRow{u.settingInfoRow("username", "@"+a.Username, "")}})
 	}
 	return secs
 }
@@ -423,7 +423,7 @@ func (u *UI) saveProfileField() {
 	switch s.editing {
 	case editName:
 		if v == "" {
-			u.toast("Your name can't be empty.")
+			u.toast(u.locale.Text("Your name can't be empty."))
 			return
 		}
 		if v != s.account.Name {
@@ -452,8 +452,8 @@ func (u *UI) pickProfilePhoto() {
 	s.picking = true
 	notify, picked := u.images.invalidate, s.picked
 	go func() {
-		paths, err := filepick.Open("Choose a profile photo", false,
-			filepick.Filter{Name: "Pictures", Exts: []string{"jpg", "jpeg", "png", "webp"}})
+		paths, err := filepick.Open(u.locale.Text("Choose a profile photo"), false,
+			filepick.Filter{Name: u.locale.Text("Pictures"), Exts: []string{"jpg", "jpeg", "png", "webp"}})
 		path := ""
 		if err == nil && len(paths) > 0 {
 			path = paths[0]
@@ -486,7 +486,7 @@ func (u *UI) settingInfoRow(key, title, sub string) settingRow {
 	}
 	return settingRow{key: key, kind: setInfo, title: title, sub: sub, run: func() {
 		u.pendingCopy = v
-		u.toast("Copied")
+		u.toast(u.locale.Text("Copied"))
 	}}
 }
 
@@ -496,22 +496,22 @@ func (u *UI) accountSettings() []settingsSection {
 	a := u.settings.account
 	var info []settingRow
 	if a.Phone != "" {
-		info = append(info, u.settingInfoRow("phone", "Phone number", a.Phone))
+		info = append(info, u.settingInfoRow("phone", u.locale.Text("Phone number"), a.Phone))
 	}
 	if a.LID != "" {
-		info = append(info, u.settingInfoRow("lid", "Linked ID (LID)", a.LID))
+		info = append(info, u.settingInfoRow("lid", u.locale.Text("Linked ID (LID)"), a.LID))
 	}
 	if !a.Linked.IsZero() {
-		info = append(info, u.settingInfoRow("linked", "Linked on", a.Linked.Format("2 January 2006, 15:04")))
+		info = append(info, u.settingInfoRow("linked", u.locale.Text("Linked on"), a.Linked.Format("2 January 2006, 15:04")))
 	}
-	info = append(info, u.settingInfoRow("device", "This device", appName+" on "+osName()))
+	info = append(info, u.settingInfoRow("device", u.locale.Text("This device"), appName+" on "+osName()))
 	secure := b.Pref(prefSecurityMsg) == "on"
 	return []settingsSection{
-		{title: "Account info", rows: info},
-		{title: "Security notifications", rows: []settingRow{{
+		{title: u.locale.Text("Account info"), rows: info},
+		{title: u.locale.Text("Security notifications"), rows: []settingRow{{
 			key: "security", kind: setToggle, on: secure,
-			title: "Show security notifications",
-			sub:   "On this computer, when a contact's security code changes",
+			title: u.locale.Text("Show security notifications"),
+			sub:   u.locale.Text("On this computer, when a contact's security code changes"),
 			run: func() {
 				v := "on"
 				if secure {
@@ -519,8 +519,8 @@ func (u *UI) accountSettings() []settingsSection {
 				}
 				b.SetPref(prefSecurityMsg, v)
 			},
-		}}, note: "Messages and calls in end-to-end encrypted chats stay between you and the people you choose. " +
-			"A contact's security code changes when they reinstall WhatsApp or change phones."},
+		}}, note: u.locale.Text("Messages and calls in end-to-end encrypted chats stay between you and the people you choose.") + " " +
+			u.locale.Text("A contact's security code changes when they reinstall WhatsApp or change phones.")},
 	}
 }
 
@@ -537,34 +537,34 @@ func osName() string {
 }
 
 // whoLabel names a privacy value.
-func whoLabel(v string) string {
+func (u *UI) whoLabel(v string) string {
 	switch v {
 	case model.WhoEveryone:
-		return "Everyone"
+		return u.locale.Text("Everyone")
 	case model.WhoContacts:
-		return "My contacts"
+		return u.locale.Text("My contacts")
 	case model.WhoContactsExcept:
-		return "My contacts except…"
+		return u.locale.Text("My contacts except…")
 	case model.WhoNobody:
-		return "Nobody"
+		return u.locale.Text("Nobody")
 	case model.WhoSameAsLastSeen:
-		return "Same as last seen"
+		return u.locale.Text("Same as last seen")
 	}
-	return "Not loaded yet"
+	return u.locale.Text("Not loaded yet")
 }
 
 // timerLabel names a disappearing messages timer.
-func timerLabel(d time.Duration) string {
+func (u *UI) timerLabel(d time.Duration) string {
 	switch {
 	case d <= 0:
-		return "Off"
+		return u.locale.Text("Off")
 	case d%(24*time.Hour) == 0:
 		if n := int(d / (24 * time.Hour)); n != 1 {
-			return strconv.Itoa(n) + " days"
+			return strconv.Itoa(n) + " " + u.locale.Text("days")
 		}
-		return "24 hours"
+		return u.locale.Text("24 hours")
 	case d%time.Hour == 0:
-		return strconv.Itoa(int(d/time.Hour)) + " hours"
+		return strconv.Itoa(int(d/time.Hour)) + " " + u.locale.Text("hours")
 	}
 	return d.String()
 }
@@ -577,11 +577,11 @@ func (u *UI) privacySettings() []settingsSection {
 	}
 	rr := a.Privacy[model.PrivacyReadReceipts]
 	receipts := settingRow{key: "receipts", kind: setToggle, on: rr != model.WhoNobody && rr != "",
-		title: "Read receipts",
-		sub:   "If turned off, you won't send or receive read receipts. Read receipts are always sent for group chats.",
+		title: u.locale.Text("Read receipts"),
+		sub:   u.locale.Text("If turned off, you won't send or receive read receipts. Read receipts are always sent for group chats."),
 		run: func() {
 			if rr == "" {
-				u.toast("Privacy settings haven't loaded yet.")
+				u.toast(u.locale.Text("Privacy settings haven't loaded yet."))
 				return
 			}
 			v := model.WhoNobody
@@ -590,33 +590,32 @@ func (u *UI) privacySettings() []settingsSection {
 			}
 			u.setPrivacy(model.PrivacyReadReceipts, v)
 		}}
-	timer := "Unknown" // WhatsApp sends it only when a device is linked
+	timer := u.locale.Text("Unknown") // WhatsApp sends it only when a device is linked
 	if a.TimerKnown {
-		timer = timerLabel(a.DefaultTimer)
+		timer = u.timerLabel(a.DefaultTimer)
 	}
-	blocked := "Not loaded yet"
+	blocked := u.locale.Text("Not loaded yet")
 	if a.BlockedKnown {
-		blocked = "None"
+		blocked = u.locale.Text("None")
 		if n := len(a.Blocked); n > 0 {
 			blocked = strconv.Itoa(n)
 		}
 	}
 	return []settingsSection{
-		{title: "Who can see my personal info", rows: []settingRow{
-			link("lastseen", "Last seen and online", whoLabel(a.Privacy[model.PrivacyLastSeen])),
-			link("photo", "Profile photo", whoLabel(a.Privacy[model.PrivacyPhoto])),
-			link("about", "About", whoLabel(a.Privacy[model.PrivacyAbout])),
+		{title: u.locale.Text("Who can see my personal info"), rows: []settingRow{
+			link("lastseen", u.locale.Text("Last seen and online"), u.whoLabel(a.Privacy[model.PrivacyLastSeen])),
+			link("photo", u.locale.Text("Profile photo"), u.whoLabel(a.Privacy[model.PrivacyPhoto])),
+			link("about", u.locale.Text("About"), u.whoLabel(a.Privacy[model.PrivacyAbout])),
 			receipts,
 		}},
-		{title: "Disappearing messages", rows: []settingRow{link("timer", "Default message timer", timer)},
-			note: "Start new chats with disappearing messages set to your timer."},
-		{title: "Groups", rows: []settingRow{link("groups", "Groups", whoLabel(a.Privacy[model.PrivacyGroups]))}},
-		{title: "Blocked contacts", rows: []settingRow{link("blocked", "Blocked contacts", blocked)}},
-		{title: "Advanced", rows: []settingRow{{key: "linkpreviews", kind: setToggle,
+		{title: u.locale.Text("Disappearing messages"), rows: []settingRow{link("timer", u.locale.Text("Default message timer"), timer)},
+			note: u.locale.Text("Start new chats with disappearing messages set to your timer.")},
+		{title: u.locale.Text("Groups"), rows: []settingRow{link("groups", u.locale.Text("Groups"), u.whoLabel(a.Privacy[model.PrivacyGroups]))}},
+		{title: u.locale.Text("Blocked contacts"), rows: []settingRow{link("blocked", u.locale.Text("Blocked contacts"), blocked)}},
+		{title: u.locale.Text("Advanced"), rows: []settingRow{{key: "linkpreviews", kind: setToggle,
 			on:    !prefOn(u.backend, prefLinkPreviews),
-			title: "Disable link previews",
-			sub: "To help protect your IP address from being inferred by third-party websites, previews for " +
-				"the links you share in chats will no longer be generated.",
+			title: u.locale.Text("Disable link previews"),
+			sub:   u.locale.Text("To help protect your IP address from being inferred by third-party websites, previews for the links you share in chats will no longer be generated."),
 			run: func() {
 				v := "off"
 				if !prefOn(u.backend, prefLinkPreviews) {
@@ -654,9 +653,9 @@ func (u *UI) privacyChoices(sub string) []settingsSection {
 			}
 		}
 		for _, v := range opts {
-			r := settingRow{key: key + ":" + v, kind: setRadio, title: whoLabel(v), on: cur == v}
+			r := settingRow{key: key + ":" + v, kind: setRadio, title: u.whoLabel(v), on: cur == v}
 			if v == model.WhoContactsExcept {
-				r.sub = "Choose the exceptions on your phone"
+				r.sub = u.locale.Text("Choose the exceptions on your phone")
 			} else {
 				r.run = func() { u.setPrivacy(key, v) }
 			}
@@ -667,18 +666,18 @@ func (u *UI) privacyChoices(sub string) []settingsSection {
 	switch sub {
 	case "lastseen":
 		return []settingsSection{
-			choices("Who can see my last seen", model.PrivacyLastSeen, model.WhoEveryone, model.WhoContacts, model.WhoNobody),
-			choices("Who can see when I'm online", model.PrivacyOnline, model.WhoEveryone, model.WhoSameAsLastSeen),
+			choices(u.locale.Text("Who can see my last seen"), model.PrivacyLastSeen, model.WhoEveryone, model.WhoContacts, model.WhoNobody),
+			choices(u.locale.Text("Who can see when I'm online"), model.PrivacyOnline, model.WhoEveryone, model.WhoSameAsLastSeen),
 		}
 	case "photo":
-		return []settingsSection{choices("Who can see my profile photo", model.PrivacyPhoto,
+		return []settingsSection{choices(u.locale.Text("Who can see my profile photo"), model.PrivacyPhoto,
 			model.WhoEveryone, model.WhoContacts, model.WhoNobody)}
 	case "about":
-		return []settingsSection{choices("Who can see my about", model.PrivacyAbout,
+		return []settingsSection{choices(u.locale.Text("Who can see my about"), model.PrivacyAbout,
 			model.WhoEveryone, model.WhoContacts, model.WhoNobody)}
 	case "groups":
-		sec := choices("Who can add me to groups", model.PrivacyGroups, model.WhoEveryone, model.WhoContacts)
-		sec.note = "Admins who can't add you to a group will be able to invite you privately instead."
+		sec := choices(u.locale.Text("Who can add me to groups"), model.PrivacyGroups, model.WhoEveryone, model.WhoContacts)
+		sec.note = u.locale.Text("Admins who can't add you to a group will be able to invite you privately instead.")
 		return []settingsSection{sec}
 	}
 	return nil
@@ -687,11 +686,10 @@ func (u *UI) privacyChoices(sub string) []settingsSection {
 // timerChoices is the Default message timer page.
 func (u *UI) timerChoices() []settingsSection {
 	a := u.settings.account
-	sec := settingsSection{title: "Start new chats with a timer",
-		note: "When turned on, all new one-to-one chats you start will begin with disappearing messages set to this " +
-			"timer. Your existing chats aren't affected."}
+	sec := settingsSection{title: u.locale.Text("Start new chats with a timer"),
+		note: u.locale.Text("When turned on, all new one-to-one chats you start will begin with disappearing messages set to this timer. Your existing chats aren't affected.")}
 	for _, d := range []time.Duration{0, 24 * time.Hour, 7 * 24 * time.Hour, 90 * 24 * time.Hour} {
-		sec.rows = append(sec.rows, settingRow{key: "timer:" + d.String(), kind: setRadio, title: timerLabel(d),
+		sec.rows = append(sec.rows, settingRow{key: "timer:" + d.String(), kind: setRadio, title: u.timerLabel(d),
 			on: a.TimerKnown && a.DefaultTimer == d, run: func() {
 				a.DefaultTimer, a.TimerKnown = d, true
 				u.backend.SetDefaultTimer(d)
@@ -703,20 +701,20 @@ func (u *UI) timerChoices() []settingsSection {
 // blockedContacts lists blocked contacts; clicking one offers to unblock.
 func (u *UI) blockedContacts() []settingsSection {
 	a := u.settings.account
-	sec := settingsSection{note: "Blocked contacts can no longer call you or send you messages. " +
-		"Block someone from their contact info."}
+	sec := settingsSection{note: u.locale.Text("Blocked contacts can no longer call you or send you messages.") + " " +
+		u.locale.Text("Block someone from their contact info.")}
 	switch {
 	case !a.BlockedKnown:
-		sec.note = "Blocked contacts haven't loaded yet. They load once you're connected."
+		sec.note = u.locale.Text("Blocked contacts haven't loaded yet. They load once you're connected.")
 	case len(a.Blocked) == 0:
-		sec.note = "No blocked contacts yet. " + sec.note
+		sec.note = u.locale.Text("No blocked contacts yet.") + " " + sec.note
 	}
 	for _, c := range a.Blocked {
 		sec.rows = append(sec.rows, settingRow{key: "blocked:" + c.ID, kind: setContact, id: c.ID, title: c.Name,
 			run: func() {
-				u.confirm("Unblock "+c.Name+"?", "",
-					dialogButton{label: "Cancel"},
-					dialogButton{label: "Unblock", primary: true, run: func() { u.backend.SetBlocked(c.ID, false) }})
+				u.confirm(u.locale.Text("Unblock")+" "+c.Name+"?", "",
+					dialogButton{label: u.locale.Text("Cancel")},
+					dialogButton{label: u.locale.Text("Unblock"), primary: true, run: func() { u.backend.SetBlocked(c.ID, false) }})
 			}})
 	}
 	return []settingsSection{sec}
@@ -780,44 +778,44 @@ func shortcutMod() string {
 }
 
 // shortcutSettings lists the keyboard shortcuts the app handles.
-func shortcutSettings(enterSend bool) []settingsSection {
+func (u *UI) shortcutSettings(enterSend bool) []settingsSection {
 	mod := shortcutMod()
 	k := func(title string, keys ...string) settingRow {
 		return settingRow{key: "key:" + title, kind: setKeys, title: title, keys: keys}
 	}
-	send, line := k("Send message", "Enter"), k("New line", "Shift", "Enter")
+	send, line := k(u.locale.Text("Send message"), "Enter"), k(u.locale.Text("New line"), "Shift", "Enter")
 	if !enterSend {
-		send, line = k("Send message", mod, "Enter"), k("New line", "Enter")
+		send, line = k(u.locale.Text("Send message"), mod, "Enter"), k(u.locale.Text("New line"), "Enter")
 	}
 	return []settingsSection{
-		{title: "Composer", rows: []settingRow{
+		{title: u.locale.Text("Composer"), rows: []settingRow{
 			send, line,
-			k("Bold", mod, "B"),
-			k("Italic", mod, "I"),
-			k("Strikethrough", mod, "Shift", "X"),
-			k("Monospace", mod, "Shift", "M"),
-			k("Paste files or a picture", mod, "V"),
+			k(u.locale.Text("Bold"), mod, "B"),
+			k(u.locale.Text("Italic"), mod, "I"),
+			k(u.locale.Text("Strikethrough"), mod, "Shift", "X"),
+			k(u.locale.Text("Monospace"), mod, "Shift", "M"),
+			k(u.locale.Text("Paste files or a picture"), mod, "V"),
 		}},
-		{title: "Messages", rows: []settingRow{
-			k("Copy selected text", mod, "C"),
-			k("Select all of a message's text", mod, "A"),
+		{title: u.locale.Text("Messages"), rows: []settingRow{
+			k(u.locale.Text("Copy selected text"), mod, "C"),
+			k(u.locale.Text("Select all of a message's text"), mod, "A"),
 		}},
-		{title: "Photos and videos", rows: []settingRow{
-			k("Previous", "←"),
-			k("Next", "→"),
-			k("Play or pause a video", "Space"),
+		{title: u.locale.Text("Photos and videos"), rows: []settingRow{
+			k(u.locale.Text("Previous"), "←"),
+			k(u.locale.Text("Next"), "→"),
+			k(u.locale.Text("Play or pause a video"), "Space"),
 		}},
-		{title: "Photo editor", rows: []settingRow{
-			k("Undo", mod, "Z"),
-			k("Delete the selected drawing or text", "Delete"),
+		{title: u.locale.Text("Photo editor"), rows: []settingRow{
+			k(u.locale.Text("Undo"), mod, "Z"),
+			k(u.locale.Text("Delete the selected drawing or text"), "Delete"),
 		}},
-		{title: "Everywhere", rows: []settingRow{
-			k("Close a menu, dialog, panel or reply", "Esc"),
-			k("Show or hide the chat list", mod, "Shift", "L"),
-			k("Turn privacy mode on or off (Extra features)", mod, "Shift", "P"),
-			k("Zoom in", mod, "+"),
-			k("Zoom out", mod, "-"),
-			k("Reset zoom", mod, "0"),
+		{title: u.locale.Text("Everywhere"), rows: []settingRow{
+			k(u.locale.Text("Close a menu, dialog, panel or reply"), "Esc"),
+			k(u.locale.Text("Show or hide the chat list"), mod, "Shift", "L"),
+			k(u.locale.Text("Turn privacy mode on or off (Extra features)"), mod, "Shift", "P"),
+			k(u.locale.Text("Zoom in"), mod, "+"),
+			k(u.locale.Text("Zoom out"), mod, "-"),
+			k(u.locale.Text("Reset zoom"), mod, "0"),
 		}},
 	}
 }
@@ -835,14 +833,14 @@ func (u *UI) helpSettings() []settingsSection {
 		return settingRow{key: key, ic: ic, title: title, sub: sub, trailing: icOpenInNew, run: func() { openURL(url) }}
 	}
 	return []settingsSection{
-		{title: "Help", rows: []settingRow{
-			link("faq", icHelp, "Help center", "Get help with WhatsApp", helpCentreURL),
-			link("issues", icBubble, "Report a problem", "Tell us about a bug in "+appName, issuesURL),
+		{title: u.locale.Text("Help"), rows: []settingRow{
+			link("faq", icHelp, u.locale.Text("Help center"), u.locale.Text("Get help with WhatsApp"), helpCentreURL),
+			link("issues", icBubble, u.locale.Text("Report a problem"), u.locale.Text("Tell us about a bug in")+" "+appName, issuesURL),
 		}},
-		{title: "About", rows: append(u.updateRows(),
-			link("source", icLink, "Source code", "github.com/skidy89/WazzapClients", sourceURL),
-			link("legal", icDocument, "Terms and Privacy Policy", "WhatsApp's terms apply to your account", legalURL),
-		), note: appName + " is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta."},
+		{title: u.locale.Text("About"), rows: append(u.updateRows(),
+			link("source", icLink, u.locale.Text("Source code"), "github.com/skidy89/WazzapClients", sourceURL),
+			link("legal", icDocument, u.locale.Text("Terms and Privacy Policy"), u.locale.Text("WhatsApp's terms apply to your account"), legalURL),
+		), note: appName + " " + u.locale.Text("is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta.")},
 	}
 }
 

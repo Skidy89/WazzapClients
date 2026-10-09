@@ -19,7 +19,6 @@ import (
 	"gioui.org/widget"
 	"gioui.org/widget/material"
 
-	"github.com/chomosuke9/wazzapclients/internal/auto"
 	"github.com/chomosuke9/wazzapclients/internal/filepick"
 	"github.com/chomosuke9/wazzapclients/internal/model"
 	"github.com/chomosuke9/wazzapclients/internal/osclip"
@@ -341,7 +340,7 @@ func (u *UI) addFiles(chatID string, files []*attachFile) {
 	}
 	if u.ghostMode() {
 		removeTemps(files)
-		u.toast(auto.GhostText)
+		u.toast(u.locale.Text("ghost.mode.refused"))
 		return
 	}
 	if isStatusDestination(chatID) {

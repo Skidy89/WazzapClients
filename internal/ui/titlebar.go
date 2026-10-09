@@ -42,7 +42,7 @@ func (u *UI) layoutTitleBar(gtx C) D {
 						return centerIn(gtx, gtx.Dp(22), iconW(icChatsFill, 20, p.Green))
 					}),
 					layout.Rigid(layout.Spacer{Width: 10}.Layout),
-					layout.Rigid(u.label(12.5, "WazzapClients", p.FrameText).Layout),
+					layout.Rigid(u.label(12.5, "OpenWa-Cli", p.FrameText).Layout),
 				)
 			})
 		})

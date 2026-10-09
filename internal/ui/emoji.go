@@ -279,7 +279,7 @@ func (u *UI) layoutPicker(gtx C, anchor image.Point, maxW int) {
 	case tabEmoji:
 		u.layoutEmojiTab(pg)
 	case tabGIF:
-		u.pickerMessage(pg, "GIF search needs Tenor, which WazzapClients doesn't use.")
+		u.pickerMessage(pg, "GIF search needs Tenor, which OpenWa-Cli doesn't use.")
 	case tabSticker:
 		u.layoutStickerTab(pg)
 	}

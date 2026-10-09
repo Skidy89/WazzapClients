@@ -99,7 +99,7 @@ func (u *UI) saveSnippetSettings() {
 	}
 	item := model.Snippet{ID: s.id, Name: s.name.Text(), Payload: s.payload, Body: s.body.Text()}
 	s.busy = true
-	s.message = "Saving…"
+	s.message = u.locale.Text("Saving…")
 	u.settings.stale = true
 	b := u.backend
 	u.slashDo(func() func() {
@@ -114,7 +114,7 @@ func (u *UI) saveSnippetSettings() {
 			} else {
 				s.id = saved.ID
 				s.name.SetText(saved.Name)
-				s.message = "Saved."
+				s.message = u.locale.Text("Saved.")
 				u.snippetsChanged()
 			}
 			u.settings.stale = true
@@ -128,7 +128,7 @@ func (u *UI) deleteSnippetSettings() {
 		return
 	}
 	b, id := u.backend, s.id
-	u.confirm("Delete snippet?", "Remove "+s.name.Text()+" from your saved messages?", dialogButton{label: "Delete", danger: true, run: func() {
+	u.confirm(u.locale.Text("Delete snippet?"), u.locale.Text("Remove")+" "+s.name.Text()+" "+u.locale.Text("from your saved messages?"), dialogButton{label: u.locale.Text("Delete"), danger: true, run: func() {
 		s.busy = true
 		u.settings.stale = true
 		u.slashDo(func() func() {
@@ -156,7 +156,7 @@ func (u *UI) snippetSettingsRows() []settingsSection {
 		return nil
 	}
 	if s.loading {
-		return []settingsSection{{note: "Loading snippets…"}}
+		return []settingsSection{{note: u.locale.Text("Loading snippets…")}}
 	}
 	if s.editing {
 		field := func(key string, ed *widget.Editor, hint string, large bool) settingRow {
@@ -174,62 +174,65 @@ func (u *UI) snippetSettingsRows() []settingsSection {
 			}}
 		}
 		secs := []settingsSection{
-			{title: "Name", rows: []settingRow{field("snippet:name", &s.name, "Generated automatically when empty", false)}},
-			{title: "Message type", rows: []settingRow{
-				{key: "snippet:text", kind: setRadio, title: "Text", on: !s.payload, run: func() {
+			{title: u.locale.Text("Name"), rows: []settingRow{field("snippet:name", &s.name, u.locale.Text("Generated automatically when empty"), false)}},
+			{title: u.locale.Text("Message type"), rows: []settingRow{
+				{key: "snippet:text", kind: setRadio, title: u.locale.Text("Text"), on: !s.payload, run: func() {
 					if !s.busy {
 						s.payload = false
 					}
 				}},
-				{key: "snippet:json", kind: setRadio, title: "Payload JSON", on: s.payload, run: func() {
+				{key: "snippet:json", kind: setRadio, title: u.locale.Text("Payload JSON"), on: s.payload, run: func() {
 					if !s.busy {
 						s.payload = true
 					}
 				}},
 			}},
-			{title: "Message", rows: []settingRow{field("snippet:body", &s.body, "Enter a message or paste message JSON", true)}, note: snippetVarsNote()},
-			{rows: []settingRow{{key: "snippet:save", ic: icTick, title: "Save snippet", run: u.saveSnippetSettings}}, note: s.message},
+			{title: u.locale.Text("Message"), rows: []settingRow{field("snippet:body", &s.body, u.locale.Text("Enter a message or paste message JSON"), true)}, note: u.snippetVarsNote()},
+			{rows: []settingRow{{key: "snippet:save", ic: icTick, title: u.locale.Text("Save snippet"), run: u.saveSnippetSettings}}, note: s.message},
 		}
 		if s.id != 0 {
-			secs = append(secs, settingsSection{rows: []settingRow{{key: "snippet:delete", ic: icDelete, title: "Delete snippet", danger: true, run: u.deleteSnippetSettings}}})
+			secs = append(secs, settingsSection{rows: []settingRow{{key: "snippet:delete", ic: icDelete, title: u.locale.Text("Delete snippet"), danger: true, run: u.deleteSnippetSettings}}})
 		}
 		return secs
 	}
 	rows := []settingRow{
 		{key: "snippet:search", kind: setCustom, w: func(gtx C) D {
-			return layout.Inset{Left: 24, Right: 24, Bottom: 10}.Layout(gtx, func(gtx C) D { return u.searchField(gtx, &s.search, "Search snippets") })
+			return layout.Inset{Left: 24, Right: 24, Bottom: 10}.Layout(gtx, func(gtx C) D {
+				return u.searchField(gtx, &s.search, u.locale.Text("Search snippets"))
+			})
 		}},
-		{key: "snippet:add", ic: icAdd, title: "New snippet", sub: "Save text or a message payload", run: func() { u.editSnippet(0) }},
+		{key: "snippet:add", ic: icAdd, title: u.locale.Text("New snippet"), sub: u.locale.Text("Save text or a message payload"), run: func() { u.editSnippet(0) }},
 	}
 	q := strings.ToLower(strings.TrimSpace(s.query))
 	for _, item := range s.items {
 		if q != "" && !strings.Contains(strings.ToLower(item.Name+" "+item.Preview), q) {
 			continue
 		}
-		kind := "Text"
+		kind := u.locale.Text("Text")
 		if item.Payload {
-			kind = "Payload"
+			kind = u.locale.Text("Payload")
 		}
 		rows = append(rows, settingRow{key: "snippet:item:" + strconv.FormatInt(item.ID, 10), ic: icDocument, title: item.Name, sub: kind + " · " + item.Preview, trailing: icEdit, run: func() { u.editSnippet(item.ID) }})
 	}
 	note := s.message
 	if len(s.items) == 0 && note == "" {
-		note = "No snippets yet. Add one here, or reply to a message and use /snippet save."
+		note = u.locale.Text("No snippets yet. Add one here, or reply to a message and use /snippet save.")
 	}
-	return []settingsSection{{rows: rows, note: note}, {note: "Type /snippet send and a snippet's name in a chat to send it. Snippets belong to this account."}}
+	return []settingsSection{{rows: rows, note: note}, {note: u.locale.Text("Type /snippet send and a snippet's name in a chat to send it. Snippets belong to this account.")}}
 }
 
 // snippetVarsNote lists the variables under the message editor.
-func snippetVarsNote() string {
+func (u *UI) snippetVarsNote() string {
 	var sb strings.Builder
-	sb.WriteString("Variables, filled in when you send (in a payload, in its text and captions):")
+	sb.WriteString(u.locale.Text("Variables, filled in when you send (in a payload, in its text and captions):"))
 	for _, v := range model.SnippetVars {
 		sb.WriteString("\n{")
 		sb.WriteString(v.Name)
 		sb.WriteString("}: ")
-		sb.WriteString(v.Description)
+		sb.WriteString(u.locale.Text("snippet.var." + v.Name))
 	}
-	sb.WriteString("\nWrite \\{name} to send {name} as it is.")
+	sb.WriteString("\n")
+	sb.WriteString(u.locale.Text("Write \\{name} to send {name} as it is."))
 	return sb.String()
 }
 
@@ -429,7 +432,7 @@ func (u *UI) snippetPanel(gtx C) D {
 			layout.Rigid(layout.Spacer{Height: 12}.Layout),
 			layout.Flexed(1, func(gtx C) D {
 				if d.loading {
-					return u.label(15, "Loading…", u.pal.TextSecondary).Layout(gtx)
+					return u.label(15, u.locale.Text("Loading…"), u.pal.TextSecondary).Layout(gtx)
 				}
 				ed := material.Editor(u.th, &d.body, "")
 				ed.Color = u.pal.Text

@@ -151,7 +151,7 @@ func (u *UI) settingsSearch(gtx C) D {
 						layout.Rigid(iconW(icSearch, 24, p.TextSecondary)),
 						layout.Rigid(layout.Spacer{Width: 14}.Layout),
 						layout.Flexed(1, func(gtx C) D {
-							ed := material.Editor(u.th, e, "Search")
+							ed := material.Editor(u.th, e, u.locale.Text("Search"))
 							ed.TextSize = 16.5
 							ed.Color = p.Text
 							ed.HintColor = p.TextSecondary

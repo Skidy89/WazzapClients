@@ -130,111 +130,8 @@ msgstr "Commands"
 msgid "SlashCommandsRequired"
 msgstr "These also need Slash commands, on the Extra features page."
 
-msgid ""
-msgstr ""
-"Language: en\n"
-
-msgid "Language"
-msgstr "Language"
-
-msgid "Spanish"
-msgstr "Spanish"
-
-msgid "English"
-msgstr "English"
-
-msgid "Settings"
-msgstr "Settings"
-
-msgid "ShareStatuses"
-msgstr "Share statuses"
-
-msgid "ShareStatusesDescription"
-msgstr "Share photos, videos and text that disappear after 24 hours."
-
-msgid "DiscoverChannels"
-msgstr "Discover channels"
-
-msgid "DiscoverChannelsDescription"
-msgstr "Entertainment, sports, news, lifestyle, people and more. Follow the channels that interest you"
-
-msgid "CreateCommunities"
-msgstr "Create communities"
-
-msgid "CreateCommunitiesDescription"
-msgstr "Bring members together in topic-based groups and easily send them admin announcements."
-
-msgid "PageSettings"
-msgstr "Manage your account, privacy, chats and notifications."
-
-msgid "Calls"
-msgstr "Calls"
-
-msgid "PageCalls"
-msgstr "Calling from this app isn't supported yet. Use your phone to make and answer calls."
-
-msgid "PersonalCommunityE2Eenc"
-msgstr "Your personal messages in communities are end-to-end encrypted"
-
-msgid "PolicyE2E"
-msgstr "Your personal messages end-to-end encrypted"
-
-msgid "StartupAndClose"
-msgstr "Startup and close"
-
-msgid "StartAppAtLogin"
-msgstr "Start %s at login"
-
-msgid "StartAppAtLoginDescription"
-msgstr "Open in the background when you sign in, so messages notify you"
-
-msgid "KeepRunningInBackground"
-msgstr "Keep running in the background"
-
-msgid "KeepRunningInBackgroundDescription"
-msgstr "Closing the window keeps %s in the notification area, so messages still notify you"
-
-msgid "CloseWindowQuitsApp"
-msgstr "Closing the window quits %s on this system."
-
-msgid "StartupSettingError"
-msgstr "Couldn't change the startup setting."
-
-msgid "FontSize"
-msgstr "Font size"
-
 msgid "FontSizeNote"
 msgstr "Use %s + / - to increase or decrease text size"
-msgid "Messages"
-msgstr "Messages"
-
-msgid "EditHistory"
-msgstr "Edit history"
-
-msgid "EditHistoryDescription"
-msgstr "See what an edited message said before: right-click it and pick Edit history"
-
-msgid "KeepDeletedMessages"
-msgstr "Keep deleted messages"
-
-msgid "KeepDeletedMessagesDescription"
-msgstr "When someone deletes a message for everyone or a status, keep showing it, marked Deleted"
-
-msgid "ReplayViewOnce"
-msgstr "Replay view once"
-
-msgid "ReplayViewOnceDescription"
-msgstr "Open view once photos, videos and voice messages as often as you like, and take screenshots of them"
-
-msgid "GrayFeaturesWarning"
-msgstr "These let you see or do what the people you talk to wouldn't expect, so use them with care. Messages deleted while Keep deleted messages is off can't be brought back."
-
-msgid "Commands"
-msgstr "Commands"
-
-msgid "SlashCommandsRequired"
-msgstr "These also need Slash commands, on the Extra features page."
-
 
 msgid "EnableFeature"
 msgstr "Enable feature"
@@ -445,6 +342,540 @@ msgstr "The message to send"
 msgid "ghost.mode.on"
 msgstr "Ghost mode is on. Chats you open and status updates you watch send no read receipts, and you show as offline, even while the app is open. Chats you read here stay unread on your phone. You can't send messages, react or vote until you turn it off, and you don't see who's typing. Scheduled messages and AFK replies still go out."
 
+msgid "ghost.mode.off"
+msgstr "Ghost mode is off"
+
+msgid "ghost.mode.banner"
+msgstr "Ghost mode · invisible, read only"
+
+msgid "ghost.mode.composer"
+msgstr "Ghost mode is on. You can't send messages."
+
+msgid "ghost.mode.turn_off"
+msgstr "Turn off"
+
+msgid "ghost.mode.refused"
+msgstr "Ghost mode is on. Turn it off to send messages."
+
+msgid "Message notifications"
+msgstr "Message notifications"
+
+msgid "Show notifications for new messages"
+msgstr "Show notifications for new messages"
+
+msgid "Show previews"
+msgstr "Show previews"
+
+msgid "Show message text in notifications"
+msgstr "Show message text in notifications"
+
+msgid "Sounds"
+msgstr "Sounds"
+
+msgid "Play a sound for new messages"
+msgstr "Play a sound for new messages"
+
+msgid "Group notifications"
+msgstr "Group notifications"
+
+msgid "Show notifications for group messages"
+msgstr "Show notifications for group messages"
+
+msgid "Accent color"
+msgstr "Accent color"
+
+msgid "Green"
+msgstr "Green"
+
+msgid "Emerald"
+msgstr "Emerald"
+
+msgid "Mint"
+msgstr "Mint"
+
+msgid "Blue"
+msgstr "Blue"
+
+msgid "Sky"
+msgstr "Sky"
+
+msgid "Azure"
+msgstr "Azure"
+
+msgid "Purple"
+msgstr "Purple"
+
+msgid "Violet"
+msgstr "Violet"
+
+msgid "Lavender"
+msgstr "Lavender"
+
+msgid "Orange"
+msgstr "Orange"
+
+msgid "Amber"
+msgstr "Amber"
+
+msgid "Coral"
+msgstr "Coral"
+
+msgid "Red"
+msgstr "Red"
+
+msgid "Crimson"
+msgstr "Crimson"
+
+msgid "Rose"
+msgstr "Rose"
+
+msgid "Pink"
+msgstr "Pink"
+
+msgid "Magenta"
+msgstr "Magenta"
+
+msgid "Blush"
+msgstr "Blush"
+
+msgid "Change profile photo"
+msgstr "Change profile photo"
+
+msgid "Remove profile photo"
+msgstr "Remove profile photo"
+
+msgid "Remove your profile photo?"
+msgstr "Remove your profile photo?"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "DownloadStatusUpdates"
+msgstr "Download status updates"
+
+msgid "DownloadStatusUpdatesDescription"
+msgstr "Keep a local copy of status updates you view"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Add your name"
+msgstr "Add your name"
+
+msgid "Generated automatically when empty"
+msgstr "Generated automatically when empty"
+
+msgid "This is not your username or PIN. This name will be visible to your WhatsApp contacts."
+msgstr "This is not your username or PIN. This name will be visible to your WhatsApp contacts."
+
+msgid "Add a few words about you"
+msgstr "Add a few words about you"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Your name can't be empty."
+msgstr "Your name can't be empty."
+
+msgid "Choose a profile photo"
+msgstr "Choose a profile photo"
+
+msgid "Pictures"
+msgstr "Pictures"
+
+msgid "Copied"
+msgstr "Copied"
+
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Linked ID (LID)"
+msgstr "Linked ID (LID)"
+
+msgid "Linked on"
+msgstr "Linked on"
+
+msgid "This device"
+msgstr "This device"
+
+msgid "Account info"
+msgstr "Account info"
+
+msgid "Show security notifications"
+msgstr "Show security notifications"
+
+msgid "On this computer, when a contact's security code changes"
+msgstr "On this computer, when a contact's security code changes"
+
+msgid "Messages and calls in end-to-end encrypted chats stay between you and the people you choose."
+msgstr "Messages and calls in end-to-end encrypted chats stay between you and the people you choose."
+
+msgid "A contact's security code changes when they reinstall WhatsApp or change phones."
+msgstr "A contact's security code changes when they reinstall WhatsApp or change phones."
+
+msgid "Everyone"
+msgstr "Everyone"
+
+msgid "My contacts"
+msgstr "My contacts"
+
+msgid "My contacts except…"
+msgstr "My contacts except…"
+
+msgid "Nobody"
+msgstr "Nobody"
+
+msgid "Same as last seen"
+msgstr "Same as last seen"
+
+msgid "Not loaded yet"
+msgstr "Not loaded yet"
+
+msgid "Off"
+msgstr "Off"
+
+msgid "days"
+msgstr "days"
+
+msgid "24 hours"
+msgstr "24 hours"
+
+msgid "hours"
+msgstr "hours"
+
+msgid "Privacy settings haven't loaded yet."
+msgstr "Privacy settings haven't loaded yet."
+
+msgid "None"
+msgstr "None"
+
+msgid "Who can see my personal info"
+msgstr "Who can see my personal info"
+
+msgid "Who can see my last seen"
+msgstr "Who can see my last seen"
+
+msgid "Who can see when I'm online"
+msgstr "Who can see when I'm online"
+
+msgid "Who can see my profile photo"
+msgstr "Who can see my profile photo"
+
+msgid "Who can see my about"
+msgstr "Who can see my about"
+
+msgid "Who can add me to groups"
+msgstr "Who can add me to groups"
+
+msgid "Choose the exceptions on your phone"
+msgstr "Choose the exceptions on your phone"
+
+msgid "Admins who can't add you to a group will be able to invite you privately instead."
+msgstr "Admins who can't add you to a group will be able to invite you privately instead."
+
+msgid "Start new chats with a timer"
+msgstr "Start new chats with a timer"
+
+msgid "When turned on, all new one-to-one chats you start will begin with disappearing messages set to this timer. Your existing chats aren't affected."
+msgstr "When turned on, all new one-to-one chats you start will begin with disappearing messages set to this timer. Your existing chats aren't affected."
+
+msgid "Blocked contacts can no longer call you or send you messages."
+msgstr "Blocked contacts can no longer call you or send you messages."
+
+msgid "Block someone from their contact info."
+msgstr "Block someone from their contact info."
+
+msgid "Blocked contacts haven't loaded yet. They load once you're connected."
+msgstr "Blocked contacts haven't loaded yet. They load once you're connected."
+
+msgid "No blocked contacts yet."
+msgstr "No blocked contacts yet."
+
+msgid "Unblock"
+msgstr "Unblock"
+
+msgid "Advanced"
+msgstr "Advanced"
+
+msgid "Disable link previews"
+msgstr "Disable link previews"
+
+msgid "To help protect your IP address from being inferred by third-party websites, previews for the links you share in chats will no longer be generated."
+msgstr "To help protect your IP address from being inferred by third-party websites, previews for the links you share in chats will no longer be generated."
+
+msgid "Composer"
+msgstr "Composer"
+
+msgid "Send message"
+msgstr "Send message"
+
+msgid "New line"
+msgstr "New line"
+
+msgid "Bold"
+msgstr "Bold"
+
+msgid "Italic"
+msgstr "Italic"
+
+msgid "Strikethrough"
+msgstr "Strikethrough"
+
+msgid "Monospace"
+msgstr "Monospace"
+
+msgid "Paste files or a picture"
+msgstr "Paste files or a picture"
+
+msgid "Copy selected text"
+msgstr "Copy selected text"
+
+msgid "Select all of a message's text"
+msgstr "Select all of a message's text"
+
+msgid "Photos and videos"
+msgstr "Photos and videos"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Play or pause a video"
+msgstr "Play or pause a video"
+
+msgid "Photo editor"
+msgstr "Photo editor"
+
+msgid "Undo"
+msgstr "Undo"
+
+msgid "Delete the selected drawing or text"
+msgstr "Delete the selected drawing or text"
+
+msgid "Everywhere"
+msgstr "Everywhere"
+
+msgid "Close a menu, dialog, panel or reply"
+msgstr "Close a menu, dialog, panel or reply"
+
+msgid "Show or hide the chat list"
+msgstr "Show or hide the chat list"
+
+msgid "Turn privacy mode on or off (Extra features)"
+msgstr "Turn privacy mode on or off (Extra features)"
+
+msgid "Zoom in"
+msgstr "Zoom in"
+
+msgid "Zoom out"
+msgstr "Zoom out"
+
+msgid "Reset zoom"
+msgstr "Reset zoom"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "Get help with WhatsApp"
+msgstr "Get help with WhatsApp"
+
+msgid "Report a problem"
+msgstr "Report a problem"
+
+msgid "Tell us about a bug in"
+msgstr "Tell us about a bug in"
+
+msgid "About"
+msgstr "About"
+
+msgid "Source code"
+msgstr "Source code"
+
+msgid "Terms and Privacy Policy"
+msgstr "Terms and Privacy Policy"
+
+msgid "WhatsApp's terms apply to your account"
+msgstr "WhatsApp's terms apply to your account"
+
+msgid "is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta."
+msgstr "is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta."
+
+msgid "Slash commands"
+msgstr "Slash commands"
+
+msgid "Type / at the start of a message to run a command, like in Discord"
+msgstr "Type / at the start of a message to run a command, like in Discord"
+
+msgid "Commands run on this computer, from your account. Group commands work in groups you administer."
+msgstr "Commands run on this computer, from your account. Group commands work in groups you administer."
+
+msgid "Mentions"
+msgstr "Mentions"
+
+msgid "Type @admin in a group to mention all of its admins at once"
+msgstr "Type @admin in a group to mention all of its admins at once"
+
+msgid "Photos"
+msgstr "Photos"
+
+msgid "Raw quality"
+msgstr "Raw quality"
+
+msgid "Offer Raw when sending photos: JPEG and PNG files go as they are, not scaled or compressed"
+msgstr "Offer Raw when sending photos: JPEG and PNG files go as they are, not scaled or compressed"
+
+msgid "Privacy mode toggle"
+msgstr "Privacy mode toggle"
+
+msgid "Add an eye to the title bar that hides names, messages and pictures until you point at them, "
+msgstr "Add an eye to the title bar that hides names, messages and pictures until you point at them, "
+
+msgid "for using"
+msgstr "for using"
+
+msgid "where others can see your screen."
+msgstr "where others can see your screen."
+
+msgid "works too."
+msgstr "works too."
+
+msgid "Block screen recording"
+msgstr "Block screen recording"
+
+msgid "The window shows up black in screen recordings, screen sharing and screenshots, but stays as it is on your screen."
+msgstr "The window shows up black in screen recordings, screen sharing and screenshots, but stays as it is on your screen."
+
+msgid "Saving…"
+msgstr "Saving…"
+
+msgid "Saved."
+msgstr "Saved."
+
+msgid "Delete snippet?"
+msgstr "Delete snippet?"
+
+msgid "from your saved messages?"
+msgstr "from your saved messages?"
+
+msgid "Loading snippets…"
+msgstr "Loading snippets…"
+
+msgid "Search snippets"
+msgstr "Search snippets"
+
+msgid "Loading…"
+msgstr "Loading…"
+
+msgid "Message type"
+msgstr "Message type"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Payload JSON"
+msgstr "Payload JSON"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Enter a message or paste message JSON"
+msgstr "Enter a message or paste message JSON"
+
+msgid "Save snippet"
+msgstr "Save snippet"
+
+msgid "Delete snippet"
+msgstr "Delete snippet"
+
+msgid "New snippet"
+msgstr "New snippet"
+
+msgid "Save text or a message payload"
+msgstr "Save text or a message payload"
+
+msgid "Payload"
+msgstr "Payload"
+
+msgid "No snippets yet. Add one here, or reply to a message and use /snippet save."
+msgstr "No snippets yet. Add one here, or reply to a message and use /snippet save."
+
+msgid "Type /snippet send and a snippet's name in a chat to send it. Snippets belong to this account."
+msgstr "Type /snippet send and a snippet's name in a chat to send it. Snippets belong to this account."
+
+msgid "Variables, filled in when you send (in a payload, in its text and captions):"
+msgstr "Variables, filled in when you send (in a payload, in its text and captions):"
+
+msgid "Write \\{name} to send {name} as it is."
+msgstr "Write \\{name} to send {name} as it is."
+
+msgid "snippet.var.name"
+msgstr "who you're writing to: the contact, or in a group the author of the message you reply to (else the group)"
+
+msgid "snippet.var.first"
+msgstr "the first word of {name}"
+
+msgid "snippet.var.mention"
+msgstr "@mentions the author of the message you reply to; without a reply, the contact, or a group by its name, notifying no one"
+
+msgid "snippet.var.chat"
+msgstr "the chat's name"
+
+msgid "snippet.var.me"
+msgstr "your name"
+
+msgid "snippet.var.quote"
+msgstr "the text of the message you reply to"
+
+msgid "snippet.var.greeting"
+msgstr "Good morning, Good afternoon or Good evening"
+
+msgid "snippet.var.date"
+msgstr "today's date, like 5 October 2026"
+
+msgid "snippet.var.time"
+msgstr "the time, like 14:05"
+
+msgid "snippet.var.day"
+msgstr "the weekday, like Monday"
+
+msgid "Read receipts"
+msgstr "Read receipts"
+
+msgid "If turned off, you won't send or receive read receipts. Read receipts are always sent for group chats."
+msgstr "If turned off, you won't send or receive read receipts. Read receipts are always sent for group chats."
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "Blocked contacts"
+msgstr "Blocked contacts"
+
+msgid "Default message timer"
+msgstr "Default message timer"
+
+msgid "Help center"
+msgstr "Help center"
+
+msgid "Last seen and online"
+msgstr "Last seen and online"
+
+msgid "Profile photo"
+msgstr "Profile photo"
+
+msgid "Security notifications"
+msgstr "Security notifications"
+
+msgid "Start new chats with disappearing messages set to your timer."
+msgstr "Start new chats with disappearing messages set to your timer."
+
 msgid "search.sidebar.chats"
 msgstr "Search or start a new chat"
 
@@ -586,8 +1017,75 @@ msgstr "Today at"
 msgid "status.yesterday.at"
 msgstr "Yesterday at"
 
-msgid "status.at
+msgid "status.at"
 msgstr "At"
 
 msgid "status.reply"
 msgstr "Type a reply…"
+
+msgid "conversation.cli"
+msgstr "OpenWa-Cli for Windows"
+
+msgid "conversation.cli.desc"
+msgstr "Send and receive messages without keeping your phone online. Native, lightweight, and no browser inside."
+
+msgid "ui.typeMessage"
+msgstr "Type a message"
+
+
+msgid "Close chat"
+msgstr "Close chat"
+
+msgid "Add member"
+msgstr "Add member"
+
+msgid "Group info"
+msgstr "Group info"
+
+msgid "Contact info"
+msgstr "Contact info"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Select messages"
+msgstr "Select messages"
+
+msgid "Unmute notifications"
+msgstr "Unmute notifications"
+
+msgid "Mute notifications"
+msgstr "Mute notifications"
+
+msgid "Disappearing messages"
+msgstr "Disappearing messages"
+
+msgid "Remove from favourites"
+msgstr "Remove from favourites"
+
+msgid "Add to favourites"
+msgstr "Add to favourites"
+
+msgid "Add to list"
+msgstr "Add to list"
+
+msgid "Export chat"
+msgstr "Export chat"
+
+msgid "Report"
+msgstr "Report"
+
+msgid "Block"
+msgstr "Block"
+
+msgid "Clear chat"
+msgstr "Clear chat"
+
+msgid "Exit group"
+msgstr "Exit group"
+
+msgid "Delete chat"
+msgstr "Delete chat"
+
+msgid "ui.clickForInfo"
+msgstr "click here for more info"

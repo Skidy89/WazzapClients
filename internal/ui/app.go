@@ -1216,7 +1216,11 @@ func (u *UI) applyEvents() {
 			u.videoDownloaded(e)
 			u.fileDownloaded(e)
 		case model.NoticeEvent:
-			u.toast(e.Text)
+			if e.Text == auto.GhostText {
+				u.toast(u.locale.Text("ghost.mode.refused"))
+			} else {
+				u.toast(e.Text)
+			}
 		case model.PhoneEvent:
 			if !u.cardPhoneEvent(e) {
 				u.phoneEvent(e)

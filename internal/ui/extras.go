@@ -156,17 +156,17 @@ func (u *UI) grayToggle(key, title, sub string, flag *bool, changed func()) sett
 // a page of their own (graySettings).
 func (u *UI) extrasSettings() []settingsSection {
 	secs := []settingsSection{
-		{title: "Slash commands", rows: []settingRow{
-			u.extraToggle(prefSlash, "Slash commands", "Type / at the start of a message to run a command, like in Discord",
+		{title: u.locale.Text("Slash commands"), rows: []settingRow{
+			u.extraToggle(prefSlash, u.locale.Text("Slash commands"), u.locale.Text("Type / at the start of a message to run a command, like in Discord"),
 				&u.slash.on, func() { u.conv.richFor = "" }), // the composer starts or stops showing commands
-		}, note: "Commands run on this computer, from your account. Group commands work in groups you administer."},
-		{title: "Mentions", rows: []settingRow{
-			u.extraToggle(prefAdminMention, "@admin", "Type @admin in a group to mention all of its admins at once",
+		}, note: u.locale.Text("Commands run on this computer, from your account. Group commands work in groups you administer.")},
+		{title: u.locale.Text("Mentions"), rows: []settingRow{
+			u.extraToggle(prefAdminMention, "@admin", u.locale.Text("Type @admin in a group to mention all of its admins at once"),
 				&u.adminMention, nil),
 		}},
 		u.privacyExtras(),
-		{title: "Photos", rows: []settingRow{
-			u.extraToggle(prefRawPhotos, "Raw quality", "Offer Raw when sending photos: JPEG and PNG files go as they are, not scaled or compressed",
+		{title: u.locale.Text("Photos"), rows: []settingRow{
+			u.extraToggle(prefRawPhotos, u.locale.Text("Raw quality"), u.locale.Text("Offer Raw when sending photos: JPEG and PNG files go as they are, not scaled or compressed"),
 				&u.rawPhotos, func() {
 					if !u.rawPhotos && u.attach.quality == model.QualityRaw {
 						u.attach.quality = model.QualityHD

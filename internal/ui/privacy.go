@@ -222,18 +222,18 @@ func (u *UI) layoutPrivacyButton(gtx C, w, h int) {
 // privacyExtras is the Privacy section of the Extra features page.
 func (u *UI) privacyExtras() settingsSection {
 	ps := &u.privacy
-	rows := []settingRow{u.extraToggle(prefPrivacyToggle, "Privacy mode toggle",
-		"Add an eye to the title bar that hides names, messages and pictures until you point at them, "+
-			"for using "+appName+" where others can see your screen. "+shortcutMod()+"+Shift+P works too.",
+	rows := []settingRow{u.extraToggle(prefPrivacyToggle, u.locale.Text("Privacy mode toggle"),
+		u.locale.Text("Add an eye to the title bar that hides names, messages and pictures until you point at them, ")+
+			" "+u.locale.Text("for using")+" "+appName+" "+u.locale.Text("where others can see your screen.")+" "+shortcutMod()+"+Shift+P "+u.locale.Text("works too."),
 		&ps.toggle, func() {
 			if !ps.toggle && ps.on {
 				u.setPrivacyMode(false) // no way left to turn it off
 			}
 		})}
 	if runtime.GOOS == "windows" {
-		rows = append(rows, u.extraToggle(prefNoCapture, "Block screen recording",
-			"The window shows up black in screen recordings, screen sharing and screenshots, but stays as it is on your screen.",
+		rows = append(rows, u.extraToggle(prefNoCapture, u.locale.Text("Block screen recording"),
+			u.locale.Text("The window shows up black in screen recordings, screen sharing and screenshots, but stays as it is on your screen."),
 			&ps.noCapture, nil))
 	}
-	return settingsSection{title: "Privacy", rows: rows}
+	return settingsSection{title: u.locale.Text("Privacy"), rows: rows}
 }

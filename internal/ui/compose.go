@@ -780,11 +780,11 @@ func (u *UI) layoutComposerBox(gtx C) D {
 									// only seen while it slides.
 									txt, col := u.attach.draft, p.Text
 									if txt == "" {
-										txt, col = "Type a message", p.ComposerHint
+										txt, col = u.locale.Text("ui.typeMessage"), p.ComposerHint
 									}
 									return vcenter(gtx, gtx.Constraints.Min.Y, u.label(16, txt, col).Layout)
 								}
-								return u.layoutComposerEditor(gtx, "Type a message")
+								return u.layoutComposerEditor(gtx, u.locale.Text("ui.typeMessage"))
 							}),
 							layout.Rigid(layout.Spacer{Width: 8}.Layout),
 							layout.Rigid(func(gtx C) D {

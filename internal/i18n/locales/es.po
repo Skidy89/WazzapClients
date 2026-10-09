@@ -337,7 +337,541 @@ msgid "command.hidetag.text"
 msgstr "El mensaje que enviar"
 
 msgid "ghost.mode.on"
-msgstr "el modo fantasma esta activado, los chats que abres, estados, etc no tendran confirmaciones de lectura. apareceras desconectado, durante este modo no podras enviar ninguno tipo de mensajes. tus mensajes programados y las respuestas afk se enviaran sin problema."
+msgstr "El modo fantasma está activado. Los chats que abras y los estados que veas no enviarán confirmaciones de lectura, y aparecerás desconectado aunque la aplicación esté abierta. Los chats que leas aquí seguirán sin leerse en tu teléfono. No podrás enviar mensajes, reaccionar ni votar hasta desactivarlo, y no verás quién está escribiendo. Los mensajes programados y las respuestas AFK seguirán enviándose."
+
+msgid "ghost.mode.off"
+msgstr "El modo fantasma está desactivado"
+
+msgid "ghost.mode.banner"
+msgstr "Modo fantasma · invisible, solo lectura"
+
+msgid "ghost.mode.composer"
+msgstr "El modo fantasma está activado. No puedes enviar mensajes."
+
+msgid "ghost.mode.turn_off"
+msgstr "Desactivar"
+
+msgid "ghost.mode.refused"
+msgstr "El modo fantasma está activado. Desactívalo para enviar mensajes."
+
+msgid "Message notifications"
+msgstr "Notificaciones de mensajes"
+
+msgid "Show notifications for new messages"
+msgstr "Mostrar notificaciones de mensajes nuevos"
+
+msgid "Show previews"
+msgstr "Mostrar vistas previas"
+
+msgid "Show message text in notifications"
+msgstr "Mostrar el texto del mensaje en las notificaciones"
+
+msgid "Sounds"
+msgstr "Sonidos"
+
+msgid "Play a sound for new messages"
+msgstr "Reproducir un sonido para los mensajes nuevos"
+
+msgid "Group notifications"
+msgstr "Notificaciones de grupos"
+
+msgid "Show notifications for group messages"
+msgstr "Mostrar notificaciones de mensajes de grupos"
+
+msgid "Accent color"
+msgstr "Color de acento"
+
+msgid "Green"
+msgstr "Verde"
+
+msgid "Emerald"
+msgstr "Esmeralda"
+
+msgid "Mint"
+msgstr "Menta"
+
+msgid "Blue"
+msgstr "Azul"
+
+msgid "Sky"
+msgstr "Celeste"
+
+msgid "Azure"
+msgstr "Azul cielo"
+
+msgid "Purple"
+msgstr "Púrpura"
+
+msgid "Violet"
+msgstr "Violeta"
+
+msgid "Lavender"
+msgstr "Lavanda"
+
+msgid "Orange"
+msgstr "Naranja"
+
+msgid "Amber"
+msgstr "Ámbar"
+
+msgid "Coral"
+msgstr "Coral"
+
+msgid "Red"
+msgstr "Rojo"
+
+msgid "Crimson"
+msgstr "Carmesí"
+
+msgid "Rose"
+msgstr "Rosa"
+
+msgid "Pink"
+msgstr "Rosa fuerte"
+
+msgid "Magenta"
+msgstr "Magenta"
+
+msgid "Blush"
+msgstr "Rosa suave"
+
+msgid "Change profile photo"
+msgstr "Cambiar foto de perfil"
+
+msgid "Remove profile photo"
+msgstr "Eliminar foto de perfil"
+
+msgid "Remove your profile photo?"
+msgstr "¿Eliminar tu foto de perfil?"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "DownloadStatusUpdates"
+msgstr "Descargar actualizaciones de estados"
+
+msgid "DownloadStatusUpdatesDescription"
+msgstr "Conservar una copia local de los estados que veas"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Add your name"
+msgstr "Añade tu nombre"
+
+msgid "Generated automatically when empty"
+msgstr "Se genera automáticamente si se deja vacío"
+
+msgid "This is not your username or PIN. This name will be visible to your WhatsApp contacts."
+msgstr "Este no es tu nombre de usuario ni tu PIN. Este nombre será visible para tus contactos de WhatsApp."
+
+msgid "Add a few words about you"
+msgstr "Añade unas palabras sobre ti"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "Username"
+msgstr "Nombre de usuario"
+
+msgid "Your name can't be empty."
+msgstr "Tu nombre no puede estar vacío."
+
+msgid "Choose a profile photo"
+msgstr "Elegir una foto de perfil"
+
+msgid "Pictures"
+msgstr "Imágenes"
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Phone number"
+msgstr "Número de teléfono"
+
+msgid "Linked ID (LID)"
+msgstr "ID vinculado (LID)"
+
+msgid "Linked on"
+msgstr "Vinculado el"
+
+msgid "This device"
+msgstr "Este dispositivo"
+
+msgid "Account info"
+msgstr "Información de la cuenta"
+
+msgid "Show security notifications"
+msgstr "Mostrar notificaciones de seguridad"
+
+msgid "On this computer, when a contact's security code changes"
+msgstr "En este equipo, cuando cambie el código de seguridad de un contacto"
+
+msgid "Messages and calls in end-to-end encrypted chats stay between you and the people you choose."
+msgstr "Los mensajes y llamadas en chats cifrados de extremo a extremo permanecen entre tú y las personas que elijas."
+
+msgid "A contact's security code changes when they reinstall WhatsApp or change phones."
+msgstr "El código de seguridad de un contacto cambia cuando reinstala WhatsApp o cambia de teléfono."
+
+msgid "Everyone"
+msgstr "Todos"
+
+msgid "My contacts"
+msgstr "Mis contactos"
+
+msgid "My contacts except…"
+msgstr "Mis contactos excepto…"
+
+msgid "Nobody"
+msgstr "Nadie"
+
+msgid "Same as last seen"
+msgstr "Igual que la última vez"
+
+msgid "Not loaded yet"
+msgstr "Aún no cargado"
+
+msgid "Off"
+msgstr "Desactivado"
+
+msgid "days"
+msgstr "días"
+
+msgid "24 hours"
+msgstr "24 horas"
+
+msgid "hours"
+msgstr "horas"
+
+msgid "Privacy settings haven't loaded yet."
+msgstr "La configuración de privacidad aún no se ha cargado."
+
+msgid "None"
+msgstr "Ninguno"
+
+msgid "Who can see my personal info"
+msgstr "Quién puede ver mi información personal"
+
+msgid "Who can see my last seen"
+msgstr "Quién puede ver mi última conexión"
+
+msgid "Who can see when I'm online"
+msgstr "Quién puede ver cuándo estoy en línea"
+
+msgid "Who can see my profile photo"
+msgstr "Quién puede ver mi foto de perfil"
+
+msgid "Who can see my about"
+msgstr "Quién puede ver mi información"
+
+msgid "Who can add me to groups"
+msgstr "Quién puede añadirme a grupos"
+
+msgid "Choose the exceptions on your phone"
+msgstr "Elige las excepciones en tu teléfono"
+
+msgid "Admins who can't add you to a group will be able to invite you privately instead."
+msgstr "Los administradores que no puedan añadirte a un grupo podrán invitarte en privado."
+
+msgid "Start new chats with a timer"
+msgstr "Iniciar chats nuevos con un temporizador"
+
+msgid "When turned on, all new one-to-one chats you start will begin with disappearing messages set to this timer. Your existing chats aren't affected."
+msgstr "Al activarlo, todos los chats individuales nuevos que inicies comenzarán con mensajes temporales configurados con este temporizador. Tus chats existentes no se verán afectados."
+
+msgid "Blocked contacts can no longer call you or send you messages."
+msgstr "Los contactos bloqueados ya no podrán llamarte ni enviarte mensajes."
+
+msgid "Block someone from their contact info."
+msgstr "Bloquea a alguien desde su información de contacto."
+
+msgid "Blocked contacts haven't loaded yet. They load once you're connected."
+msgstr "Los contactos bloqueados aún no se han cargado. Se cargarán cuando te conectes."
+
+msgid "No blocked contacts yet."
+msgstr "Aún no hay contactos bloqueados."
+
+msgid "Unblock"
+msgstr "Desbloquear"
+
+msgid "Advanced"
+msgstr "Avanzado"
+
+msgid "Disable link previews"
+msgstr "Desactivar vistas previas de enlaces"
+
+msgid "To help protect your IP address from being inferred by third-party websites, previews for the links you share in chats will no longer be generated."
+msgstr "Para ayudar a proteger tu dirección IP de sitios web de terceros, ya no se generarán vistas previas de los enlaces que compartas en chats."
+
+msgid "Composer"
+msgstr "Compositor"
+
+msgid "Send message"
+msgstr "Enviar mensaje"
+
+msgid "New line"
+msgstr "Nueva línea"
+
+msgid "Bold"
+msgstr "Negrita"
+
+msgid "Italic"
+msgstr "Cursiva"
+
+msgid "Strikethrough"
+msgstr "Tachado"
+
+msgid "Monospace"
+msgstr "Monoespaciado"
+
+msgid "Paste files or a picture"
+msgstr "Pegar archivos o una imagen"
+
+msgid "Copy selected text"
+msgstr "Copiar el texto seleccionado"
+
+msgid "Select all of a message's text"
+msgstr "Seleccionar todo el texto de un mensaje"
+
+msgid "Photos and videos"
+msgstr "Fotos y videos"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "Play or pause a video"
+msgstr "Reproducir o pausar un video"
+
+msgid "Photo editor"
+msgstr "Editor de fotos"
+
+msgid "Undo"
+msgstr "Deshacer"
+
+msgid "Delete the selected drawing or text"
+msgstr "Eliminar el dibujo o texto seleccionado"
+
+msgid "Everywhere"
+msgstr "En todas partes"
+
+msgid "Close a menu, dialog, panel or reply"
+msgstr "Cerrar un menú, diálogo, panel o respuesta"
+
+msgid "Show or hide the chat list"
+msgstr "Mostrar u ocultar la lista de chats"
+
+msgid "Turn privacy mode on or off (Extra features)"
+msgstr "Activar o desactivar el modo de privacidad (Extras)"
+
+msgid "Zoom in"
+msgstr "Acercar"
+
+msgid "Zoom out"
+msgstr "Alejar"
+
+msgid "Reset zoom"
+msgstr "Restablecer zoom"
+
+msgid "Help"
+msgstr "Ayuda"
+
+msgid "Get help with WhatsApp"
+msgstr "Obtener ayuda con WhatsApp"
+
+msgid "Report a problem"
+msgstr "Informar de un problema"
+
+msgid "Tell us about a bug in"
+msgstr "Cuéntanos sobre un error en"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Source code"
+msgstr "Código fuente"
+
+msgid "Terms and Privacy Policy"
+msgstr "Términos y política de privacidad"
+
+msgid "WhatsApp's terms apply to your account"
+msgstr "Los términos de WhatsApp se aplican a tu cuenta"
+
+msgid "is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta."
+msgstr "es un cliente no oficial de WhatsApp. No está creado por WhatsApp ni Meta, ni está afiliado a ellos."
+
+msgid "Slash commands"
+msgstr "Comandos Slash"
+
+msgid "Type / at the start of a message to run a command, like in Discord"
+msgstr "Escribe / al principio de un mensaje para ejecutar un comando, como en Discord"
+
+msgid "Commands run on this computer, from your account. Group commands work in groups you administer."
+msgstr "Los comandos se ejecutan en este equipo desde tu cuenta. Los comandos de grupo funcionan en los grupos que administras."
+
+msgid "Mentions"
+msgstr "Menciones"
+
+msgid "Type @admin in a group to mention all of its admins at once"
+msgstr "Escribe @admin en un grupo para mencionar a todos sus administradores a la vez"
+
+msgid "Photos"
+msgstr "Fotos"
+
+msgid "Raw quality"
+msgstr "Calidad original"
+
+msgid "Offer Raw when sending photos: JPEG and PNG files go as they are, not scaled or compressed"
+msgstr "Ofrecer calidad original al enviar fotos: los archivos JPEG y PNG se envían tal como están, sin cambiar su tamaño ni comprimirlos"
+
+msgid "Privacy mode toggle"
+msgstr "Interruptor del modo de privacidad"
+
+msgid "Add an eye to the title bar that hides names, messages and pictures until you point at them, "
+msgstr "Añade un ojo a la barra de título que oculta nombres, mensajes e imágenes hasta que los señales"
+
+msgid "for using"
+msgstr "para usar"
+
+msgid "where others can see your screen."
+msgstr "cuando otras personas puedan ver tu pantalla."
+
+msgid "works too."
+msgstr "también funciona."
+
+msgid "Block screen recording"
+msgstr "Bloquear grabación de pantalla"
+
+msgid "The window shows up black in screen recordings, screen sharing and screenshots, but stays as it is on your screen."
+msgstr "La ventana aparece en negro en grabaciones, pantallas compartidas y capturas, pero se ve normalmente en tu pantalla."
+
+msgid "Saving…"
+msgstr "Guardando…"
+
+msgid "Saved."
+msgstr "Guardado."
+
+msgid "Delete snippet?"
+msgstr "¿Eliminar snippet?"
+
+msgid "from your saved messages?"
+msgstr "de tus mensajes guardados?"
+
+msgid "Loading snippets…"
+msgstr "Cargando snippets…"
+
+msgid "Search snippets"
+msgstr "Buscar snippets"
+
+msgid "Loading…"
+msgstr "Cargando…"
+
+msgid "Message type"
+msgstr "Tipo de mensaje"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Payload JSON"
+msgstr "JSON del payload"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Enter a message or paste message JSON"
+msgstr "Escribe un mensaje o pega el JSON del mensaje"
+
+msgid "Save snippet"
+msgstr "Guardar snippet"
+
+msgid "Delete snippet"
+msgstr "Eliminar snippet"
+
+msgid "New snippet"
+msgstr "Nuevo snippet"
+
+msgid "Save text or a message payload"
+msgstr "Guardar texto o el payload de un mensaje"
+
+msgid "Payload"
+msgstr "Payload"
+
+msgid "No snippets yet. Add one here, or reply to a message and use /snippet save."
+msgstr "Aún no hay snippets. Añade uno aquí o responde a un mensaje y usa /snippet save."
+
+msgid "Type /snippet send and a snippet's name in a chat to send it. Snippets belong to this account."
+msgstr "Escribe /snippet send y el nombre de un snippet en un chat para enviarlo. Los snippets pertenecen a esta cuenta."
+
+msgid "Variables, filled in when you send (in a payload, in its text and captions):"
+msgstr "Variables que se completan al enviar (en un payload, en su texto y en sus descripciones):"
+
+msgid "Write \\{name} to send {name} as it is."
+msgstr "Escribe \\{name} para enviar {name} tal cual."
+
+msgid "snippet.var.name"
+msgstr "a quién escribes: el contacto o, en un grupo, el autor del mensaje al que respondes (si no, el grupo)"
+
+msgid "snippet.var.first"
+msgstr "la primera palabra de {name}"
+
+msgid "snippet.var.mention"
+msgstr "menciona al autor del mensaje al que respondes; sin respuesta, al contacto o al grupo por su nombre, sin notificar a nadie"
+
+msgid "snippet.var.chat"
+msgstr "el nombre del chat"
+
+msgid "snippet.var.me"
+msgstr "tu nombre"
+
+msgid "snippet.var.quote"
+msgstr "el texto del mensaje al que respondes"
+
+msgid "snippet.var.greeting"
+msgstr "Buenos días, Buenas tardes o Buenas noches"
+
+msgid "snippet.var.date"
+msgstr "la fecha de hoy, como 5 de octubre de 2026"
+
+msgid "snippet.var.time"
+msgstr "la hora, como 14:05"
+
+msgid "snippet.var.day"
+msgstr "el día de la semana, como lunes"
+
+msgid "Read receipts"
+msgstr "Confirmaciones de lectura"
+
+msgid "If turned off, you won't send or receive read receipts. Read receipts are always sent for group chats."
+msgstr "Si se desactivan, no enviarás ni recibirás confirmaciones de lectura. Las confirmaciones de lectura siempre se envían en los chats de grupo."
+
+msgid "Unknown"
+msgstr "Desconocido"
+
+msgid "Blocked contacts"
+msgstr "Contactos bloqueados"
+
+msgid "Default message timer"
+msgstr "Temporizador de mensajes predeterminado"
+
+msgid "Help center"
+msgstr "Centro de ayuda"
+
+msgid "Last seen and online"
+msgstr "Última vez y en línea"
+
+msgid "Profile photo"
+msgstr "Foto de perfil"
+
+msgid "Security notifications"
+msgstr "Notificaciones de seguridad"
+
+msgid "Start new chats with disappearing messages set to your timer."
+msgstr "Iniciar chats nuevos con mensajes temporales configurados con tu temporizador."
 
 msgid "search.sidebar.chats"
 msgstr "Buscar o empezar un nuevo chat"
@@ -433,10 +967,10 @@ msgid "settings.chats.accent"
 msgstr "Color"
 
 msgid "settings.chats.wallpaper_doodles"
-msgstr "doodles del fondo"
+msgstr "Dibujos del fondo"
 
 msgid "settings.chats.wallpaper_doodles.description"
-msgstr "Dibujar doodles el fondo del chat :3"
+msgstr "Dibujar doodles en el fondo del chat"
 
 msgid "settings.chats.chat_settings"
 msgstr "Configuración de chats"
@@ -485,3 +1019,70 @@ msgstr "A las"
 
 msgid "status.reply"
 msgstr "Responder"
+
+msgid "conversation.cli"
+msgstr "OpenWa-Cli para Windows"
+
+msgid "conversation.cli.desc"
+msgstr "Envía y recibe mensajes sin mantener tu teléfono en línea. Nativo, ligero y seguro."
+
+msgid "ui.typeMessage"
+msgstr "Escribe un mensaje"
+
+
+msgid "Close chat"
+msgstr "Cerrar chat"
+
+msgid "Add member"
+msgstr "Añadir miembro"
+
+msgid "Group info"
+msgstr "Información del grupo"
+
+msgid "Contact info"
+msgstr "Información del contacto"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Select messages"
+msgstr "Seleccionar mensajes"
+
+msgid "Unmute notifications"
+msgstr "Activar notificaciones"
+
+msgid "Mute notifications"
+msgstr "Silenciar notificaciones"
+
+msgid "Disappearing messages"
+msgstr "Mensajes temporales"
+
+msgid "Remove from favourites"
+msgstr "Quitar de favoritos"
+
+msgid "Add to favourites"
+msgstr "Añadir a favoritos"
+
+msgid "Add to list"
+msgstr "Añadir a la lista"
+
+msgid "Export chat"
+msgstr "Exportar chat"
+
+msgid "Report"
+msgstr "Reportar"
+
+msgid "Block"
+msgstr "Bloquear"
+
+msgid "Clear chat"
+msgstr "Vaciar chat"
+
+msgid "Exit group"
+msgstr "Salir del grupo"
+
+msgid "Delete chat"
+msgstr "Eliminar chat"
+
+msgid "ui.clickForInfo"
+msgstr "haz clic aquí para mas info"

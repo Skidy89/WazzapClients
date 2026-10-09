@@ -20,7 +20,7 @@ import (
 
 // Keep the patched face distinct from any unpatched Noto Color Emoji installed
 // on the system. Gio loads system faces first and may select them on a tie.
-const emojiTypeface font.Typeface = "WazzapClients Emoji"
+const emojiTypeface font.Typeface = "OpenWa-Cli Emoji"
 
 var (
 	loadFonts sync.Once

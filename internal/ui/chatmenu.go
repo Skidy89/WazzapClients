@@ -36,39 +36,38 @@ func (u *UI) convMenuItems(c *model.Chat) []menuItem {
 	}
 	if c.IsGroup {
 		if u.canAddMembers(c) {
-			add(menuItem{key: "add", ic: icPersonAdd, label: "Add member", run: func() { u.openAddMembers(c) }})
+			add(menuItem{key: "add", ic: icPersonAdd, label: u.locale.Text("Add member"), run: func() { u.openAddMembers(c) }})
 		}
-		add(menuItem{key: "info", ic: icInfo, label: "Group info", run: func() { u.openInfo(id) }})
+		add(menuItem{key: "info", ic: icInfo, label: u.locale.Text("Group info"), run: func() { u.openInfo(id) }})
 	} else {
-		add(menuItem{key: "info", ic: icInfo, label: "Contact info", run: func() { u.openInfo(id) }})
+		add(menuItem{key: "info", ic: icInfo, label: u.locale.Text("Contact info"), run: func() { u.openInfo(id) }})
 	}
-	add(menuItem{key: "search", ic: icSearch, label: "Search", run: u.openChatSearch})
-	add(menuItem{key: "select", ic: icCheckBox, label: "Select messages", run: u.startSelectNone})
+	add(menuItem{key: "search", ic: icSearch, label: u.locale.Text("Search"), run: u.openChatSearch})
+	add(menuItem{key: "select", ic: icCheckBox, label: u.locale.Text("Select messages"), run: u.startSelectNone})
 	if c.Muted {
-		add(menuItem{key: "mute", ic: icBellLine, label: "Unmute notifications", sub: muteStatus(c), run: func() { b.SetMuted(id, false, 0) }})
+		add(menuItem{key: "mute", ic: icBellLine, label: u.locale.Text("Unmute notifications"), sub: muteStatus(c), run: func() { b.SetMuted(id, false, 0) }})
 	} else {
-		add(menuItem{key: "mute", ic: icMuted, label: "Mute notifications", run: func() { u.openMuteMenu(c) }})
+		add(menuItem{key: "mute", ic: icMuted, label: u.locale.Text("Mute notifications"), run: func() { u.openMuteMenu(c) }})
 	}
-	add(menuItem{key: "timer", glyph: disappearingIcon, label: "Disappearing messages", run: func() { u.openTimerMenu(c) }})
-	add(menuItem{key: "theme", ic: icPalette, label: "Chat theme", run: func() { u.openChatTheme(c) }})
+	add(menuItem{key: "timer", glyph: disappearingIcon, label: ("Disappearing messages"), run: func() { u.openTimerMenu(c) }})
 	if c.Favorite {
-		add(menuItem{key: "fav", ic: icHeart, label: "Remove from favourites", run: func() { b.SetFavorite(id, false) }})
+		add(menuItem{key: "fav", ic: icHeart, label: u.locale.Text("Remove from favourites"), run: func() { b.SetFavorite(id, false) }})
 	} else {
-		add(menuItem{key: "fav", ic: icHeart, label: "Add to favourites", run: func() { b.SetFavorite(id, true) }})
+		add(menuItem{key: "fav", ic: icHeart, label: u.locale.Text("Add to favourites"), run: func() { b.SetFavorite(id, true) }})
 	}
-	add(menuItem{key: "list", ic: icAddToList, label: "Add to list", run: func() { u.openListsMenu(c) }})
-	add(menuItem{key: "export", ic: icDownload, label: "Export chat", run: func() { b.ExportChat(id) }})
-	add(menuItem{key: "close", ic: icCancel, label: "Close chat", run: u.closeChat})
+	add(menuItem{key: "list", ic: icAddToList, label: u.locale.Text("Add to list"), run: func() { u.openListsMenu(c) }})
+	add(menuItem{key: "export", ic: icDownload, label: u.locale.Text("Export chat"), run: func() { b.ExportChat(id) }})
+	add(menuItem{key: "close", ic: icCancel, label: u.locale.Text("Close chat"), run: u.closeChat})
 	add(menuItem{divider: true})
 	if !c.IsGroup && !c.Self {
-		add(menuItem{key: "report", ic: icThumbDown, label: "Report", run: u.reportUnsupported})
-		add(menuItem{key: "block", ic: icBlock, label: "Block", run: func() { u.confirmBlock(id, c.Name) }})
+		add(menuItem{key: "report", ic: icThumbDown, label: u.locale.Text("Report"), run: u.reportUnsupported})
+		add(menuItem{key: "block", ic: icBlock, label: u.locale.Text("Block"), run: func() { u.confirmBlock(id, c.Name) }})
 	}
-	add(menuItem{key: "clear", ic: icClear, label: "Clear chat", run: func() { u.confirmClearChat(id) }})
+	add(menuItem{key: "clear", ic: icClear, label: u.locale.Text("Clear chat"), run: func() { u.confirmClearChat(id) }})
 	if c.IsGroup {
-		add(menuItem{key: "exit", ic: icLogout, label: "Exit group", run: func() { u.confirmExitGroup(id, c.Name) }})
+		add(menuItem{key: "exit", ic: icLogout, label: u.locale.Text("Exit group"), run: func() { u.confirmExitGroup(id, c.Name) }})
 	} else {
-		add(menuItem{key: "delete", ic: icDelete, label: "Delete chat", run: func() { u.confirmDeleteChat(id) }})
+		add(menuItem{key: "delete", ic: icDelete, label: u.locale.Text("Delete chat"), run: func() { u.confirmDeleteChat(id) }})
 	}
 	return items
 }

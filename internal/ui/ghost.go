@@ -53,7 +53,7 @@ func (u *UI) setGhost(on bool) {
 // ghostOff turns ghost mode off from one of its buttons.
 func (u *UI) ghostOff() {
 	u.setGhost(false)
-	u.toast("Ghost mode is off")
+	u.toast(u.locale.Text("ghost.mode.off"))
 }
 
 // layoutGhostBar shows, above the chat list, that ghost mode is on. It
@@ -100,7 +100,7 @@ func (u *UI) ghostBarBody(gtx C, cl *widget.Clickable) D {
 				return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 					layout.Rigid(iconW(icVisibilityOff, 18, p.Green)),
 					layout.Rigid(layout.Spacer{Width: 10}.Layout),
-					layout.Flexed(1, u.label(14, "Ghost mode · invisible, read only", p.BannerText,
+					layout.Flexed(1, u.label(14, u.locale.Text("ghost.mode.banner"), p.BannerText,
 						labelOpts{maxLines: 1}).Layout),
 					layout.Rigid(func(gtx C) D { return u.ghostButton(gtx, cl) }),
 				)
@@ -169,7 +169,7 @@ func (u *UI) layoutGhostComposer(gtx C, v float32) D {
 						return d
 					}),
 					layout.Rigid(layout.Spacer{Width: 10}.Layout),
-					layout.Rigid(u.label(15, "Ghost mode is on. You can't send messages.", p.TextSecondary,
+					layout.Rigid(u.label(15, u.locale.Text("ghost.mode.composer"), p.TextSecondary,
 						labelOpts{maxLines: 1}).Layout),
 					layout.Rigid(layout.Spacer{Width: 8}.Layout),
 					layout.Rigid(func(gtx C) D { return u.ghostButton(gtx, cl) }),
@@ -185,7 +185,7 @@ func (u *UI) ghostButton(gtx C, cl *widget.Clickable) D {
 	return clickable(gtx, cl, func(gtx C) D {
 		return background(gtx, faded(p.Hover, u.hover(gtx, cl)), 16, func(gtx C) D {
 			return layout.UniformInset(8).Layout(gtx,
-				u.label(14, "Turn off", p.Green, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
+				u.label(14, u.locale.Text("ghost.mode.turn_off"), p.Green, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
 		})
 	})
 }

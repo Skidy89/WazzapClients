@@ -42,10 +42,10 @@ func main() {
 	}
 	var vi version.Info
 	for k, v := range map[string]string{
-		version.FileDescription:  "WazzapClients",
-		version.ProductName:      "WazzapClients",
-		version.InternalName:     "WazzapClients",
-		version.OriginalFilename: "WazzapClients.exe",
+		version.FileDescription:  "OpenWA",
+		version.ProductName:      "OpenWA",
+		version.InternalName:     "OpenWA",
+		version.OriginalFilename: "OpenWA.exe",
 	} {
 		if err := vi.Set(version.LangDefault, k, v); err != nil {
 			log.Fatal(err)

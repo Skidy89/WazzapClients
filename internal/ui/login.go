@@ -189,7 +189,7 @@ func (u *UI) layoutLoginCard(gtx C) D {
 		return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 			layout.Flexed(1, func(gtx C) D {
 				children := []layout.FlexChild{
-					layout.Rigid(u.label(28, "Log in to WazzapClients", p.Text, labelOpts{weight: font.Light, maxLines: 1}).Layout),
+					layout.Rigid(u.label(28, "Log in to OpenWa-Cli", p.Text, labelOpts{weight: font.Light, maxLines: 1}).Layout),
 					layout.Rigid(layout.Spacer{Height: 32}.Layout),
 				}
 				for i, s := range loginSteps {

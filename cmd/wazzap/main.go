@@ -80,7 +80,7 @@ func main() {
 	list := accounts.Load(root)
 	opts := ui.Options{
 		Window: []app.Option{
-			app.Title("WazzapClients"),
+			app.Title("OpenWa-Cli"),
 			app.Size(unit.Dp(1200), unit.Dp(780)),
 			app.MinSize(unit.Dp(760), unit.Dp(500)),
 			// The UI draws its own WhatsApp-style title bar.

@@ -533,9 +533,9 @@ func (u *UI) layoutCaption(gtx C, f *attachFile, bottom int, open bool) int {
 					layout.Flexed(1, func(gtx C) D {
 						gtx.Constraints.Min.Y = gtx.Dp(47)
 						if !open {
-							return vcenter(gtx, gtx.Dp(47), u.label(16, "Type a message", p.ComposerHint).Layout)
+							return vcenter(gtx, gtx.Dp(47), u.label(16, u.locale.Text("ui.typeMessage"), p.ComposerHint).Layout)
 						}
-						return u.layoutComposerEditor(gtx, "Type a message")
+						return u.layoutComposerEditor(gtx, u.locale.Text("ui.typeMessage"))
 					}),
 					layout.Rigid(func(gtx C) D {
 						col := p.Icon

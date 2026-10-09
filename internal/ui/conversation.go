@@ -228,9 +228,9 @@ func (u *UI) layoutConvHeader(gtx C, c *model.Chat) D {
 					sub = t
 				}
 				if sub == "" {
-					sub = "click here for contact info"
+					sub = u.locale.Text("ui.clickForInfo")
 					if c.IsGroup {
-						sub = "click here for group info"
+						sub = u.locale.Text("ui.clickForInfo")
 					}
 				}
 				name := c.Name
@@ -1746,9 +1746,9 @@ func (u *UI) layoutEmpty(gtx C) D {
 				return centerIn(gtx, sz, iconW(icChats, 72, p.Green))
 			}),
 			layout.Rigid(layout.Spacer{Height: 28}.Layout),
-			layout.Rigid(u.label(30, "WazzapClients for Windows", p.Text, labelOpts{weight: font.Light, maxLines: 1, align: text.Middle}).Layout),
+			layout.Rigid(u.label(30, u.locale.Text("conversation.cli"), p.Text, labelOpts{weight: font.Light, maxLines: 1, align: text.Middle}).Layout),
 			layout.Rigid(layout.Spacer{Height: 14}.Layout),
-			layout.Rigid(u.label(14, "Send and receive messages without keeping your phone online. Native, lightweight, and no browser inside.",
+			layout.Rigid(u.label(14, u.locale.Text("conversation.cli.desc"),
 				p.TextSecondary, labelOpts{maxLines: 0, align: text.Middle}).Layout),
 		)
 	})

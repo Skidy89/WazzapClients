@@ -25,9 +25,9 @@ import (
 )
 
 const (
-	appName = "WazzapClients"
+	appName = "OpenWA"
 	// appID identifies the app to Windows' notification center.
-	appID = "WazzapClients.Desktop"
+	appID = "OpenWA.Desktop"
 )
 
 // Options configure Run.

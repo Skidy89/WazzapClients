@@ -38,6 +38,33 @@ msgstr "Manage your account, privacy, chats and notifications."
 msgid "Calls"
 msgstr "Calls"
 
+msgid "All"
+msgstr "All"
+
+msgid "Unread"
+msgstr "Unread"
+
+msgid "Favourites"
+msgstr "Favourites"
+
+msgid "Groups"
+msgstr "Groups"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Channels"
+msgstr "Channels"
+
+msgid "Communities"
+msgstr "Communities"
+
+msgid "Recent"
+msgstr "Recent"
+
+msgid "GroupStatus"
+msgstr "Group status"
+
 msgid "PageCalls"
 msgstr "Calling from this app isn't supported yet. Use your phone to make and answer calls."
 
@@ -540,3 +567,27 @@ msgstr "Extra features aren't made by WhatsApp. They only use what WhatsApp lets
 
 msgid "settings.gray.sub"
 msgstr "Edit history, deleted messages, view once and more"
+
+msgid "status.click.update"
+msgstr "Click to add status update"
+
+msgid "status.myStatus"
+msgstr "My status"
+
+msgid "status.group.status"
+msgstr "Add group status"
+
+msgid "status.group.sub"
+msgstr "Visible to members for 24 hours"
+
+msgid "status.today.at"
+msgstr "Today at"
+
+msgid "status.yesterday.at"
+msgstr "Yesterday at"
+
+msgid "status.at
+msgstr "At"
+
+msgid "status.reply"
+msgstr "Type a reply…"

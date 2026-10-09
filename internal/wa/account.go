@@ -14,7 +14,7 @@ import (
 
 	_ "golang.org/x/image/webp" // or WebP
 
-	"github.com/polymorfa/hypermeow"
+	whatsmeow "github.com/polymorfa/hypermeow"
 	"github.com/polymorfa/hypermeow/appstate"
 	waBinary "github.com/polymorfa/hypermeow/binary"
 	"github.com/polymorfa/hypermeow/types"

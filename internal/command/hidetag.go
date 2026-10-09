@@ -2,6 +2,7 @@ package command
 
 import (
 	"errors"
+
 	"github.com/chomosuke9/wazzapclients/internal/model"
 )
 

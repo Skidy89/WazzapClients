@@ -1025,6 +1025,10 @@ const PrefKeepDeleted = "keep_deleted"
 // and screenshots of it aren't blocked.
 const PrefViewOnceReplay = "view_once_replay"
 
+// PrefDownloadStatusUpdates is the Pref key of the "Download status updates" extra
+// feature, on when "on": the UI will show download buttons for videos and audio on status.
+const PrefDownloadStatusUpdates = "download_status_updates"
+
 // Backend is everything the UI needs from a WhatsApp connection.
 //
 // Methods are called from the UI goroutine and must not block for long.

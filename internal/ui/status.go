@@ -30,14 +30,14 @@ type statusState struct {
 
 // statusTime formats a status timestamp: "Today at 06:45", "Yesterday at
 // 16:55", or a date.
-func statusTime(t, now time.Time) string {
+func statusTime(t, now time.Time, u *UI) string {
 	switch {
 	case sameDay(t, now):
-		return "Today at " + t.Format("15:04")
+		return u.locale.Text("status.today.at") + " " + t.Format("15:04")
 	case sameDay(t, now.AddDate(0, 0, -1)):
-		return "Yesterday at " + t.Format("15:04")
+		return u.locale.Text("status.yesterday.at") + " " + t.Format("15:04")
 	}
-	return t.Format("02/01/2006") + " at " + t.Format("15:04")
+	return t.Format("02/01/2006") + " " + u.locale.Text("status.at") + " " + t.Format("15:04")
 }
 
 // layoutStatusList draws the Status page: your own status, then recent
@@ -90,9 +90,9 @@ func (u *UI) layoutStatusList(gtx C) D {
 
 	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 		layout.Rigid(func(gtx C) D {
-			title := "Status"
+			title := u.locale.Text("Status")
 			if u.status.groupID != "" {
-				title = "Group status"
+				title = u.locale.Text("GroupStatus")
 				if c := u.chatByID(u.status.groupID); c != nil {
 					title = c.Name
 				}
@@ -117,14 +117,14 @@ func (u *UI) layoutStatusList(gtx C) D {
 		layout.Flexed(1, func(gtx C) D {
 			return u.scrollList(gtx, &u.status.list, len(entries)+1, func(gtx C, i int) D {
 				if i == 0 {
-					sub := "Click to add status update"
+					sub := u.locale.Text("status.click.update")
 					if mine != nil {
-						sub = statusTime(mine.Last().Time, now)
+						sub = statusTime(mine.Last().Time, now, u)
 					}
 					return layout.Inset{Bottom: 9.5}.Layout(gtx, func(gtx C) D {
-						title := "My status"
+						title := u.locale.Text("status.myStatus")
 						if u.status.groupID != "" {
-							title, sub = "Add group status", "Visible to members for 24 hours"
+							title, sub = u.locale.Text("status.group.status"), u.locale.Text("status.group.sub")
 						}
 						return u.statusRow(gtx, "status:me", mine, title, sub, 72, true)
 					})
@@ -135,7 +135,7 @@ func (u *UI) layoutStatusList(gtx C) D {
 					return u.sectionLabel(gtx, e.label, layout.Inset{Left: 27, Top: top, Bottom: 22}, labelOpts{maxLines: 1})
 				}
 				t := e.thread
-				return u.statusRow(gtx, "status:"+t.ID, t, t.Name, statusTime(t.Last().Time, now), 76, false)
+				return u.statusRow(gtx, "status:"+t.ID, t, t.Name, statusTime(t.Last().Time, now, u), 76, false)
 			})
 		}),
 	)
@@ -273,24 +273,25 @@ func argbColor(c uint32) color.NRGBA {
 
 // statusViewer shows one poster's updates full-window, one after another.
 type statusViewer struct {
-	thread   *model.StatusThread
-	index    int
-	shownAt  time.Time
-	closeBtn widget.Clickable
-	prev     widget.Clickable
-	next     widget.Clickable
-	pauseBtn widget.Clickable
-	muteBtn  widget.Clickable
-	closing  bool // fading out
-	anim     tween
-	zp       zoomPan       // pictures zoom like in the media viewer
-	held     time.Duration // time shown when the timer paused
-	frac     float32       // how much of the current update has played
-	paused   bool          // paused with the pause button
-	video    videoView     // the video update playing
-	vidHeld  bool          // the video is paused while the timer waits
-	reply    widget.Editor
-	send     widget.Clickable
+	thread      *model.StatusThread
+	index       int
+	shownAt     time.Time
+	closeBtn    widget.Clickable
+	prev        widget.Clickable
+	next        widget.Clickable
+	pauseBtn    widget.Clickable
+	muteBtn     widget.Clickable
+	downloadBtn widget.Clickable
+	closing     bool // fading out
+	anim        tween
+	zp          zoomPan       // pictures zoom like in the media viewer
+	held        time.Duration // time shown when the timer paused
+	frac        float32       // how much of the current update has played
+	paused      bool          // paused with the pause button
+	video       videoView     // the video update playing
+	vidHeld     bool          // the video is paused while the timer waits
+	reply       widget.Editor
+	send        widget.Clickable
 }
 
 // statusDuration is how long a picture or text update stays on screen. A
@@ -477,6 +478,12 @@ func (u *UI) layoutStatusViewer(gtx C) {
 		if v.pauseBtn.Clicked(gtx) {
 			v.paused = !v.paused
 		}
+		if v.downloadBtn.Clicked(gtx) {
+			up := t.Updates[v.index]
+			if up.Media == model.MediaVideo || up.Media == model.MediaAudio || up.Media == model.MediaVoice {
+				u.backend.SaveMedia(&model.Message{ChatID: statusChatID, ID: up.ID, Media: up.Media})
+			}
+		}
 		if v.muteBtn.Clicked(gtx) {
 			v.video.muted = !v.video.muted
 			if v.video.player != nil {
@@ -596,7 +603,7 @@ func (u *UI) layoutStatusViewer(gtx C) {
 	name := t.Name
 	id := t.ID
 	if t.Mine {
-		name, id = "My status", u.meID
+		name, id = u.locale.Text("status.myStatus"), u.meID
 	}
 	if t.Group {
 		name = t.Name + " · " + up.Sender
@@ -612,7 +619,7 @@ func (u *UI) layoutStatusViewer(gtx C) {
 			return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 				layout.Rigid(u.label(16, name, white, labelOpts{weight: font.Medium, maxLines: 1}).Layout),
 				layout.Rigid(func(gtx C) D {
-					tl := u.label(13.5, statusTime(up.Time, u.now()), argb(0xffffff, 0xb0))
+					tl := u.label(13.5, statusTime(up.Time, u.now(), u), argb(0xffffff, 0xb0))
 					if up.Revoked.IsZero() {
 						return tl.Layout(gtx)
 					}
@@ -634,6 +641,7 @@ func (u *UI) layoutStatusViewer(gtx C) {
 			}
 			return u.iconButton(gtx, &v.pauseBtn, ic, 40, 24, white)
 		}),
+		// The mute button is only shown for videos and audio.
 		layout.Rigid(func(gtx C) D {
 			if v.video.player == nil {
 				return D{}
@@ -643,6 +651,14 @@ func (u *UI) layoutStatusViewer(gtx C) {
 				ic = icVolumeOffFill
 			}
 			return u.iconButton(gtx, &v.muteBtn, ic, 40, 22, white)
+		}),
+		// if download status updates is enabled, show a download button for videos and audio
+		layout.Rigid(func(gtx C) D {
+			if v.video.player == nil || !u.downloadStatusUpdates {
+				return D{}
+			}
+			ic := icDownload
+			return u.iconButton(gtx, &v.downloadBtn, ic, 40, 22, white)
 		}),
 	)
 	hdr.Pop()

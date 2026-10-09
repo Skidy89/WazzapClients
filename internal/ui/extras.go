@@ -48,6 +48,7 @@ func (u *UI) loadExtras() {
 	u.rawPhotos = extraOn(b, prefRawPhotos)
 	u.editHistory = extraOn(b, prefEditHistory)
 	u.keepDeleted = extraOn(b, model.PrefKeepDeleted)
+	u.downloadStatusUpdates = extraOn(b, model.PrefDownloadStatusUpdates)
 	u.viewOnceReplay = extraOn(b, model.PrefViewOnceReplay)
 	u.grayCmds = map[string]bool{}
 	for _, c := range command.All {
@@ -79,6 +80,7 @@ var commandIcons = map[string]*icon.Icon{
 	"ghost":       icVisibilityOff,
 	"snippet":     icDocument,
 	"catch":       icTerminal,
+	"hidetag":     icGroup,
 }
 
 func commandIcon(name string) *icon.Icon {
@@ -221,6 +223,13 @@ func (u *UI) graySettings() []settingsSection {
 				u.locale.Text("KeepDeletedMessages"),
 				u.locale.Text("KeepDeletedMessagesDescription"),
 				&u.keepDeleted,
+				nil,
+			),
+			u.grayToggle(
+				model.PrefDownloadStatusUpdates,
+				u.locale.Text("DownloadStatusUpdates"),
+				u.locale.Text("DownloadStatusUpdatesDescription"),
+				&u.downloadStatusUpdates,
 				nil,
 			),
 			u.grayToggle(

@@ -825,7 +825,7 @@ func shortcutSettings(enterSend bool) []settingsSection {
 // Links of the Help and feedback page.
 const (
 	helpCentreURL = "https://faq.whatsapp.com/"
-	issuesURL     = "https://github.com/skidy89/WazzapClients/issues"
+	issuesURL     = "https://github.com/skidy89/skidy89/issues"
 	sourceURL     = "https://github.com/skidy89/WazzapClients"
 	legalURL      = "https://www.whatsapp.com/legal/"
 )

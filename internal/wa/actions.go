@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/polymorfa/hypermeow"
+	whatsmeow "github.com/polymorfa/hypermeow"
 	"github.com/polymorfa/hypermeow/appstate"
 	"github.com/polymorfa/hypermeow/proto/waCommon"
 	"github.com/polymorfa/hypermeow/proto/waE2E"

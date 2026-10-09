@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/polymorfa/hypermeow"
+	whatsmeow "github.com/polymorfa/hypermeow"
 	"github.com/polymorfa/hypermeow/types"
 
 	"github.com/chomosuke9/wazzapclients/internal/model"

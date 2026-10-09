@@ -56,7 +56,7 @@ func (u *UI) layoutSidebarHeader(gtx C) D {
 	return vcenter(gtx, h, func(gtx C) D {
 		return layout.Inset{Left: 21, Right: 21}.Layout(gtx, func(gtx C) D {
 			return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
-				layout.Flexed(1, u.label(23.5, "Chats", p.Text, labelOpts{weight: font.Medium, maxLines: 1}).Layout),
+				layout.Flexed(1, u.label(23.5, u.locale.Text("Chats"), p.Text, labelOpts{weight: font.Medium, maxLines: 1}).Layout),
 				layout.Rigid(func(gtx C) D { return u.iconButton(gtx, &u.sidebar.menu, icMenu, 40, 25, p.IconStrong) }),
 				layout.Rigid(layout.Spacer{Width: 8}.Layout),
 				layout.Rigid(func(gtx C) D {
@@ -131,7 +131,7 @@ func (u *UI) layoutChips(gtx C) D {
 			parts[i] = record(cgtx, func(gtx C) D {
 				return u.chip(gtx, &u.sidebar.chips[i], active, func(gtx C) D {
 					return layout.Inset{Left: 12, Right: 12}.Layout(gtx,
-						u.label(15, name, fg, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout)
+						u.label(15, u.locale.Text(name), fg, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout)
 				})
 			})
 		}

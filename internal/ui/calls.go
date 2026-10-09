@@ -16,10 +16,10 @@ func (u *UI) layoutCallsList(gtx C) D {
 	p := u.pal
 	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 		layout.Rigid(func(gtx C) D {
-			return u.pageHeader(gtx, "Calls", u.headerButton(&u.calls.add, icAddCircle, 27))
+			return u.pageHeader(gtx, u.locale.Text("Calls"), u.headerButton(&u.calls.add, icAddCircle, 27))
 		}),
 		layout.Rigid(func(gtx C) D {
-			return u.sectionLabel(gtx, "Recent", layout.Inset{Left: 27, Top: 20, Bottom: 22}, labelOpts{maxLines: 1})
+			return u.sectionLabel(gtx, u.locale.Text("Recent"), layout.Inset{Left: 27, Top: 20, Bottom: 22}, labelOpts{maxLines: 1})
 		}),
 		layout.Rigid(func(gtx C) D {
 			return layout.Inset{Left: 27, Right: 27}.Layout(gtx, func(gtx C) D {

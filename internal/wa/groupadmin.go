@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/polymorfa/hypermeow"
+	whatsmeow "github.com/polymorfa/hypermeow"
 	"github.com/polymorfa/hypermeow/proto/waE2E"
 	"github.com/polymorfa/hypermeow/types"
 	"google.golang.org/protobuf/proto"

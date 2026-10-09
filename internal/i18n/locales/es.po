@@ -38,6 +38,33 @@ msgstr "Administra tu cuenta, privacidad, chats y notificaciones."
 msgid "Calls"
 msgstr "Llamadas"
 
+msgid "All"
+msgstr "Todos"
+
+msgid "Unread"
+msgstr "No leídos"
+
+msgid "Favourites"
+msgstr "Favoritos"
+
+msgid "Groups"
+msgstr "Grupos"
+
+msgid "Status"
+msgstr "Estados"
+
+msgid "Channels"
+msgstr "Canales"
+
+msgid "Communities"
+msgstr "Comunidades"
+
+msgid "Recent"
+msgstr "Recientes"
+
+msgid "GroupStatus"
+msgstr "Estado del grupo"
+
 msgid "PageCalls"
 msgstr "Las llamadas desde esta aplicación aún no son compatibles. Usa tu teléfono para realizar y responder llamadas."
 
@@ -434,3 +461,27 @@ msgstr "Las funciones adicionales no son de WhatsApp. Solo utilizan lo que Whats
 
 msgid "settings.gray.sub"
 msgstr "Editar historial, ver mensajes eliminados y mas"
+
+msgid "status.click.update"
+msgstr "Toca para agregar un estado"
+
+msgid "status.myStatus"
+msgstr "Mi estado"
+
+msgid "status.group.status"
+msgstr "Agrega un estado"
+
+msgid "status.group.sub"
+msgstr "Visible por 24 horas"
+
+msgid "status.today.at"
+msgstr "Hoy a las"
+
+msgid "status.yesterday.at"
+msgstr "Ayer a las"
+
+msgid "status.at"
+msgstr "A las"
+
+msgid "status.reply"
+msgstr "Responder"

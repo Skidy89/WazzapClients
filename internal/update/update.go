@@ -92,7 +92,7 @@ func get(ctx context.Context, url, version string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("User-Agent", "WazzapClients/"+version)
+	req.Header.Set("User-Agent", "skidy89/"+version)
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
@@ -120,7 +120,7 @@ func Check(ctx context.Context, current string) (*Release, error) {
 		return nil, err
 	}
 	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("User-Agent", "WazzapClients/"+current)
+	req.Header.Set("User-Agent", "skidy89/"+current)
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err

@@ -155,6 +155,9 @@ func (s *msgStore) dropStatuses(ctx context.Context, before time.Time) []string 
 	if err != nil {
 		return nil
 	}
+	if rows.Err() != nil {
+		return nil
+	}
 	defer rows.Close()
 	var ids []string
 	for rows.Next() {

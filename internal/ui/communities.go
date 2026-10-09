@@ -73,7 +73,7 @@ func (u *UI) layoutCommunityList(gtx C) D {
 	entries := u.communityEntries()
 	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 		layout.Rigid(func(gtx C) D {
-			return u.pageHeader(gtx, "Communities", u.headerButton(&u.commun.add, icAddCircle, 27))
+			return u.pageHeader(gtx, u.locale.Text("Communities"), u.headerButton(&u.commun.add, icAddCircle, 27))
 		}),
 		layout.Flexed(1, func(gtx C) D {
 			return u.scrollList(gtx, &u.commun.list, len(entries), func(gtx C, i int) D {

@@ -1,0 +1,5 @@
+# Add one Material Symbols name per line, then run:
+#   go generate ./internal/ui/icon
+#
+# Names use the SVG file name, for example: delete_forever.
+group_icon

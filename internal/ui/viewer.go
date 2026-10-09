@@ -288,7 +288,7 @@ func (u *UI) layoutViewer(gtx C) {
 					return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 						layout.Rigid(u.label(15.5, name, p.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
 						layout.Rigid(layout.Spacer{Height: 2}.Layout),
-						layout.Rigid(u.label(13, statusTime(m.Time, u.now()), p.TextSecondary, labelOpts{maxLines: 1}).Layout),
+						layout.Rigid(u.label(13, statusTime(m.Time, u.now(), u), p.TextSecondary, labelOpts{maxLines: 1}).Layout),
 					)
 				}),
 			)

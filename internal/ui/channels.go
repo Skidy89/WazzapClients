@@ -89,7 +89,7 @@ func (u *UI) layoutChannelList(gtx C) D {
 	}
 	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 		layout.Rigid(func(gtx C) D {
-			return u.pageHeader(gtx, "Channels", u.headerButton(&u.channel.add, icAddCircle, 27))
+			return u.pageHeader(gtx, u.locale.Text("Channels"), u.headerButton(&u.channel.add, icAddCircle, 27))
 		}),
 		layout.Rigid(func(gtx C) D { return u.searchBox(gtx, &u.channel.search, "Search") }),
 		layout.Flexed(1, func(gtx C) D {

@@ -1,11 +1,15 @@
 <div align="center">
 
-# ⚡ WazzapClients
+# Open Wa client
 
 **WhatsApp Desktop, without the browser inside it.**
 
 A native WhatsApp client written in Go: no WebView, no Electron, no Chromium.
 It aims to look and feel like the official app while using a small fraction of its memory.
+
+> [!WARNING]
+> This is a fork of [chomosuke9/wazzapclients](https://github.com/chomosuke9/wazzapclients)
+> added my own impl, not related with chomosuke9
 
 [![Build](https://github.com/chomosuke9/wazzapclients/actions/workflows/build.yml/badge.svg)](https://github.com/chomosuke9/wazzapclients/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/chomosuke9/wazzapclients?include_prereleases&sort=semver)](https://github.com/chomosuke9/wazzapclients/releases)

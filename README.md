@@ -10,8 +10,8 @@ It aims to look and feel like the official app while using a small fraction of i
 > [!WARNING]
 > This is the OpenWA fork of WazzapClients.
 
-[![Build](https://github.com/skidy89/WazzapClients/actions/workflows/build.yml/badge.svg)](https://github.com/skidy89/WazzapClients/actions/workflows/build.yml)
-[![Release](https://img.shields.io/github/v/release/skidy89/openWA?include_prereleases&sort=semver)](https://github.com/skidy89/WazzapClients/releases)
+[![Build](https://github.com/skidy89/openWA/actions/workflows/build.yml/badge.svg)](https://github.com/skidy89/openWA/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/skidy89/openWA?include_prereleases&sort=semver)](https://github.com/skidy89/openWA/releases)
 ![Go](https://img.shields.io/github/go-mod/go-version/skidy89/openWA)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-25D366)
 
@@ -210,7 +210,7 @@ photos exactly as they are.
 ## Download
 
 Prebuilt packages for **Windows** (amd64) and **Linux** (amd64) are on the
-[Releases](https://github.com/skidy89/WazzapClients/releases) page and attached to every CI run.
+[Releases](https://github.com/skidy89/openWA/releases) page and attached to every CI run.
 
 - `OpenWA-Setup.exe` installs the app for your user only. It doesn't need admin rights.
 - `OpenWA-windows-amd64.exe` is the same app without an installer.

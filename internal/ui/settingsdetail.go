@@ -824,7 +824,7 @@ func (u *UI) shortcutSettings(enterSend bool) []settingsSection {
 const (
 	helpCentreURL = "https://faq.whatsapp.com/"
 	issuesURL     = "https://github.com/skidy89/skidy89/issues"
-	sourceURL     = "https://github.com/skidy89/WazzapClients"
+	sourceURL     = "https://github.com/skidy89/openWA"
 	legalURL      = "https://www.whatsapp.com/legal/"
 )
 

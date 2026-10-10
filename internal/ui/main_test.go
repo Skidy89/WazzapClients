@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
+	"github.com/skidy89/openWA/internal/mock"
 )
 
 // The tests run on a clock of their own: a fixed afternoon in UTC, which

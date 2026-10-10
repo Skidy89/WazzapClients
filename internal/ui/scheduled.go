@@ -9,9 +9,9 @@ import (
 	"gioui.org/layout"
 	"gioui.org/op"
 
-	"github.com/chomosuke9/wazzapclients/internal/auto"
-	"github.com/chomosuke9/wazzapclients/internal/command"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/auto"
+	"github.com/skidy89/openWA/internal/command"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Scheduled messages (/schedule) show after a chat's newest message, as

@@ -8,12 +8,11 @@ A native WhatsApp client written in Go: no WebView, no Electron, no Chromium.
 It aims to look and feel like the official app while using a small fraction of its memory.
 
 > [!WARNING]
-> This is a fork of [chomosuke9/wazzapclients](https://github.com/chomosuke9/wazzapclients)
-> added my own impl, not related with chomosuke9
+> This is the OpenWA fork of WazzapClients.
 
-[![Build](https://github.com/chomosuke9/wazzapclients/actions/workflows/build.yml/badge.svg)](https://github.com/chomosuke9/wazzapclients/actions/workflows/build.yml)
-[![Release](https://img.shields.io/github/v/release/chomosuke9/wazzapclients?include_prereleases&sort=semver)](https://github.com/chomosuke9/wazzapclients/releases)
-![Go](https://img.shields.io/github/go-mod/go-version/chomosuke9/wazzapclients)
+[![Build](https://github.com/skidy89/WazzapClients/actions/workflows/build.yml/badge.svg)](https://github.com/skidy89/WazzapClients/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/skidy89/openWA?include_prereleases&sort=semver)](https://github.com/skidy89/WazzapClients/releases)
+![Go](https://img.shields.io/github/go-mod/go-version/skidy89/openWA)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-25D366)
 
 <img src="docs/screenshots/hero.png" alt="WazzapClients in its light and dark themes" width="900">
@@ -211,10 +210,10 @@ photos exactly as they are.
 ## Download
 
 Prebuilt packages for **Windows** (amd64) and **Linux** (amd64) are on the
-[Releases](https://github.com/chomosuke9/wazzapclients/releases) page and attached to every CI run.
+[Releases](https://github.com/skidy89/WazzapClients/releases) page and attached to every CI run.
 
-- `WazzapClients-Setup.exe` installs the app for your user only. It doesn't need admin rights.
-- `WazzapClients-windows-amd64.exe` is the same app without an installer.
+- `OpenWA-Setup.exe` installs the app for your user only. It doesn't need admin rights.
+- `OpenWA-windows-amd64.exe` is the same app without an installer.
 
 To update, use **Settings > Help > Check for updates**, which installs the new release in place.
 See [docs/releasing.md](docs/releasing.md) for how releases are made and signed.

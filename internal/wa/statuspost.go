@@ -14,7 +14,7 @@ import (
 	"github.com/polymorfa/hypermeow/types"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // PostStatus implements model.Backend. The update is stored in wz_status

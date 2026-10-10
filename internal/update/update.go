@@ -30,7 +30,7 @@ import (
 )
 
 // Repo is the GitHub repository releases come from.
-const Repo = "skidy89/WazzapClients"
+const Repo = "skidy89/openWA"
 
 // publicKey verifies SHA256SUMS.sig (base64 of the raw ed25519 key).
 var publicKey = mustKey("kCxlEbDV1FL8EM1zdOwDs5PYpQDNcwX5BBbQvnGgza0=")
@@ -82,7 +82,7 @@ func AssetName() string {
 	if runtime.GOOS == "windows" {
 		ext = ".exe"
 	}
-	return fmt.Sprintf("WazzapClients-%s-%s%s", runtime.GOOS, runtime.GOARCH, ext)
+	return fmt.Sprintf("OpenWA-%s-%s%s", runtime.GOOS, runtime.GOARCH, ext)
 }
 
 var client = &http.Client{Timeout: 10 * time.Minute}
@@ -92,7 +92,7 @@ func get(ctx context.Context, url, version string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("User-Agent", "skidy89/"+version)
+	req.Header.Set("User-Agent", "openWA/"+version)
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
@@ -120,7 +120,7 @@ func Check(ctx context.Context, current string) (*Release, error) {
 		return nil, err
 	}
 	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("User-Agent", "skidy89/"+current)
+	req.Header.Set("User-Agent", "openWA/"+current)
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err

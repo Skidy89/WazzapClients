@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
+	"github.com/skidy89/openWA/internal/mock"
 )
 
 func TestUpdateRows(t *testing.T) {

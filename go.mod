@@ -1,4 +1,4 @@
-module github.com/chomosuke9/wazzapclients
+module github.com/skidy89/openWA
 
 go 1.27.0
 

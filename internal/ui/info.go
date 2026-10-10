@@ -17,8 +17,8 @@ import (
 	"gioui.org/unit"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // infoState is the contact / group info panel beside a conversation.

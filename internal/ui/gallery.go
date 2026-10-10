@@ -14,8 +14,8 @@ import (
 	"gioui.org/text"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // The Media panel: photos and videos, documents and links from every

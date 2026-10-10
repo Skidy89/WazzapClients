@@ -10,7 +10,7 @@ import (
 	"gioui.org/unit"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 const railWidth = unit.Dp(68)

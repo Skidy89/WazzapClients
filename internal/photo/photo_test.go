@@ -8,7 +8,7 @@ import (
 	"image/png"
 	"testing"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func TestPrepare(t *testing.T) {

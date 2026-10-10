@@ -13,8 +13,8 @@ import (
 	"gioui.org/op/paint"
 	"gioui.org/unit"
 
-	"github.com/chomosuke9/wazzapclients/internal/desktop"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/desktop"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // View once messages (model.KindViewOnce) show as a line in their bubble

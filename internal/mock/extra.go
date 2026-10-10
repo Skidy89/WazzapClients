@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Demo data for the non-chat parts of the UI: statuses, channels,

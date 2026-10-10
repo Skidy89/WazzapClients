@@ -3,7 +3,7 @@ package command
 import (
 	"errors"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func runHideTag(c *Context) error {

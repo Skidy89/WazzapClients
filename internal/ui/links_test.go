@@ -13,8 +13,8 @@ import (
 	"gioui.org/op"
 	"gioui.org/unit"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // TestLinkSpans checks which part of a text is a link: not the punctuation

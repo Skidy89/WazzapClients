@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // TestAlbumRows checks an album's pictures share one list row, which a

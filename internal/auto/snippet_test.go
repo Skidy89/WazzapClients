@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func TestSnippetHonorsGhostAndEndsAFK(t *testing.T) {

@@ -5,8 +5,8 @@ import (
 
 	"gioui.org/io/key"
 
-	"github.com/chomosuke9/wazzapclients/internal/command"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/command"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Every gray switch must leave both its saved preference and UI state off

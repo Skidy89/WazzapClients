@@ -19,7 +19,7 @@ import (
 	xdraw "golang.org/x/image/draw"
 	_ "golang.org/x/image/webp"
 
-	"github.com/chomosuke9/wazzapclients/internal/photo"
+	"github.com/skidy89/openWA/internal/photo"
 )
 
 // Size is the width and height of a sticker.

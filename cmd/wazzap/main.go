@@ -17,13 +17,13 @@ import (
 	"gioui.org/app"
 	"gioui.org/unit"
 
-	"github.com/chomosuke9/wazzapclients/internal/accounts"
-	"github.com/chomosuke9/wazzapclients/internal/desktop"
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui"
-	"github.com/chomosuke9/wazzapclients/internal/update"
-	"github.com/chomosuke9/wazzapclients/internal/wa"
+	"github.com/skidy89/openWA/internal/accounts"
+	"github.com/skidy89/openWA/internal/desktop"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui"
+	"github.com/skidy89/openWA/internal/update"
+	"github.com/skidy89/openWA/internal/wa"
 )
 
 // version is the release this build is, set by the release build

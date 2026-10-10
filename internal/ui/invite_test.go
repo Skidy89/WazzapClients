@@ -3,7 +3,7 @@ package ui
 import (
 	"testing"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
+	"github.com/skidy89/openWA/internal/mock"
 )
 
 // TestInviteJoin checks the invite dialog with the demo groups: joining an

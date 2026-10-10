@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // extraContacts are saved contacts you have no chat with yet.

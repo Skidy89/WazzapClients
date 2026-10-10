@@ -19,10 +19,10 @@ import (
 	"gioui.org/widget"
 	"gioui.org/widget/material"
 
-	"github.com/chomosuke9/wazzapclients/internal/filepick"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/osclip"
-	"github.com/chomosuke9/wazzapclients/internal/photo"
+	"github.com/skidy89/openWA/internal/filepick"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/osclip"
+	"github.com/skidy89/openWA/internal/photo"
 )
 
 // The composer's attach menu: files picked with the system's dialog,

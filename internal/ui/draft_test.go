@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // TestDraftKeptAcrossChats: text, a reply and a mention typed in one chat

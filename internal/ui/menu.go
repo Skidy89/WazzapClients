@@ -8,7 +8,7 @@ import (
 	"gioui.org/op/clip"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // menuState is the chat list's ⋮ drop-down, WhatsApp Desktop's minus

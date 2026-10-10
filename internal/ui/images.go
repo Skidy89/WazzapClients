@@ -15,8 +15,8 @@ import (
 	"gioui.org/op/paint"
 	_ "golang.org/x/image/webp" // stickers
 
-	"github.com/chomosuke9/wazzapclients/internal/photo"
-	"github.com/chomosuke9/wazzapclients/internal/webpanim"
+	"github.com/skidy89/openWA/internal/photo"
+	"github.com/skidy89/openWA/internal/webpanim"
 )
 
 type imgState int

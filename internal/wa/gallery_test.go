@@ -10,7 +10,7 @@ import (
 	"github.com/polymorfa/hypermeow/proto/waE2E"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // TestGallery checks the Media panel's pages: each kind picks its

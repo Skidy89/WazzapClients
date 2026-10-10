@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/auto"
+	"github.com/skidy89/openWA/internal/auto"
 )
 
 // errNoAuto is what /schedule and /afk say where nothing can send for

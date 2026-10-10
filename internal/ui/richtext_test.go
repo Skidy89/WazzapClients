@@ -7,7 +7,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
+	"github.com/skidy89/openWA/internal/mock"
 )
 
 func TestParseFormatting(t *testing.T) {

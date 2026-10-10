@@ -22,7 +22,7 @@ import (
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 
-	"github.com/chomosuke9/wazzapclients/internal/photo"
+	"github.com/skidy89/openWA/internal/photo"
 )
 
 // Preview is what a page says about itself.

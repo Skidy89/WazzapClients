@@ -6,7 +6,7 @@ import (
 
 	"gioui.org/io/key"
 
-	"github.com/chomosuke9/wazzapclients/internal/auto"
+	"github.com/skidy89/openWA/internal/auto"
 )
 
 func TestSlashSchedule(t *testing.T) {

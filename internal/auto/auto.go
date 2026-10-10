@@ -20,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Pref keys for the state it keeps.

@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/chomosuke9/wazzapclients/internal/model"
+import "github.com/skidy89/openWA/internal/model"
 
 // Demo invite links, posted in the "CS Alumni 2019" chat: one group needs
 // an admin's approval, the other lets you straight in.

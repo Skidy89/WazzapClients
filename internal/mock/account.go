@@ -3,7 +3,7 @@ package mock
 import (
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // demoAccount is the demo account's profile and settings.

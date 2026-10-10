@@ -15,13 +15,13 @@ import (
 	"gioui.org/op"
 	"gioui.org/unit"
 
-	"github.com/chomosuke9/wazzapclients/internal/accounts"
-	"github.com/chomosuke9/wazzapclients/internal/auto"
-	"github.com/chomosuke9/wazzapclients/internal/desktop"
-	"github.com/chomosuke9/wazzapclients/internal/memtrim"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/notify"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/accounts"
+	"github.com/skidy89/openWA/internal/auto"
+	"github.com/skidy89/openWA/internal/desktop"
+	"github.com/skidy89/openWA/internal/memtrim"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/notify"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 const (

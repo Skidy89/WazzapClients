@@ -22,11 +22,11 @@ import (
 	"gioui.org/widget/material"
 	"rsc.io/qr"
 
-	"github.com/chomosuke9/wazzapclients/internal/accounts"
-	"github.com/chomosuke9/wazzapclients/internal/auto"
-	"github.com/chomosuke9/wazzapclients/internal/i18n"
-	"github.com/chomosuke9/wazzapclients/internal/linkpreview"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/accounts"
+	"github.com/skidy89/openWA/internal/auto"
+	"github.com/skidy89/openWA/internal/i18n"
+	"github.com/skidy89/openWA/internal/linkpreview"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Chat list filters, in chip order.

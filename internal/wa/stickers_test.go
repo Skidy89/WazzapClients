@@ -18,7 +18,7 @@ import (
 	waLog "github.com/polymorfa/hypermeow/util/log"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func testBackend(t *testing.T) *Backend {

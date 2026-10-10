@@ -9,7 +9,7 @@ import (
 	"github.com/polymorfa/hypermeow/proto/waE2E"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // TestPollVotes checks that a poll keeps its options, that each voter's

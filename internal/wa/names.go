@@ -9,7 +9,7 @@ import (
 
 	"github.com/polymorfa/hypermeow/types"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // nameCache memoizes display names; a chat list resolves the same senders

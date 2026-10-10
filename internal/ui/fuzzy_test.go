@@ -3,7 +3,7 @@ package ui
 import (
 	"testing"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func TestNameScore(t *testing.T) {

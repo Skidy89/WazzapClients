@@ -6,10 +6,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/desktop"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/notify"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/desktop"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/notify"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // Preferences (Backend.Pref) of Settings > Notifications and General.

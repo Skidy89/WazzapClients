@@ -12,7 +12,7 @@ import (
 	"github.com/polymorfa/hypermeow/store"
 	"github.com/polymorfa/hypermeow/types"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Contacts implements model.Backend. The device store keeps every user it

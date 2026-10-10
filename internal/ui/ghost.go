@@ -8,7 +8,7 @@ import (
 	"gioui.org/op/clip"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Ghost mode (/ghost) makes you invisible: the backend sends no read

@@ -4,7 +4,7 @@ import (
 	"slices"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // demoVotes votes in the demo's poll and answers its event.

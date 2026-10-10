@@ -10,9 +10,9 @@ Versi Go mengikuti `go.mod`. Kedua target menerapkan patch go-text
 
 | File | Isi |
 | --- | --- |
-| `WazzapClients-Setup.exe` | Installer Windows (Inno Setup, `installer/wazzap.iss`) |
-| `WazzapClients-windows-amd64.exe` | Aplikasi Windows portable, tanpa jendela console; juga file yang diunduh oleh tombol update |
-| `WazzapClients-linux-amd64` | Executable Linux |
+| `OpenWA-Setup.exe` | Installer Windows (Inno Setup, `installer/wazzap.iss`) |
+| `OpenWA-windows-amd64.exe` | Aplikasi Windows portable, tanpa jendela console; juga file yang diunduh oleh tombol update |
+| `OpenWA-linux-amd64` | Executable Linux |
 | `SHA256SUMS`, `SHA256SUMS.sig` | Checksum semua file di atas, dan tanda tangan ed25519-nya (hanya di release) |
 
 Unduh hasil dari bagian **Artifacts** pada run yang berhasil. Artefak disimpan
@@ -34,7 +34,7 @@ dibuat aplikasi sendiri (notifikasi dan start at login), lalu menanyakan apakah
 chat dan sesi WhatsApp (`%AppData%\WazzapClients`) ikut dihapus. Defaultnya tidak.
 
 Untuk membangunnya secara lokal, pasang [Inno Setup 6](https://jrsoftware.org/isinfo.php),
-build exe ke `bin/dist/WazzapClients-windows-amd64.exe`, lalu jalankan
+build exe ke `bin/dist/OpenWA-windows-amd64.exe`, lalu jalankan
 `iscc /DAppVersion=0.10.0 installer\wazzap.iss`.
 
 ## Update dari dalam aplikasi
@@ -89,5 +89,5 @@ Run manual dan push branch hanya menghasilkan artefak, tanpa membuat release.
 
 Untuk memeriksa unduhan di Linux, simpan file dan `SHA256SUMS` dalam satu
 direktori, lalu jalankan `sha256sum --check --ignore-missing SHA256SUMS`. Di
-PowerShell, gunakan `Get-FileHash .\WazzapClients-Setup.exe -Algorithm SHA256`
+PowerShell, gunakan `Get-FileHash .\OpenWA-Setup.exe -Algorithm SHA256`
 dan cocokkan hasilnya dengan entri di `SHA256SUMS`.

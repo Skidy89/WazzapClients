@@ -12,9 +12,9 @@ import (
 	"gioui.org/unit"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/accounts"
-	"github.com/chomosuke9/wazzapclients/internal/memtrim"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/accounts"
+	"github.com/skidy89/openWA/internal/memtrim"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Several WhatsApp accounts can be linked; one is open at a time. The

@@ -7,8 +7,8 @@ import (
 	"gioui.org/layout"
 	"gioui.org/unit"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // Pages that open inside the info panel, with a back arrow: a chat's

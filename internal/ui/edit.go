@@ -9,7 +9,7 @@ import (
 	"gioui.org/layout"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Editing a message happens in the composer, like replying: a bar above

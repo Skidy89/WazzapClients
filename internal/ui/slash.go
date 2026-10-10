@@ -15,10 +15,10 @@ import (
 	"gioui.org/op/clip"
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/command"
-	"github.com/chomosuke9/wazzapclients/internal/filepick"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/command"
+	"github.com/skidy89/openWA/internal/filepick"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // Slash commands, like Discord's: typing "/" at the start of a message

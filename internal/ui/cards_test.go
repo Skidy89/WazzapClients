@@ -6,8 +6,8 @@ import (
 
 	"gioui.org/widget"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // TestVotePoll checks that clicking an option votes for it, that another

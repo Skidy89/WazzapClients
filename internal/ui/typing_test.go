@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"gioui.org/io/key"
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 type typingBackend struct {

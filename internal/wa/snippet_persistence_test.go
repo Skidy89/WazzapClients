@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
 	whatsmeow "github.com/polymorfa/hypermeow"
 	"github.com/polymorfa/hypermeow/store"
 	waLog "github.com/polymorfa/hypermeow/util/log"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func TestSnippetPersistenceAndAccountSeparation(t *testing.T) {

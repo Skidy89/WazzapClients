@@ -24,10 +24,10 @@ import (
 	"gioui.org/unit"
 	_ "golang.org/x/image/webp"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui"
-	"github.com/chomosuke9/wazzapclients/internal/wa"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui"
+	"github.com/skidy89/openWA/internal/wa"
 )
 
 func main() {

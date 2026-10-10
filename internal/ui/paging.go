@@ -5,7 +5,7 @@ import (
 
 	"gioui.org/layout"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // The open chat's messages load a page at a time as the list nears an end

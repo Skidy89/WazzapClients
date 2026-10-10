@@ -29,7 +29,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	_ "modernc.org/sqlite" // pure-Go SQLite driver, registers "sqlite"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Backend implements model.Backend on top of a hypermeow client.
@@ -149,7 +149,7 @@ func Open(dataDir string, debug bool) (*Backend, error) {
 	}
 
 	// How this client shows up under "Linked devices" on the phone.
-	store.SetOSInfo("WazzapClients", [3]uint32{0, 1, 0})
+	store.SetOSInfo("OpenWACli", [3]uint32{0, 1, 0})
 	store.DeviceProps.PlatformType = waCompanionReg.DeviceProps_DESKTOP.Enum()
 
 	// Create the client now (without connecting) so stored chats can be
@@ -260,7 +260,7 @@ func (b *Backend) pair() {
 			b.emit(model.ConnEvent{State: model.StateQRExpired})
 		case whatsmeow.QRChannelEventPasskeyRequest:
 			cli.Disconnect()
-			b.fail("Your phone asked for passkey verification, which WazzapClients doesn't support yet.")
+			b.fail("Your phone asked for passkey verification, which OpenWACli doesn't support yet.")
 		case whatsmeow.QRChannelEventError:
 			b.fail("Linking failed: %v", item.Error)
 		default:

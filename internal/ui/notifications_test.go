@@ -3,9 +3,9 @@ package ui
 import (
 	"testing"
 
-	"github.com/chomosuke9/wazzapclients/internal/mock"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/notify"
+	"github.com/skidy89/openWA/internal/mock"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/notify"
 )
 
 type notifyTest struct {

@@ -13,11 +13,11 @@ import (
 	"gioui.org/widget"
 	"gioui.org/widget/material"
 
-	"github.com/chomosuke9/wazzapclients/internal/desktop"
-	"github.com/chomosuke9/wazzapclients/internal/filepick"
-	"github.com/chomosuke9/wazzapclients/internal/i18n"
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/ui/icon"
+	"github.com/skidy89/openWA/internal/desktop"
+	"github.com/skidy89/openWA/internal/filepick"
+	"github.com/skidy89/openWA/internal/i18n"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/ui/icon"
 )
 
 // Preferences of the Chats and Account settings (Backend.Pref keys).
@@ -838,7 +838,7 @@ func (u *UI) helpSettings() []settingsSection {
 			link("issues", icBubble, u.locale.Text("Report a problem"), u.locale.Text("Tell us about a bug in")+" "+appName, issuesURL),
 		}},
 		{title: u.locale.Text("About"), rows: append(u.updateRows(),
-			link("source", icLink, u.locale.Text("Source code"), "github.com/skidy89/WazzapClients", sourceURL),
+			link("source", icLink, u.locale.Text("Source code"), "github.com/skidy89/openWA", sourceURL),
 			link("legal", icDocument, u.locale.Text("Terms and Privacy Policy"), u.locale.Text("WhatsApp's terms apply to your account"), legalURL),
 		), note: appName + " " + u.locale.Text("is an unofficial WhatsApp client. It isn't made by or affiliated with WhatsApp or Meta.")},
 	}

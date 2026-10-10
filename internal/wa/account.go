@@ -20,8 +20,8 @@ import (
 	"github.com/polymorfa/hypermeow/types"
 	"github.com/polymorfa/hypermeow/types/events"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
-	"github.com/chomosuke9/wazzapclients/internal/photo"
+	"github.com/skidy89/openWA/internal/model"
+	"github.com/skidy89/openWA/internal/photo"
 )
 
 // Meta keys of the account details. accountKey caches what the server

@@ -5,7 +5,7 @@ import (
 
 	"gioui.org/op"
 
-	"github.com/chomosuke9/wazzapclients/internal/model"
+	"github.com/skidy89/openWA/internal/model"
 )
 
 // Chat actions shared by the chat list's menu and the info panels (and any

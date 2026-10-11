@@ -159,6 +159,9 @@ func (u *UI) layoutHistoryChips(gtx C) D {
 
 // layoutLogin is the device-linking screen shown while there is no session.
 func (u *UI) layoutLogin(gtx C) D {
+	if (u.mobile) {
+		return u.layoutMobileLogin(gtx)
+	}
 	p := u.pal
 	bg := p.Frame
 	dims := fill(gtx, bg)

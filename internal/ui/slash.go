@@ -870,10 +870,10 @@ func (u *UI) layoutNote(gtx C, ln *localNote, maxW int) D {
 	body := record(cgtx, u.label(15, text, col, labelOpts{maxLines: 0}).Layout)
 	footer := record(cgtx, func(gtx C) D {
 		return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
-			layout.Rigid(u.label(12.5, "Only you can see this · ", p.MetaIn, labelOpts{maxLines: 1}).Layout),
+			layout.Rigid(u.label(12.5, u.locale.Text("ui.ephemeral.note"), p.MetaIn, labelOpts{maxLines: 1}).Layout),
 			layout.Rigid(func(gtx C) D {
 				return clickable(gtx, u.btn("note:"+ln.id+":x"),
-					u.label(12.5, "Dismiss", p.BubbleButton, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
+					u.label(12.5, u.locale.Text("ui.ephemeral.note.dissmiss"), p.BubbleButton, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
 			}),
 		)
 	})

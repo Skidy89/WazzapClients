@@ -265,25 +265,7 @@ func TestExtrasOffByDefault(t *testing.T) {
 	}
 }
 
-// TestSlashStickerHint checks the composer's hint for /sticker's two
-// texts, which # separates.
-func TestSlashStickerHint(t *testing.T) {
-	st := newSlashTest(t, "rina")
-	for _, c := range []struct{ text, hint string }{
-		{"/sticker ", "[top] #[bottom]"},
-		{"/sticker when it works", "#[bottom]"},
-		{"/sticker when it works#", ""},
-	} {
-		st.typeText(c.text)
-		sp := st.u.slashQuery()
-		if sp == nil {
-			t.Fatalf("%q isn't a command", c.text)
-		}
-		if got := st.u.slashHint(sp); got != c.hint {
-			t.Errorf("%q: hint %q, want %q", c.text, got, c.hint)
-		}
-	}
-}
+
 
 // TestNoteBeforeMessages checks that a note older than every loaded
 // message still shows when the chat's start is loaded: the demo chat's

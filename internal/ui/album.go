@@ -117,6 +117,7 @@ func (u *UI) layoutAlbumRow(gtx C, c *model.Chat, r convRow, maxW, margin int) D
 	out := m0.FromMe
 	w := gtx.Constraints.Max.X
 	sel := u.conv.selecting
+	center := isChannelID(c.ID)
 	rowKey := "arow:" + m0.ID
 	if sel && u.btn(rowKey).Clicked(gtx) {
 		all := u.pickedAll(ms)
@@ -143,7 +144,9 @@ func (u *UI) layoutAlbumRow(gtx C, c *model.Chat, r convRow, maxW, margin int) D
 		return dims
 	})
 	x := shift
-	if out {
+	if center {
+		x = (w - bubble.size.X) / 2
+	} else if out {
 		x = w - bubble.size.X
 	}
 	h := bubble.size.Y
@@ -231,7 +234,11 @@ func (u *UI) layoutAlbum(gtx C, c *model.Chat, r convRow, maxW int) (D, []image.
 		bg, quoteBg, secondary = p.BubbleOut, p.QuoteOut, p.SecondaryOut
 	}
 	pad := gtx.Dp(3)
-	gridW := min(maxW-2*pad, gtx.Dp(330))
+	imageMax := gtx.Dp(330)
+	if isChannelID(c.ID) {
+		imageMax = gtx.Dp(560)
+	}
+	gridW := min(maxW-2*pad, imageMax)
 	textInset := gtx.Dp(6)
 	cgtx := gtx
 	cgtx.Constraints = layout.Constraints{Max: image.Pt(gridW, 1<<20)}
@@ -294,7 +301,7 @@ func (u *UI) layoutAlbum(gtx C, c *model.Chat, r convRow, maxW int) (D, []image.
 		t.Pop()
 		y += quote.size.Y + gtx.Dp(5)
 	}
-	maxPx := gtx.Dp(330) // as a picture on its own, so they share the decoded copy
+	maxPx := imageMax // as a picture on its own, so they share the decoded copy
 	for i, tr := range tiles {
 		m := ms[i]
 		tr = tr.Add(image.Pt(0, y))

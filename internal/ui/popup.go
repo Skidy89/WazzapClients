@@ -183,29 +183,29 @@ func (u *UI) chatMenuItems(c *model.Chat) []menuItem {
 	var items []menuItem
 	add := func(it menuItem) { items = append(items, it) }
 	if c.Archived {
-		add(menuItem{key: "archive", ic: icArchive, label: "Unarchive chat", run: func() { b.SetArchived(id, false) }})
+		add(menuItem{key: "archive", ic: icArchive, label: u.locale.Text("Unarchive chat"), run: func() { b.SetArchived(id, false) }})
 	} else {
-		add(menuItem{key: "archive", ic: icArchive, label: "Archive chat", run: func() { b.SetArchived(id, true) }})
+		add(menuItem{key: "archive", ic: icArchive, label: u.locale.Text("Archive chat"), run: func() { b.SetArchived(id, true) }})
 	}
 	if c.Muted {
-		add(menuItem{key: "mute", ic: icBellLine, label: "Unmute notifications", sub: muteStatus(c), run: func() { b.SetMuted(id, false, 0) }})
+		add(menuItem{key: "mute", ic: icBellLine, label: u.locale.Text("Unmute notifications"), sub: muteStatus(c), run: func() { b.SetMuted(id, false, 0) }})
 	} else {
-		add(menuItem{key: "mute", ic: icMuted, label: "Mute notifications", run: func() { u.openMuteMenu(c) }})
+		add(menuItem{key: "mute", ic: icMuted, label: u.locale.Text("Mute notifications"), run: func() { u.openMuteMenu(c) }})
 	}
 	if !c.Archived {
 		if c.Pinned {
-			add(menuItem{key: "pin", ic: icPin, label: "Unpin chat", run: func() { b.SetPinned(id, false) }})
+			add(menuItem{key: "pin", ic: icPin, label: u.locale.Text("Unpin chat"), run: func() { b.SetPinned(id, false) }})
 		} else {
-			add(menuItem{key: "pin", ic: icPin, label: "Pin chat", run: func() { b.SetPinned(id, true) }})
+			add(menuItem{key: "pin", ic: icPin, label: u.locale.Text("Pin chat"), run: func() { b.SetPinned(id, true) }})
 		}
 	}
 	if c.Unread != 0 {
-		add(menuItem{key: "read", ic: icMarkUnread, label: "Mark as read", run: func() {
+		add(menuItem{key: "read", ic: icMarkUnread, label: u.locale.Text("Mark as read"), run: func() {
 			b.Open(id)
 			c.Unread = 0
 		}})
 	} else {
-		add(menuItem{key: "read", ic: icMarkUnread, label: "Mark as unread", run: func() {
+		add(menuItem{key: "read", ic: icMarkUnread, label: u.locale.Text("Mark as unread"), run: func() {
 			b.SetUnread(id, true)
 			if u.selected != nil && u.selected.ID == id {
 				u.closeChat()
@@ -213,21 +213,21 @@ func (u *UI) chatMenuItems(c *model.Chat) []menuItem {
 		}})
 	}
 	if c.Favorite {
-		add(menuItem{key: "fav", ic: icHeart, label: "Remove from favourites", run: func() { b.SetFavorite(id, false) }})
+		add(menuItem{key: "fav", ic: icHeart, label: u.locale.Text("Remove from favourites"), run: func() { b.SetFavorite(id, false) }})
 	} else {
-		add(menuItem{key: "fav", ic: icHeart, label: "Add to favourites", run: func() { b.SetFavorite(id, true) }})
+		add(menuItem{key: "fav", ic: icHeart, label: u.locale.Text("Add to favourites"), run: func() { b.SetFavorite(id, true) }})
 	}
 	if u.selected != nil && u.selected.ID == id {
-		add(menuItem{key: "close", ic: icCancel, label: "Close chat", run: func() { u.closeChat() }})
+		add(menuItem{key: "close", ic: icCancel, label: u.locale.Text("Close chat"), run: func() { u.closeChat() }})
 	}
-	add(menuItem{key: "lists", ic: icAddToList, label: "Add to list", arrow: true})
+	add(menuItem{key: "lists", ic: icAddToList, label: u.locale.Text("Add to list"), arrow: true})
 	add(menuItem{divider: true})
-	add(menuItem{key: "clear", ic: icClear, label: "Clear chat", run: func() { u.confirmClearChat(id) }})
+	add(menuItem{key: "clear", ic: icClear, label: u.locale.Text("Clear chat"), run: func() { u.confirmClearChat(id) }})
 	if c.IsGroup {
 		name := c.Name
-		add(menuItem{key: "exit", ic: icLogout, label: "Exit group", run: func() { u.confirmExitGroup(id, name) }})
+		add(menuItem{key: "exit", ic: icLogout, label: u.locale.Text("Exit group"), run: func() { u.confirmExitGroup(id, name) }})
 	} else {
-		add(menuItem{key: "delete", ic: icDelete, label: "Delete chat", run: func() { u.confirmDeleteChat(id) }})
+		add(menuItem{key: "delete", ic: icDelete, label: u.locale.Text("Delete chat"), run: func() { u.confirmDeleteChat(id) }})
 	}
 	return items
 }
@@ -242,58 +242,58 @@ func (u *UI) messageMenuItems(c *model.Chat, m *model.Message) []menuItem {
 	// A message kept after its sender deleted it is gone for everyone else.
 	revoked := !m.Revoked.IsZero()
 	if m.FromMe && !deleted && !isChannelID(c.ID) && m.Receipt != model.Pending && m.Receipt != model.Failed {
-		add(menuItem{key: "info", ic: icInfo, label: "Message info", run: func() { u.openMsgInfo(m) }})
+		add(menuItem{key: "info", ic: icInfo, label: u.locale.Text("Message info"), run: func() { u.openMsgInfo(m) }})
 	}
 	if !deleted && !revoked && !isChannelID(c.ID) && u.sendBlocked(c) == "" {
-		add(menuItem{key: "reply", ic: icReply, label: "Reply", run: func() { u.startReply(m) }})
+		add(menuItem{key: "reply", ic: icReply, label: u.locale.Text("Reply"), run: func() { u.startReply(m) }})
 	}
 	if c.IsGroup && !m.FromMe && m.SenderID != "" && !deleted {
-		add(menuItem{key: "private", ic: icReplyPrivate, label: "Reply privately", run: func() { u.replyPrivately(m) }})
-		add(menuItem{key: "dm", ic: icChats, label: "Message " + shortName(plainText(m.Sender)), run: func() { u.openDirect(m.SenderID, m.Sender) }})
+		add(menuItem{key: "private", ic: icReplyPrivate, label: u.locale.Text("Reply privately"), run: func() { u.replyPrivately(m) }})
+		add(menuItem{key: "dm", ic: icChats, label: u.locale.Text("Message") + " " + shortName(plainText(m.Sender)), run: func() { u.openDirect(m.SenderID, m.Sender) }})
 	}
 	if txt := plainText(m.Text); txt != "" && !deleted && m.Kind != model.KindViewOnce {
 		if sel := u.textSel.selected(m.ID); sel != "" {
 			txt = sel
 		}
-		add(menuItem{key: "copy", ic: icCopy, label: "Copy", run: func() { u.copyText(stripIsolates(txt)) }})
+		add(menuItem{key: "copy", ic: icCopy, label: u.locale.Text("Copy"), run: func() { u.copyText(stripIsolates(txt)) }})
 	}
 	if m.CanEdit(u.now()) && !isChannelID(c.ID) && u.sendBlocked(c) == "" {
-		add(menuItem{key: "edit", ic: icEdit, label: "Edit", run: func() { u.startEdit(m) }})
+		add(menuItem{key: "edit", ic: icEdit, label: u.locale.Text("Edit"), run: func() { u.startEdit(m) }})
 	}
 	if u.editHistory && !m.Edited.IsZero() && !deleted {
-		add(menuItem{key: "edits", ic: icEditNote, label: "Edit history", run: func() { u.openEditHistory(m) }})
+		add(menuItem{key: "edits", ic: icEditNote, label: u.locale.Text("Edit history"), run: func() { u.openEditHistory(m) }})
 	}
 	if canSave(m) {
-		add(menuItem{key: "save", ic: icDownload, label: "Save as…", run: func() { b.SaveMedia(m) }})
+		add(menuItem{key: "save", ic: icDownload, label: u.locale.Text("Save as…"), run: func() { b.SaveMedia(m) }})
 	}
 	if !deleted {
 		if m.Kind != model.KindUnsupported && m.Kind != model.KindViewOnce {
-			add(menuItem{key: "forward", ic: icForward, label: "Forward", run: func() { u.openForward([]*model.Message{m}) }})
+			add(menuItem{key: "forward", ic: icForward, label: u.locale.Text("Forward"), run: func() { u.openForward([]*model.Message{m}) }})
 		}
 		if !isChannelID(c.ID) && !revoked {
 			if m.Pinned {
-				add(menuItem{key: "pin", ic: icPin, label: "Unpin", run: func() { b.PinMessage(m, false) }})
+				add(menuItem{key: "pin", ic: icPin, label: u.locale.Text("Unpin"), run: func() { b.PinMessage(m, false) }})
 			} else {
-				add(menuItem{key: "pin", ic: icPin, label: "Pin", run: func() { b.PinMessage(m, true) }})
+				add(menuItem{key: "pin", ic: icPin, label: u.locale.Text("Pin"), run: func() { b.PinMessage(m, true) }})
 			}
 		}
 		if m.Starred {
-			add(menuItem{key: "star", ic: icStar, label: "Unstar", run: func() { b.Star(m, false) }})
+			add(menuItem{key: "star", ic: icStar, label: u.locale.Text("Unstar"), run: func() { b.Star(m, false) }})
 		} else {
-			add(menuItem{key: "star", ic: icStar, label: "Star", run: func() { b.Star(m, true) }})
+			add(menuItem{key: "star", ic: icStar, label: u.locale.Text("Star"), run: func() { b.Star(m, true) }})
 		}
 		if m.Media == model.MediaSticker && !isChannelID(c.ID) {
 			if u.ctx.fav {
-				add(menuItem{key: "favsticker", ic: icHeart, label: "Remove from Favourites", run: func() { b.SetFavoriteSticker(m, false) }})
+				add(menuItem{key: "favsticker", ic: icHeart, label: u.locale.Text("Remove from Favourites"), run: func() { b.SetFavoriteSticker(m, false) }})
 			} else {
-				add(menuItem{key: "favsticker", ic: icHeart, label: "Add to Favourites", run: func() { b.SetFavoriteSticker(m, true) }})
+				add(menuItem{key: "favsticker", ic: icHeart, label: u.locale.Text("Add to Favourites"), run: func() { b.SetFavoriteSticker(m, true) }})
 			}
 		}
 	}
 	add(menuItem{divider: true})
-	add(menuItem{key: "select", ic: icCheckBox, label: "Select", run: func() { u.startSelect(m) }})
+	add(menuItem{key: "select", ic: icCheckBox, label: u.locale.Text("Select"), run: func() { u.startSelect(m) }})
 	add(menuItem{divider: true})
-	add(menuItem{key: "delete", ic: icDelete, label: "Delete", run: func() { u.confirmDelete([]*model.Message{m}) }})
+	add(menuItem{key: "delete", ic: icDelete, label: u.locale.Text("Delete"), run: func() { u.confirmDelete([]*model.Message{m}) }})
 	return items
 }
 
@@ -316,7 +316,7 @@ func stripIsolates(s string) string {
 
 func (u *UI) copyText(s string) {
 	u.pendingCopy = s
-	u.toast("Message copied")
+	u.toast(u.locale.Text("Message copied"))
 }
 
 // layoutCtxMenu draws the open context menu over everything.
@@ -509,7 +509,7 @@ func (u *UI) listItems(c *model.Chat) []menuItem {
 		}})
 	}
 	if len(items) == 0 {
-		items = append(items, menuItem{label: "No lists yet. Create lists on your phone."})
+		items = append(items, menuItem{label: u.locale.Text("No lists yet. Create lists on your phone.")})
 	}
 	return items
 }

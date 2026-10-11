@@ -89,8 +89,8 @@ func runScheduled(c *Context) error {
 	others := len(c.Auto.Jobs("")) - len(jobs)
 	elsewhere := ""
 	if others > 0 {
-		elsewhere = plural(others, "message") + " " + map[bool]string{true: "is", false: "are"}[others == 1] +
-			" scheduled in other chats."
+		elsewhere = plural(c.Locale, others, "message") + " " + c.T(map[bool]string{true: "is", false: "are"}[others == 1]) +
+			" " + c.T("scheduled in other chats.")
 	}
 	if len(jobs) == 0 {
 		c.Note(&Note{Title: c.Input, Text: strings.TrimSpace("Nothing is scheduled in this chat. " + elsewhere)})

@@ -97,17 +97,17 @@ func (u *UI) layoutMenu(gtx C) {
 		divider bool
 	}
 	items := []menuEntry{
-		{click: &m.newGroup, label: "New group", ic: icGroupAdd},
-		{click: &m.starred, label: "Starred messages", ic: icStar},
-		{click: &m.readAll, label: "Mark all as read", ic: icChats},
+		{click: &m.newGroup, label: u.locale.Text("ui.group.new"), ic: icGroupAdd},
+		{click: &m.starred, label: u.locale.Text("ui.messages.starred"), ic: icStar},
+		{click: &m.readAll, label: u.locale.Text("ui.chats.mark_all_read"), ic: icChats},
 		{divider: true},
 	}
 	switchY := -1 // the Switch account row's top, below the menu's padding
 	if len(u.accounts) > 0 {
 		switchY = (len(items)-1)*gtx.Dp(menuRowH) + gtx.Dp(menuDividerH)
-		items = append(items, menuEntry{click: &m.switchAcct, label: "Switch account", ic: icSwitchAccount, more: true})
+		items = append(items, menuEntry{click: &m.switchAcct, label: u.locale.Text("ui.account.switch"), ic: icSwitchAccount, more: true})
 	}
-	items = append(items, menuEntry{click: &m.logout, label: "Log out", ic: icLogout})
+	items = append(items, menuEntry{click: &m.logout, label: u.locale.Text("Log out"), ic: icLogout})
 
 	w := gtx.Dp(220)
 	rec := op.Record(gtx.Ops)

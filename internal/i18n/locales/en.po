@@ -265,10 +265,16 @@ msgid "command.sticker"
 msgstr "Turns the photo you reply to, or a picture you pick, into a sticker"
 
 msgid "command.sticker.top"
-msgstr "Text along the top; # starts the bottom text"
+msgstr "package name of the sticker pack"
 
 msgid "command.sticker.bottom"
-msgstr "Text along the bottom"
+msgstr "author of the sticker pack"
+
+msgid "command.sticker.ai"
+msgstr "patch your sticker with the tag: AI"
+
+msgid "command.sticker.premium"
+msgstr "patch your sticker with the tag: PREMIUM"
 
 msgid "command.purge"
 msgstr "Deletes the last messages for everyone, or those up to the one you reply to"
@@ -338,6 +344,180 @@ msgstr "Sends a message that mentions everyone in the group without showing it"
 
 msgid "command.hidetag.text"
 msgstr "The message to send"
+
+msgid "Pick someone first."
+msgstr "Pick someone first."
+
+msgid "Adding"
+msgstr "Adding"
+
+msgid "Removing"
+msgstr "Removing"
+
+msgid "Promoting"
+msgstr "Promoting"
+
+msgid "Dismissing"
+msgstr "Dismissing"
+
+msgid "Added %s to the group."
+msgstr "Added %s to the group."
+
+msgid "Removed %s from the group."
+msgstr "Removed %s from the group."
+
+msgid "%s is now a group admin."
+msgstr "%s is now a group admin."
+
+msgid "%s are now group admins."
+msgstr "%s are now group admins."
+
+msgid "%s is no longer a group admin."
+msgstr "%s is no longer a group admin."
+
+msgid "%s are no longer group admins."
+msgstr "%s are no longer group admins."
+
+msgid "Add back"
+msgstr "Add back"
+
+msgid "Nothing changed."
+msgstr "Nothing changed."
+
+msgid "Added %s back."
+msgstr "Added %s back."
+
+msgid "Invite %s"
+msgstr "Invite %s"
+
+msgid "Couldn't invite %s: %s"
+msgstr "Couldn't invite %s: %s"
+
+msgid "Sent %s an invite to join."
+msgstr "Sent %s an invite to join."
+
+msgid "Getting the invite link…"
+msgstr "Getting the invite link…"
+
+msgid "Copy link"
+msgstr "Copy link"
+
+msgid "Reset link"
+msgstr "Reset link"
+
+msgid "Reset the invite link?"
+msgstr "Reset the invite link?"
+
+msgid "The current link stops working. Anyone with it can't join anymore."
+msgstr "The current link stops working. Anyone with it can't join anymore."
+
+msgid "Locking the group…"
+msgstr "Locking the group…"
+
+msgid "Unlocking the group…"
+msgstr "Unlocking the group…"
+
+msgid "Only admins can send messages now. /lockdown off lets everyone send again."
+msgstr "Only admins can send messages now. /lockdown off lets everyone send again."
+
+msgid "Everyone can send messages again."
+msgstr "Everyone can send messages again."
+
+msgid "Changing the description…"
+msgstr "Changing the description…"
+
+msgid "Changed the group description."
+msgstr "Changed the group description."
+
+msgid "Making a sticker…"
+msgstr "Making a sticker…"
+
+msgid "Text can't go on an animated sticker yet."
+msgstr "Text can't go on an animated sticker yet."
+
+msgid "That picture is too big to make a sticker of."
+msgstr "That picture is too big to make a sticker of."
+
+msgid "Couldn't make a sticker of that picture."
+msgstr "Couldn't make a sticker of that picture."
+
+msgid "It hasn't downloaded yet. Try again in a moment."
+msgstr "It hasn't downloaded yet. Try again in a moment."
+
+msgid "Reply to a photo or a sticker, or run /sticker without replying to pick a picture."
+msgstr "Reply to a photo or a sticker, or run /sticker without replying to pick a picture."
+
+msgid "There are no messages to delete."
+msgstr "There are no messages to delete."
+
+msgid "%d from other people"
+msgstr "%d from other people"
+
+msgid "(only group admins can delete those)"
+msgstr "(only group admins can delete those)"
+
+msgid "%d too old to delete for everyone"
+msgstr "%d too old to delete for everyone"
+
+msgid "%d not sent yet"
+msgstr "%d not sent yet"
+
+msgid "None of them can be deleted: %s."
+msgstr "None of them can be deleted: %s."
+
+msgid "Left as they are: %s."
+msgstr "Left as they are: %s."
+
+msgid "Delete %s for everyone?"
+msgstr "Delete %s for everyone?"
+
+msgid "Deleted %s for everyone."
+msgstr "Deleted %s for everyone."
+
+msgid "message"
+msgstr "message"
+
+msgid "messages"
+msgstr "messages"
+
+msgid "other member"
+msgstr "other member"
+
+msgid "other members"
+msgstr "other members"
+
+msgid "and"
+msgstr "and"
+
+msgid "The group has only %s to draw from."
+msgstr "The group has only %s to draw from."
+
+msgid "🎲 *Raffle*"
+msgstr "🎲 *Raffle*"
+
+msgid "_Drawn at random from %s._"
+msgstr "_Drawn at random from %s._"
+
+msgid "is"
+msgstr "is"
+
+msgid "are"
+msgstr "are"
+
+msgid "scheduled in other chats."
+msgstr "scheduled in other chats."
+
+msgid "The group's members haven't loaded yet. Try again in a moment."
+msgstr "The group's members haven't loaded yet. Try again in a moment."
+
+msgid "There's no one else in the group to draw."
+msgstr "There's no one else in the group to draw."
+
+msgid "Couldn't work that out: "
+msgstr "Couldn't work that out: "
+
+msgid "Delete for everyone"
+msgstr "Delete for everyone"
 
 msgid "ghost.mode.on"
 msgstr "Ghost mode is on. Chats you open and status updates you watch send no read receipts, and you show as offline, even while the app is open. Chats you read here stay unread on your phone. You can't send messages, react or vote until you turn it off, and you don't see who's typing. Scheduled messages and AFK replies still go out."
@@ -993,6 +1173,90 @@ msgstr "Hide commands"
 msgid "command.optional"
 msgstr "(optional)"
 
+msgid "Unarchive chat"
+msgstr "Unarchive chat"
+
+msgid "Archive chat"
+msgstr "Archive chat"
+
+msgid "Unpin chat"
+msgstr "Unpin chat"
+
+msgid "Pin chat"
+msgstr "Pin chat"
+
+msgid "Mark as read"
+msgstr "Mark as read"
+
+msgid "Mark as unread"
+msgstr "Mark as unread"
+
+msgid "Close chat"
+msgstr "Close chat"
+
+msgid "Add to list"
+msgstr "Add to list"
+
+msgid "Clear chat"
+msgstr "Clear chat"
+
+msgid "Exit group"
+msgstr "Exit group"
+
+msgid "Message info"
+msgstr "Message info"
+
+msgid "Reply"
+msgstr "Reply"
+
+msgid "Reply privately"
+msgstr "Reply privately"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Copy"
+msgstr "Copy"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Edit history"
+msgstr "Edit history"
+
+msgid "Save as…"
+msgstr "Save as…"
+
+msgid "Forward"
+msgstr "Forward"
+
+msgid "Unpin"
+msgstr "Unpin"
+
+msgid "Pin"
+msgstr "Pin"
+
+msgid "Unstar"
+msgstr "Unstar"
+
+msgid "Star"
+msgstr "Star"
+
+msgid "Remove from Favourites"
+msgstr "Remove from Favourites"
+
+msgid "Add to Favourites"
+msgstr "Add to Favourites"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Message copied"
+msgstr "Message copied"
+
+msgid "No lists yet. Create lists on your phone."
+msgstr "No lists yet. Create lists on your phone."
+
 msgid "settings.gray.note"
 msgstr "Extra features aren't made by WhatsApp. They only use what WhatsApp lets every linked device do."
 
@@ -1089,3 +1353,42 @@ msgstr "Delete chat"
 
 msgid "ui.clickForInfo"
 msgstr "click here for more info"
+
+msgid "ui.group.new"
+msgstr "New group"
+
+msgid "ui.messages.starred"
+msgstr "Starred messages"
+
+msgid "ui.chats.mark_all_read"
+msgstr "Mark all as read"
+
+msgid "ui.account.switch"
+msgstr "Switch accounts"
+
+msgid "ui.account.add"
+msgstr "Add account"
+
+msgid "ui.community.admins_only"
+msgstr "community admins"
+
+msgid "ui.group.admins_only"
+msgstr "group admins"
+
+msgid "ui.ephemeral.note"
+msgstr "Only you can see this · "
+
+msgid "ui.ephemeral.note.dissmiss"
+msgstr "Dismiss"
+
+msgid "ui.message.downloadas"
+msgstr "Download as…"
+
+msgid "ui.message.goToMessage"
+msgstr "Go to message"
+
+msgid "ui.message.you"
+msgstr "(You)"
+
+msgid "ui.message.you.self"
+msgstr "Message yourself"

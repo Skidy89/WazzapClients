@@ -178,7 +178,8 @@ func (u *UI) layoutConversation(gtx C) D {
 			ghost := u.ghostMode() && !u.conv.selecting && u.conv.selV == 0
 			switch gv := u.ghostFx.compose.step(gtx, ghost, durGhost); {
 			case isChannelID(c.ID):
-				// Channels are read-only.
+				// Channels are read-only, so leave the full area to messages.
+				cd = D{}
 			case gv > 0:
 				cd = u.layoutGhostSwap(cgtx, gv, ghost, base)
 			default:
@@ -209,17 +210,25 @@ func (u *UI) layoutConversation(gtx C) D {
 	return d
 }
 
+
 func (u *UI) layoutConvHeader(gtx C, c *model.Chat) D {
 	p := u.pal
 	gtx.Constraints.Min.X = gtx.Constraints.Max.X
+
 	return background(gtx, p.Panel, 0, func(gtx C) D {
 		return vcenter(gtx, gtx.Dp(64), func(gtx C) D {
-			return layout.Inset{Left: 17, Right: 16}.Layout(gtx, func(gtx C) D {
+			mobile := u.mobile
+
+			return layout.Inset{
+				Left:  17,
+				Right: 16,
+			}.Layout(gtx, func(gtx C) D {
 				sub := c.Presence
 				if ch := u.channelByID(c.ID); ch != nil {
 					sub = followers(ch.Followers)
 				}
-				// Announcements go by their community's name and picture.
+
+				// Announcements use their community's name and picture.
 				cm := u.announcementsOf(c)
 				if cm != nil {
 					sub = "Announcements"
@@ -229,24 +238,31 @@ func (u *UI) layoutConvHeader(gtx C, c *model.Chat) D {
 				}
 				if sub == "" {
 					sub = u.locale.Text("ui.clickForInfo")
-					if c.IsGroup {
-						sub = u.locale.Text("ui.clickForInfo")
-					}
 				}
+
 				name := c.Name
 				if c.Self {
-					name += " (You)"
+					name += " " + u.locale.Text("ui.message.you")
 				}
 				if cm != nil {
 					name = cm.Name
 				}
+
 				calls := func(gtx C) D {
-					// Video call with a drop-down arrow, like WhatsApp's call picker.
+					if mobile {
+						return D{}
+					}
 					return clickable(gtx, &u.conv.video, func(gtx C) D {
 						h := gtx.Dp(40)
 						if a := u.hover(gtx, &u.conv.video); a > 0 {
-							fillRRect(gtx, image.Rect(0, 0, gtx.Dp(60), h), h/2, faded(p.Hover, a))
+							fillRRect(
+								gtx,
+								image.Rect(0, 0, gtx.Dp(60), h),
+								h/2,
+								faded(p.Hover, a),
+							)
 						}
+
 						gtx.Constraints = layout.Exact(image.Pt(gtx.Dp(60), h))
 						return layout.Center.Layout(gtx, func(gtx C) D {
 							return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
@@ -256,54 +272,120 @@ func (u *UI) layoutConvHeader(gtx C, c *model.Chat) D {
 						})
 					})
 				}
+
 				divider := func(gtx C) D {
 					h := gtx.Dp(24)
-					fillRect(gtx, image.Rect(0, 0, max(1, gtx.Dp(1)), h), p.Divider)
-					return D{Size: image.Pt(max(1, gtx.Dp(1)), h)}
+					w := max(1, gtx.Dp(1))
+					fillRect(gtx, image.Rect(0, 0, w, h), p.Divider)
+					return D{Size: image.Pt(w, h)}
 				}
+
 				if cm != nil {
-					// No calls in announcements; their community's groups instead.
-					calls = func(gtx C) D { return u.layoutCommunityButton(gtx, cm) }
+					calls = func(gtx C) D {
+						return u.layoutCommunityButton(gtx, cm)
+					}
 					divider = func(C) D { return D{} }
 				}
-				return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
+
+				children := make([]layout.FlexChild, 0, 9)
+
+				if mobile {
+					children = append(children,
+						layout.Rigid(func(gtx C) D {
+							return u.iconButton(
+								gtx, &u.conv.back,
+								icBack, 40, 26, p.IconStrong,
+							)
+						}),
+						layout.Rigid(layout.Spacer{Width: 8}.Layout),
+					)
+				}
+
+				children = append(children,
 					layout.Flexed(1, func(gtx C) D {
 						return clickable(gtx, &u.conv.header, func(gtx C) D {
-							defer u.hiding(gtx, "header", u.conv.header.Hovered())()
+							defer u.hiding(
+								gtx, "header",
+								u.conv.header.Hovered(),
+							)()
+
 							gtx.Constraints.Min.X = gtx.Constraints.Max.X
+
 							return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 								layout.Rigid(func(gtx C) D {
 									if isChannelID(c.ID) {
-										return u.avatarOf(gtx, c.ID, avatarChannel, 41)
+										return u.avatarOf(
+											gtx, c.ID, avatarChannel, 41,
+										)
 									}
 									if cm != nil {
-										return u.avatarOf(gtx, cm.ID, avatarCommunity, 41)
+										return u.avatarOf(
+											gtx, cm.ID, avatarCommunity, 41,
+										)
 									}
-									return u.avatar(gtx, c.ID, c.Name, c.IsGroup, 41)
+									return u.avatar(
+										gtx, c.ID, c.Name, c.IsGroup, 41,
+									)
 								}),
-								layout.Rigid(layout.Spacer{Width: 16}.Layout),
+								layout.Rigid(layout.Spacer{Width: 12}.Layout),
 								layout.Flexed(1, func(gtx C) D {
-									return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-										layout.Rigid(u.label(17, name, p.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
-										layout.Rigid(layout.Spacer{Height: 1}.Layout),
-										layout.Rigid(u.label(14, sub, p.TextSecondary).Layout),
+									return layout.Flex{
+										Axis: layout.Vertical,
+									}.Layout(gtx,
+										layout.Rigid(u.label(
+											17, name, p.Text,
+											labelOpts{
+												weight:   font.SemiBold,
+												maxLines: 1,
+											},
+										).Layout),
+										layout.Rigid(
+											layout.Spacer{Height: 1}.Layout,
+										),
+										layout.Rigid(u.label(
+											14, sub, p.TextSecondary,
+										).Layout),
 									)
 								}),
 							)
 						})
 					}),
-					layout.Rigid(calls),
-					layout.Rigid(layout.Spacer{Width: 12}.Layout),
-					layout.Rigid(divider),
-					layout.Rigid(layout.Spacer{Width: 12}.Layout),
-					layout.Rigid(func(gtx C) D { return u.iconButton(gtx, &u.conv.search, icSearch, 40, 26, p.IconStrong) }),
-					layout.Rigid(layout.Spacer{Width: 8}.Layout),
-					layout.Rigid(func(gtx C) D { return u.iconButton(gtx, &u.conv.menu, icMenu, 40, 26, p.IconStrong) }),
 				)
+
+				// Calls and divider are desktop-only.
+				if !mobile {
+					children = append(children,
+						layout.Rigid(calls),
+						layout.Rigid(layout.Spacer{Width: 12}.Layout),
+						layout.Rigid(divider),
+						layout.Rigid(layout.Spacer{Width: 12}.Layout),
+					)
+				}
+
+				children = append(children,
+					layout.Rigid(func(gtx C) D {
+						return u.iconButton(
+							gtx, &u.conv.search,
+							icSearch, 40, 26, p.IconStrong,
+						)
+					}),
+					layout.Rigid(layout.Spacer{Width: 8}.Layout),
+					layout.Rigid(func(gtx C) D {
+						return u.iconButton(
+							gtx, &u.conv.menu,
+							icMenu, 40, 26, p.IconStrong,
+						)
+					}),
+				)
+
+				return layout.Flex{
+					Alignment: layout.Middle,
+				}.Layout(gtx, children...)
 			})
 		})
 	})
 }
+
 
 func dp(gtx C, px int) unit.Dp { return unit.Dp(float32(px) / gtx.Metric.PxPerDp) }
 
@@ -425,6 +507,9 @@ func (u *UI) layoutMessages(gtx C, c *model.Chat) D {
 	width := gtx.Constraints.Max.X
 	margin := max(gtx.Dp(12), min(gtx.Dp(63), width*13/100))
 	maxBubble := min(width*69/100, width-2*margin)
+	if isChannelID(c.ID) {
+		maxBubble = min(width*85/100, width-2*margin)
+	}
 
 	if p := u.conv.scrollTo; p != nil {
 		u.conv.list.Position = *p
@@ -578,6 +663,7 @@ func (u *UI) layoutMessageRow(gtx C, c *model.Chat, r convRow, maxW, margin int)
 	w := gtx.Constraints.Max.X
 	sel := u.conv.selecting
 	ann := u.announcementsOf(c) != nil
+	center := isChannelID(c.ID)
 	if ann {
 		maxW = annWidth(gtx, w)
 	}
@@ -604,7 +690,7 @@ func (u *UI) layoutMessageRow(gtx C, c *model.Chat, r convRow, maxW, margin int)
 	cardH := u.conv.cardH
 	x := shift
 	switch {
-	case ann:
+	case center:
 		x = (w - bubble.size.X) / 2 // down the middle, whoever sent it
 	case m.FromMe:
 		x = w - bubble.size.X
@@ -975,8 +1061,12 @@ func (u *UI) layoutBubble(gtx C, c *model.Chat, m *model.Message, tail bool, max
 	textInset := 0 // horizontal inset of text inside image bubbles
 	var img *imgEntry
 	if isImg {
-		imgW = min(inner, gtx.Dp(330))
-		maxPx := gtx.Dp(330)
+		imageMax := gtx.Dp(330)
+		if isChannelID(c.ID) {
+			imageMax = gtx.Dp(560)
+		}
+		imgW = min(inner, imageMax)
+		maxPx := imageMax
 		if ann {
 			imgW, maxPx = inner, inner
 		}

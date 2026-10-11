@@ -381,7 +381,7 @@ func (u *UI) layoutAccountMenu(gtx C) {
 						fillCircle(gtx, image.Pt(px/2, px/2), px/2, p.Divider)
 						return centerIn(gtx, px, iconW(icPersonAdd, 22, p.Icon))
 					}, func(gtx C) D {
-						return u.label(15, "Add account", p.Text).Layout(gtx)
+						return u.label(15, u.locale.Text("ui.account.add"), p.Text).Layout(gtx)
 					}, nil)
 				}),
 			)

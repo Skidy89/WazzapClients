@@ -43,10 +43,10 @@ func (u *UI) sendBlocked(c *model.Chat) string {
 	switch {
 	case u.announcementsOf(c) != nil:
 		if !known || info.Announce && !u.amAdmin(c.ID) {
-			return "community admins"
+			return u.locale.Text("ui.community.admins_only")
 		}
 	case known && info.Announce && !u.amAdmin(c.ID):
-		return "admins"
+		return u.locale.Text("ui.group.admins_only")
 	}
 	return ""
 }

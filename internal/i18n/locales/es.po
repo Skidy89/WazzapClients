@@ -262,10 +262,15 @@ msgid "command.sticker"
 msgstr "Convierte en sticker la foto a la que respondes o una imagen que elijas"
 
 msgid "command.sticker.top"
-msgstr "Texto en la parte superior; # inicia el texto inferior"
+msgstr "paquete del sticker"
 
 msgid "command.sticker.bottom"
-msgstr "Texto en la parte inferior"
+msgstr "autor del sticker"
+msgid "command.sticker.ai"
+msgstr "marca tu sticker con la etiqueta: AI"
+
+msgid "command.sticker.premium"
+msgstr "marca tu sticker con la etiqueta: PREMIUM"
 
 msgid "command.purge"
 msgstr "Elimina los últimos mensajes para todos o los mensajes hasta aquel al que respondes"
@@ -335,6 +340,180 @@ msgstr "Envía un mensaje que menciona a todos en el grupo sin mostrar las menci
 
 msgid "command.hidetag.text"
 msgstr "El mensaje que enviar"
+
+msgid "Pick someone first."
+msgstr "Elige a alguien primero."
+
+msgid "Adding"
+msgstr "Añadiendo"
+
+msgid "Removing"
+msgstr "Eliminando"
+
+msgid "Promoting"
+msgstr "Ascendiendo"
+
+msgid "Dismissing"
+msgstr "Degradando"
+
+msgid "Added %s to the group."
+msgstr "Se añadió a %s al grupo."
+
+msgid "Removed %s from the group."
+msgstr "Se eliminó a %s del grupo."
+
+msgid "%s is now a group admin."
+msgstr "%s ahora es administrador del grupo."
+
+msgid "%s are now group admins."
+msgstr "%s ahora son administradores del grupo."
+
+msgid "%s is no longer a group admin."
+msgstr "%s ya no es administrador del grupo."
+
+msgid "%s are no longer group admins."
+msgstr "%s ya no son administradores del grupo."
+
+msgid "Add back"
+msgstr "Añadir de nuevo"
+
+msgid "Nothing changed."
+msgstr "No cambió nada."
+
+msgid "Added %s back."
+msgstr "Se volvió a añadir a %s."
+
+msgid "Invite %s"
+msgstr "Invitar a %s"
+
+msgid "Couldn't invite %s: %s"
+msgstr "No se pudo invitar a %s: %s"
+
+msgid "Sent %s an invite to join."
+msgstr "Se envió a %s una invitación para unirse."
+
+msgid "Getting the invite link…"
+msgstr "Obteniendo el enlace de invitación…"
+
+msgid "Copy link"
+msgstr "Copiar enlace"
+
+msgid "Reset link"
+msgstr "Restablecer enlace"
+
+msgid "Reset the invite link?"
+msgstr "¿Restablecer el enlace de invitación?"
+
+msgid "The current link stops working. Anyone with it can't join anymore."
+msgstr "El enlace actual dejará de funcionar. Quien lo tenga ya no podrá unirse."
+
+msgid "Locking the group…"
+msgstr "Bloqueando el grupo…"
+
+msgid "Unlocking the group…"
+msgstr "Desbloqueando el grupo…"
+
+msgid "Only admins can send messages now. /lockdown off lets everyone send again."
+msgstr "Ahora solo los administradores pueden enviar mensajes. /lockdown off permite que todos vuelvan a enviar."
+
+msgid "Everyone can send messages again."
+msgstr "Todos pueden enviar mensajes de nuevo."
+
+msgid "Changing the description…"
+msgstr "Cambiando la descripción…"
+
+msgid "Changed the group description."
+msgstr "Se cambió la descripción del grupo."
+
+msgid "Making a sticker…"
+msgstr "Creando un sticker…"
+
+msgid "Text can't go on an animated sticker yet."
+msgstr "Todavía no se puede añadir texto a un sticker animado."
+
+msgid "That picture is too big to make a sticker of."
+msgstr "Esa imagen es demasiado grande para convertirla en sticker."
+
+msgid "Couldn't make a sticker of that picture."
+msgstr "No se pudo convertir esa imagen en sticker."
+
+msgid "It hasn't downloaded yet. Try again in a moment."
+msgstr "Todavía no se ha descargado. Inténtalo de nuevo en un momento."
+
+msgid "Reply to a photo or a sticker, or run /sticker without replying to pick a picture."
+msgstr "Responde a una foto o un sticker, o ejecuta /sticker sin responder para elegir una imagen."
+
+msgid "There are no messages to delete."
+msgstr "No hay mensajes para eliminar."
+
+msgid "%d from other people"
+msgstr "%d de otras personas"
+
+msgid "(only group admins can delete those)"
+msgstr "(solo los administradores del grupo pueden eliminarlos)"
+
+msgid "%d too old to delete for everyone"
+msgstr "%d son demasiado antiguos para eliminarlos para todos"
+
+msgid "%d not sent yet"
+msgstr "%d aún no se han enviado"
+
+msgid "None of them can be deleted: %s."
+msgstr "No se puede eliminar ninguno: %s."
+
+msgid "Left as they are: %s."
+msgstr "Se mantienen sin cambios: %s."
+
+msgid "Delete %s for everyone?"
+msgstr "¿Eliminar %s para todos?"
+
+msgid "Deleted %s for everyone."
+msgstr "Se eliminó %s para todos."
+
+msgid "message"
+msgstr "mensaje"
+
+msgid "messages"
+msgstr "mensajes"
+
+msgid "other member"
+msgstr "otro miembro"
+
+msgid "other members"
+msgstr "otros miembros"
+
+msgid "and"
+msgstr "y"
+
+msgid "The group has only %s to draw from."
+msgstr "El grupo solo tiene %s entre los que elegir."
+
+msgid "🎲 *Raffle*"
+msgstr "🎲 *Sorteo*"
+
+msgid "_Drawn at random from %s._"
+msgstr "_Elegidos al azar entre %s._"
+
+msgid "is"
+msgstr "está"
+
+msgid "are"
+msgstr "están"
+
+msgid "scheduled in other chats."
+msgstr "programados en otros chats."
+
+msgid "The group's members haven't loaded yet. Try again in a moment."
+msgstr "Los miembros del grupo aún no se han cargado. Inténtalo de nuevo en un momento."
+
+msgid "There's no one else in the group to draw."
+msgstr "No hay nadie más en el grupo para elegir."
+
+msgid "Couldn't work that out: "
+msgstr "No se pudo calcular: "
+
+msgid "Delete for everyone"
+msgstr "Eliminar para todos"
 
 msgid "ghost.mode.on"
 msgstr "El modo fantasma está activado. Los chats que abras y los estados que veas no enviarán confirmaciones de lectura, y aparecerás desconectado aunque la aplicación esté abierta. Los chats que leas aquí seguirán sin leerse en tu teléfono. No podrás enviar mensajes, reaccionar ni votar hasta desactivarlo, y no verás quién está escribiendo. Los mensajes programados y las respuestas AFK seguirán enviándose."
@@ -990,6 +1169,90 @@ msgstr "Ocultar comandos"
 msgid "command.optional"
 msgstr "(Opcional)"
 
+msgid "Unarchive chat"
+msgstr "Desarchivar chat"
+
+msgid "Archive chat"
+msgstr "Archivar chat"
+
+msgid "Unpin chat"
+msgstr "Desfijar chat"
+
+msgid "Pin chat"
+msgstr "Fijar chat"
+
+msgid "Mark as read"
+msgstr "Marcar como leído"
+
+msgid "Mark as unread"
+msgstr "Marcar como no leído"
+
+msgid "Close chat"
+msgstr "Cerrar chat"
+
+msgid "Add to list"
+msgstr "Añadir a una lista"
+
+msgid "Clear chat"
+msgstr "Vaciar chat"
+
+msgid "Exit group"
+msgstr "Salir del grupo"
+
+msgid "Message info"
+msgstr "Información del mensaje"
+
+msgid "Reply"
+msgstr "Responder"
+
+msgid "Reply privately"
+msgstr "Responder en privado"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Edit history"
+msgstr "Historial de ediciones"
+
+msgid "Save as…"
+msgstr "Guardar como…"
+
+msgid "Forward"
+msgstr "Reenviar"
+
+msgid "Unpin"
+msgstr "Desfijar"
+
+msgid "Pin"
+msgstr "Fijar"
+
+msgid "Unstar"
+msgstr "Quitar estrella"
+
+msgid "Star"
+msgstr "Destacar"
+
+msgid "Remove from Favourites"
+msgstr "Quitar de favoritos"
+
+msgid "Add to Favourites"
+msgstr "Añadir a favoritos"
+
+msgid "Select"
+msgstr "Seleccionar"
+
+msgid "Message copied"
+msgstr "Mensaje copiado"
+
+msgid "No lists yet. Create lists on your phone."
+msgstr "Aún no hay listas. Crea listas en tu teléfono."
+
 msgid "settings.gray.note"
 msgstr "Las funciones adicionales no son de WhatsApp. Solo utilizan lo que WhatsApp permite a cada dispositivo vinculado."
 
@@ -1086,3 +1349,43 @@ msgstr "Eliminar chat"
 
 msgid "ui.clickForInfo"
 msgstr "haz clic aquí para mas info"
+
+msgid "ui.group.new"
+msgstr "Nuevo grupo"
+
+msgid "ui.messages.starred"
+msgstr "Mensajes destacados"
+
+msgid "ui.chats.mark_all_read"
+msgstr "Marcar todos como leídos"
+
+msgid "ui.account.switch"
+msgstr "Cambiar de cuenta"
+
+msgid "ui.account.add"
+msgstr "Añadir cuenta"
+
+msgid "ui.community.admins_only"
+msgstr "admins de la comunidad"
+
+msgid "ui.group.admins_only"
+msgstr "administradores del grupo"
+
+msgid "ui.ephemeral.note"
+msgstr "Solo tu puedes ver esto · "
+
+msgid "ui.ephemeral.note.dissmiss"
+msgstr "Descartar"
+
+
+msgid "ui.message.downloadable"
+msgstr "Descargar como…"
+
+msgid "ui.message.goToMessage"
+msgstr "Ir a mensaje"
+
+msgid "ui.message.you"
+msgstr "(Tú)"
+
+msgid "ui.message.you.self"
+msgstr "Envia mensajes a este mismo numero"

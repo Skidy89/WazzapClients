@@ -57,6 +57,8 @@ type UI struct {
 	window *app.Window // nil when rendering headless
 	host   *host       // nil when rendering headless (see Run)
 	deco   widget.Decorations
+	mobile bool
+	phoneEditor widget.Editor
 	// winWidth is the window width in px, for panels sized relative to it.
 	winWidth int
 
@@ -212,6 +214,7 @@ type UI struct {
 		list                widget.List
 		composer            widget.Editor
 		video, search, menu widget.Clickable
+		back                widget.Clickable
 		community           widget.Clickable // the announcements' group picker
 		attach, emoji, send widget.Clickable
 		// editorElsewhere is set while the send view shows: the
@@ -681,9 +684,11 @@ func (u *UI) layoutWindow(gtx C) D {
 	sz := gtx.Constraints.Max
 	u.winWidth = sz.X
 	fillRect(gtx, image.Rectangle{Max: sz}, u.pal.Frame)
-	tb := u.layoutTitleBar(gtx)
-	defer op.Offset(image.Pt(0, tb.Size.Y)).Push(gtx.Ops).Pop()
-	gtx.Constraints = layout.Exact(image.Pt(sz.X, sz.Y-tb.Size.Y))
+	if !u.mobile {
+		tb := u.layoutTitleBar(gtx)
+		defer op.Offset(image.Pt(0, tb.Size.Y)).Push(gtx.Ops).Pop()
+		gtx.Constraints = layout.Exact(image.Pt(sz.X, sz.Y-tb.Size.Y))
+	}
 
 	// While an account logs out for another to open, it keeps its
 	// chats on screen instead of flashing the login screen.
@@ -724,6 +729,9 @@ func (u *UI) layoutWindow(gtx C) D {
 }
 
 func (u *UI) layoutMain(gtx C) D {
+	if u.mobile {
+		return u.layoutMobileMain(gtx)
+	}
 	p := u.pal
 	sz := gtx.Constraints.Max
 	railW := gtx.Dp(railWidth)
@@ -991,6 +999,9 @@ func (u *UI) update(gtx C) {
 			u.openInfo(u.selected.ID)
 		}
 	}
+	if u.mobile && u.conv.back.Clicked(gtx) {
+		u.closeChat()
+	}
 	searchKey := false
 	for {
 		ev, ok := gtx.Event(key.Filter{Name: "F", Required: key.ModShortcut | key.ModShift})
@@ -1150,6 +1161,8 @@ func (u *UI) escape() {
 		u.status.viewer.close()
 	case u.page == pageSettings && u.settings.detail != 0:
 		u.settingsBack()
+	case u.mobile && u.selected != nil:
+		u.closeChat()
 	}
 }
 

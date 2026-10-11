@@ -633,7 +633,7 @@ func (u *UI) layoutNewChatPage(gtx C) D {
 				c := c
 				rows = append(rows, func(gtx C) D {
 					return u.ncRow(gtx, u.btn("nc:self"), func(gtx C) D { return u.avatar(gtx, c.ID, c.Name, false, 49) },
-						c.Name+" (You)", "Message yourself")
+						c.Name+" "+u.locale.Text("ui.message.you"), u.locale.Text("ui.message.you.self"))
 				})
 				break
 			}

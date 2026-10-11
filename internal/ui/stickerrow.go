@@ -40,6 +40,7 @@ func (u *UI) layoutStickerRow(gtx C, c *model.Chat, r convRow, maxW, margin int)
 	out := ms[0].FromMe
 	w := gtx.Constraints.Max.X
 	sel := u.conv.selecting
+	center := isChannelID(c.ID)
 	selV := easeOut(u.conv.selV)
 	shift := 0
 	if !out {
@@ -108,7 +109,9 @@ func (u *UI) layoutStickerRow(gtx C, c *model.Chat, r convRow, maxW, margin int)
 			lh = max(lh, parts[i].size.Y)
 		}
 		x0 := shift + hx
-		if out {
+		if center {
+			x0 = (w - len(line)*cell - (len(line)-1)*gap) / 2
+		} else if out {
 			x0 = w - len(line)*cell - (len(line)-1)*gap
 		}
 		lt := op.Offset(image.Pt(0, y)).Push(gtx.Ops)

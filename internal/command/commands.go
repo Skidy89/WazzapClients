@@ -2,6 +2,7 @@ package command
 
 import (
 	"errors"
+	"fmt"
 	"math/rand/v2"
 	"os"
 	"strconv"
@@ -55,8 +56,10 @@ var All = []*Command{
 	{
 		Name: "sticker", Description: "command.sticker",
 		Options: []Option{
-			{Name: "top", Description: "command.sticker.top", Kind: Text, Until: "#"},
-			{Name: "bottom", Description: "command.sticker.bottom", Kind: Text},
+			{Name: "Packname", Description: "command.sticker.top", Kind: Text, Until: "#"},
+			{Name: "Author", Description: "command.sticker.bottom", Kind: Text, Until: "#"},
+			{Name: "Ai", Description: "command.sticker.ai", Kind: Choice, Choices: []string{"yes", "no"}},
+			{Name: "Premium", Description: "command.sticker.premium", Kind: Choice, Choices: []string{"yes", "no"}},
 		},
 		Run: runSticker,
 	},
@@ -198,16 +201,16 @@ func changeMembers(c *Context, action model.GroupAction, opt string) error {
 			var s string
 			switch action {
 			case model.GroupAdd:
-				s = c.T("Added ") + names(done) + c.T(" to the group.")
+				s = fmt.Sprintf(c.T("Added %s to the group."), names(c.Locale, done))
 			case model.GroupRemove:
-				s = c.T("Removed ") + names(done) + c.T(" from the group.")
+				s = fmt.Sprintf(c.T("Removed %s from the group."), names(c.Locale, done))
 				n.Buttons = append(n.Buttons, Button{Label: c.T("Add back"), Run: func() {
 					addBack(c, n, chat, doneIDs)
 				}})
 			case model.GroupPromote:
-				s = names(done) + map[bool]string{true: " is now a group admin.", false: " are now group admins."}[len(done) == 1]
+				s = fmt.Sprintf(c.T(map[bool]string{true: "%s is now a group admin.", false: "%s are now group admins."}[len(done) == 1]), names(c.Locale, done))
 			case model.GroupDemote:
-				s = names(done) + map[bool]string{true: " is no longer a group admin.", false: " are no longer group admins."}[len(done) == 1]
+				s = fmt.Sprintf(c.T(map[bool]string{true: "%s is no longer a group admin.", false: "%s are no longer group admins."}[len(done) == 1]), names(c.Locale, done))
 			}
 			lines = append([]string{s}, lines...)
 		}
@@ -231,7 +234,7 @@ func addBack(c *Context, n *Note, chat string, ids []string) {
 		}
 		for _, r := range ev.Members {
 			if r.Err == "" {
-				n.Text += "\nAdded " + r.Name + " back."
+				n.Text += "\n" + fmt.Sprintf(c.T("Added %s back."), r.Name)
 			} else {
 				n.Text += "\n" + r.Name + " " + r.Err + "."
 			}
@@ -242,7 +245,7 @@ func addBack(c *Context, n *Note, chat string, ids []string) {
 // inviteButton sends someone whose privacy settings refused /add an
 // invite to join, in your chat with them.
 func inviteButton(c *Context, n *Note, chat string, r model.MemberResult) Button {
-	b := Button{Label: c.T("Invite ") + firstName(r.Name)}
+	b := Button{Label: fmt.Sprintf(c.T("Invite %s"), firstName(r.Name))}
 	b.Run = func() {
 		// The button goes; the note says how it went.
 		for i := range n.Buttons {
@@ -254,10 +257,10 @@ func inviteButton(c *Context, n *Note, chat string, r model.MemberResult) Button
 		c.Group(model.GroupRequest{ChatID: chat, Action: model.GroupSendInvite, Members: []string{r.ID}, Invite: r.Invite},
 			func(ev model.GroupEvent) {
 				if ev.Err != "" {
-					n.Text += "\n" + c.T("Couldn't invite ") + r.Name + ": " + ev.Err
+					n.Text += "\n" + fmt.Sprintf(c.T("Couldn't invite %s: %s"), r.Name, ev.Err)
 					return
 				}
-				n.Text += "\n" + c.T("Sent ") + r.Name + c.T(" an invite to join.")
+				n.Text += "\n" + fmt.Sprintf(c.T("Sent %s an invite to join."), r.Name)
 			})
 	}
 	return b
@@ -329,15 +332,26 @@ func runDescription(c *Context) error {
 
 func runSticker(c *Context) error {
 	chat := c.Chat.ID
-	text := sticker.Text{Top: c.Text("top"), Bottom: c.Text("bottom")}
-	plain := strings.TrimSpace(text.Top+text.Bottom) == ""
+	var packn, author string
+	if c.Text("Packname") != "" {
+		packn = c.Text("Packname")
+	} else {
+		packn = "OpenWA"
+	}
+	if c.Text("Author") != "" {
+		author = c.Text("Author")
+	} else {
+		author = "cli"
+	}
+	pack := sticker.Pack{Name: packn, Author: author, AI_STICKER: c.Text("Ai") == "yes", PREMIUM: c.Text("Premium") == "yes"}
+
 	makeSticker := func(read func() ([]byte, error)) {
 		n := busy(c, c.T("Making a sticker…"))
 		c.Do(func() func() {
 			data, err := read()
 			var webp []byte
 			if err == nil {
-				webp, err = sticker.FromImage(data, text)
+				webp, err = sticker.FromImage(data, &pack)
 			}
 			return func() {
 				switch {
@@ -366,10 +380,10 @@ func runSticker(c *Context) error {
 				makeSticker(func() ([]byte, error) { return os.ReadFile(path) })
 			}
 		})
-	case src.Kind == model.KindSticker && plain:
+	case src.Kind == model.KindSticker:
 		// It's a sticker already: send it as it is.
 		c.Backend.SendSticker(chat, src, nil)
-	case src.Kind == model.KindSticker, src.Kind == model.KindImage && src.Media == model.MediaImage:
+	case src.Kind == model.KindImage && (src.Media == model.MediaImage || src.Media == model.MediaVideo):
 		data := c.Backend.MediaData(src.ChatID, src.ID)
 		if data == nil {
 			return errors.New(c.T("It hasn't downloaded yet. Try again in a moment."))
@@ -416,33 +430,33 @@ func runPurge(c *Context) error {
 	}
 	var skipped []string
 	if others > 0 {
-		s := strconv.Itoa(others) + " from other people"
+		s := fmt.Sprintf(c.T("%d from other people"), others)
 		if c.Chat.IsGroup {
-			s += " (only group admins can delete those)"
+			s += " " + c.T("(only group admins can delete those)")
 		}
 		skipped = append(skipped, s)
 	}
 	if old > 0 {
-		skipped = append(skipped, strconv.Itoa(old)+" too old to delete for everyone")
+		skipped = append(skipped, fmt.Sprintf(c.T("%d too old to delete for everyone"), old))
 	}
 	if unsent > 0 {
-		skipped = append(skipped, strconv.Itoa(unsent)+" not sent yet")
+		skipped = append(skipped, fmt.Sprintf(c.T("%d not sent yet"), unsent))
 	}
 	left := strings.Join(skipped, ", ")
 	if len(del) == 0 {
-		return errors.New(c.T("None of them can be deleted: ") + left + ".")
+		return errors.New(fmt.Sprintf(c.T("None of them can be deleted: %s."), left))
 	}
 	body := ""
 	if left != "" {
-		body = c.T("Left as they are: ") + left + "."
+		body = fmt.Sprintf(c.T("Left as they are: %s."), left)
 	}
-	c.Confirm(c.T("Delete ")+plural(len(del), "message")+c.T(" for everyone?"), body, c.T("Delete for everyone"), true, func() {
+	c.Confirm(fmt.Sprintf(c.T("Delete %s for everyone?"), plural(c.Locale, len(del), "message")), body, c.T("Delete for everyone"), true, func() {
 		for _, m := range del {
 			c.Backend.Delete(m, true)
 		}
-		text := c.T("Deleted ") + plural(len(del), "message") + c.T(" for everyone.")
+		text := fmt.Sprintf(c.T("Deleted %s for everyone."), plural(c.Locale, len(del), "message"))
 		if left != "" {
-			text += "\nLeft as they are: " + left + "."
+			text += "\n" + fmt.Sprintf(c.T("Left as they are: %s."), left)
 		}
 		c.Note(&Note{Title: c.Input, Text: text})
 	})
@@ -493,10 +507,10 @@ func runRaffle(c *Context) error {
 		return errors.New(c.T("There's no one else in the group to draw."))
 	}
 	if n > len(pool) {
-		return errors.New(c.T("The group has only ") + plural(len(pool), "other member") + c.T(" to draw from."))
+		return errors.New(fmt.Sprintf(c.T("The group has only %s to draw from."), plural(c.Locale, len(pool), "other member")))
 	}
 	rand.Shuffle(len(pool), func(i, j int) { pool[i], pool[j] = pool[j], pool[i] })
-	text, ids := raffleText(raffleLines[rand.IntN(len(raffleLines))], pool[:n], len(pool))
+	text, ids := raffleTextLocalized(c.Locale, raffleLines[rand.IntN(len(raffleLines))], pool[:n], len(pool))
 	if m := c.Backend.Send(c.Chat.ID, model.Draft{Text: text, Mentions: ids}); m != nil {
 		c.Sent(m)
 	}
@@ -506,9 +520,14 @@ func runRaffle(c *Context) error {
 // raffleText is the message announcing a raffle's winners, drawn from
 // pool members, under line (one of raffleLines), and the IDs it mentions.
 func raffleText(line string, winners []model.Member, pool int) (string, []string) {
+	return raffleTextLocalized(nil, line, winners, pool)
+}
+
+func raffleTextLocalized(t Translator, line string, winners []model.Member, pool int) (string, []string) {
 	var b strings.Builder
 
-	b.WriteString("🎲 *Raffle*\n")
+	b.WriteString(translate(t, "🎲 *Raffle*"))
+	b.WriteByte('\n')
 	b.WriteString(line)
 	b.WriteByte(':')
 
@@ -525,9 +544,8 @@ func raffleText(line string, winners []model.Member, pool int) (string, []string
 		b.WriteString(user)
 	}
 
-	b.WriteString("\n_Drawn at random from ")
-	b.WriteString(plural(pool, "member"))
-	b.WriteString("._")
+	b.WriteString("\n")
+	b.WriteString(fmt.Sprintf(translate(t, "_Drawn at random from %s._"), plural(t, pool, "member")))
 
 	return b.String(), ids
 }
@@ -568,22 +586,29 @@ func previewCalc(in *Input) (string, bool) {
 }
 
 // plural is "1 message" or "3 messages".
-func plural(n int, noun string) string {
+func plural(t Translator, n int, noun string) string {
 	if n == 1 {
-		return "1 " + noun
+		return "1 " + translate(t, noun)
 	}
-	return strconv.Itoa(n) + " " + noun + "s"
+	return strconv.Itoa(n) + " " + translate(t, noun+"s")
 }
 
 // names lists names as a sentence: "A", "A and B", "A, B and C".
-func names(ns []string) string {
+func names(t Translator, ns []string) string {
 	switch len(ns) {
 	case 0:
 		return ""
 	case 1:
 		return ns[0]
 	}
-	return strings.Join(ns[:len(ns)-1], ", ") + " and " + ns[len(ns)-1]
+	return strings.Join(ns[:len(ns)-1], ", ") + " " + translate(t, "and") + " " + ns[len(ns)-1]
+}
+
+func translate(t Translator, text string) string {
+	if t == nil {
+		return text
+	}
+	return t.Text(text)
 }
 
 func firstName(s string) string {

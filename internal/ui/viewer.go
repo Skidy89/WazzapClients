@@ -150,9 +150,9 @@ func (u *UI) viewerMenuItems() []menuItem {
 		return nil
 	}
 	return []menuItem{
-		{key: "save", ic: icDownload, label: "Save as…", run: func() { u.backend.SaveMedia(m) }},
-		{key: "goto", ic: icChats, label: "Go to message", run: func() { u.closeViewer(); u.showMessage(m) }},
-		{key: "delete", ic: icDelete, label: "Delete", run: func() { u.closeViewer(); u.confirmDelete([]*model.Message{m}) }},
+		{key: "save", ic: icDownload, label: u.locale.Text("ui.message.downloadable"), run: func() { u.backend.SaveMedia(m) }},
+		{key: "goto", ic: icChats, label: u.locale.Text("ui.message.goToMessage"), run: func() { u.closeViewer(); u.showMessage(m) }},
+		{key: "delete", ic: icDelete, label: u.locale.Text("Delete"), run: func() { u.closeViewer(); u.confirmDelete([]*model.Message{m}) }},
 	}
 }
 

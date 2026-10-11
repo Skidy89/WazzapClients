@@ -5,3 +5,5 @@ wazzap.exe
 .vscode/
 release-key
 openWa.exe
+*.apk
+*.apk.idsig

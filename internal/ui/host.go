@@ -34,6 +34,8 @@ const (
 type Options struct {
 	// Window holds the options of every window Run opens.
 	Window []app.Option
+	// Mobile selects the single-pane layout used by Android.
+	Mobile bool
 	// Hidden starts the app in the background, without a window, as when
 	// it starts at login. It's ignored where the app can't run in the
 	// background (no tray icon).
@@ -394,6 +396,7 @@ func (h *host) openWindow() {
 func (h *host) newUI() {
 	u := New(hostBackend{Backend: h.b, h: h})
 	u.window, u.host = h.win, h
+	u.mobile = h.o.Mobile
 	u.drafts = h.drafts
 	h.u = u
 	u.accounts = h.accountRows()
